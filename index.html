@@ -102,7 +102,13 @@
     
     
     
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0">
+
+ <audio id="bg-music" autoplay loop muted>
+    <source src="/source/music/me.mp3" type="audio/mpeg">
+  </audio>
+  
+</head>
 
 
 
@@ -533,7 +539,16 @@ Qu...
     });
 </script>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var audio = document.getElementById('bg-music');
+      // 用户与页面交互后取消静音并播放
+      document.addEventListener('click', function() {
+        audio.muted = false;
+        audio.play();
+      });
+    });
+  </script>
 
 
 	
