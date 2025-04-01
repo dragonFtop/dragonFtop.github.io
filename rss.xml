@@ -3,8 +3,8 @@
     <channel>
         <title>Hexo</title>
         <subtitle></subtitle>
-        <icon>https://github.com/dragonFtop/dragonFtop.github.io.git/images/favicon.ico</icon>
-        <link>https://github.com/dragonFtop/dragonFtop.github.io.git</link>
+        <icon>https://github.com/dragonFtop/dragonFtop.github.io.gi/images/favicon.ico</icon>
+        <link>https://github.com/dragonFtop/dragonFtop.github.io.gi</link>
         <author>
           <name>John Doe</name>
         </author>
@@ -13,9 +13,9 @@
         <pubDate>Sat, 15 Mar 2025 16:19:49 +0800</pubDate>
         <lastBuildDate>Sat, 15 Mar 2025 16:19:49 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://github.com/dragonFtop/dragonFtop.github.io.git/2025/03/15/hello-world/</guid>
+            <guid isPermalink="true">https://github.com/dragonFtop/dragonFtop.github.io.gi/2025/03/15/hello-world/</guid>
             <title>Hello World</title>
-            <link>https://github.com/dragonFtop/dragonFtop.github.io.git/2025/03/15/hello-world/</link>
+            <link>https://github.com/dragonFtop/dragonFtop.github.io.gi/2025/03/15/hello-world/</link>
             <pubDate>Sat, 15 Mar 2025 16:19:49 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;Welcome to &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvLw==&#34;&gt;Hexo&lt;/span&gt;! This is your very first post. Check &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv&#34;&gt;documentation&lt;/span&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=&#34;&gt;troubleshooting&lt;/span&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
