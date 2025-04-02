@@ -8,7 +8,14 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2025-03-15T08:19:49.763Z</updated>
+    <updated>2025-04-02T13:26:07.000Z</updated>
+    <entry>
+        <id>http://example.com/2025/04/02/pageposts/</id>
+        <title>pageposts</title>
+        <link rel="alternate" href="http://example.com/2025/04/02/pageposts/"/>
+        <content type="html"></content>
+        <updated>2025-04-02T13:26:07.000Z</updated>
+    </entry>
     <entry>
         <id>http://example.com/2025/03/15/hello-world/</id>
         <title>Hello World</title>

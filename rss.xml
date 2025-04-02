@@ -10,8 +10,15 @@
         </author>
         <description></description>
         <language>en</language>
-        <pubDate>Sat, 15 Mar 2025 16:19:49 +0800</pubDate>
-        <lastBuildDate>Sat, 15 Mar 2025 16:19:49 +0800</lastBuildDate>
+        <pubDate>Wed, 02 Apr 2025 21:26:07 +0800</pubDate>
+        <lastBuildDate>Wed, 02 Apr 2025 21:26:07 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://example.com/2025/04/02/pageposts/</guid>
+            <title>pageposts</title>
+            <link>http://example.com/2025/04/02/pageposts/</link>
+            <pubDate>Wed, 02 Apr 2025 21:26:07 +0800</pubDate>
+            <description><![CDATA[  ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://example.com/2025/03/15/hello-world/</guid>
             <title>Hello World</title>
