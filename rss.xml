@@ -10,8 +10,98 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Wed, 04 Mar 2026 19:10:22 +0800</pubDate>
-        <lastBuildDate>Wed, 04 Mar 2026 19:10:22 +0800</lastBuildDate>
+        <pubDate>Thu, 05 Mar 2026 13:59:31 +0800</pubDate>
+        <lastBuildDate>Thu, 05 Mar 2026 13:59:31 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-.DS_store/</guid>
+            <title>信息泄露-备份文件下载-.DS_store</title>
+            <link>https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-.DS_store/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
+            <pubDate>Thu, 05 Mar 2026 13:59:31 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-备份文件下载-ds_store&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份文件下载-ds_store&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份文件下载 -.DS_store&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 CTFhub 上的一个 web 教学题目&lt;/p&gt;
+&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
+&lt;p&gt;.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件。通过.DS_Store 可以知道这个目录里面所有文件的清单。&lt;br /&gt;
+一、.DS_Store 是什么？&lt;br /&gt;
+DS = Desktop Services&lt;br /&gt;
+ 是 Mac 系统自动生成 的隐藏文件&lt;br /&gt;
+只要你用 Mac 打开过文件夹，就会自动生成一个 .DS_Store 它里面记录了这个文件夹里有哪些文件&lt;/p&gt;
+&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
+&lt;p 0333a1be6f438f2901b9c02f=&#34;&#34;&gt;进入容器可以看到题目给的提示&lt;br /&gt;
+&lt;img data-src=&#34;image-17.png&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 构造 url：&lt;br /&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;url:http://容器域名/.DS_Store&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;```  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;浏览器就会下载.DS_Store文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;用记事本打开这个文件，发现是个乱码  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;![alt text](image-18.png)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;但是发现这里面flag here上面这串似乎是个文本文件名称，由于有效内容只能在容器中去寻找，所以我们试着去在容器中找一下：&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+url:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1lcXJyOGNmNmF3MmgvM2M4NjhhZmNjZjk3NDFkMjk5ZWYwYjUxMDAxMjIzYzEudHh0&#34;&gt;http:// 容器域名 / 3c868afccf9741d299ef0b51001223c1.txt&lt;/span&gt;&lt;br /&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;于是刚好得到flag  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;![alt text](image-19.png)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+flag:ctfhub&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-vim%E7%BC%93%E5%AD%98/</guid>
+            <title>信息泄露-备份文件下载-vim缓存</title>
+            <link>https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-vim%E7%BC%93%E5%AD%98/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
+            <pubDate>Thu, 05 Mar 2026 13:42:05 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-备份文件下载-vim缓存&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份文件下载-vim缓存&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份文件下载 - vim 缓存&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 CTFhub 上的一个 web 教学题目&lt;/p&gt;
+&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
+&lt;p&gt;当开发人员在线上环境中使用 vim 编辑器，在使用过程中会留下 vim 编辑器缓存，当 vim 异常退出时，缓存会一直留在服务器上，引起网站源码泄露。&lt;br /&gt;
+以下是 vim 缓存文件的 3 种常见形式：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-14.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
+&lt;p&gt;进入容器看到题目提示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-15.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;于是根据上面的了解我们构造 url 访问：&lt;br /&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;url:http://容器域名/.index.php.swp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 得到.index.php.swp 文件，也就是 index.php 的 vim 编辑缓存。&lt;/p&gt;
+&lt;p&gt;尝试用记事本打开，刚好得到 flag&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-16.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;flag: ctfhub&amp;#123;91c3562bce82ce127c0c5971&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 但是一般这种情况我们需要使用 vim 编辑器去恢复这个缓存文件：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vim -r .index.php.swp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-bak%E6%96%87%E4%BB%B6/</guid>
+            <title>信息泄露-备份文件下载-bak文件</title>
+            <link>https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-bak%E6%96%87%E4%BB%B6/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
+            <pubDate>Thu, 05 Mar 2026 10:30:19 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-备份文件下载-bak文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份文件下载-bak文件&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份文件下载 - bak 文件&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 CTFhub 上的一个 web 教学题目&lt;/p&gt;
+&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
+&lt;p&gt;当开发人员在线上环境中对源代码进行了备份操作，并且将备份文件放在了 web 目录下，就会引起网站源码泄露。&lt;/p&gt;
+&lt;p&gt;一、bak 到底是什么？&lt;/p&gt;
+&lt;p&gt;.bak 是 backup 的缩写&lt;br /&gt;
+意思就是：备份文件&lt;br /&gt;
+开发者改代码前，会把原来的文件复制一份，命名成&lt;br /&gt;
+ index.php.bak&lt;br /&gt;
+index.html.bak&lt;br /&gt;
+config.bak&lt;br /&gt;
+ 它就是原始文件的副本，不会被服务器执行，会直接显示源码。&lt;/p&gt;
+&lt;p&gt;二、为什么 CTF 里经常考 .bak？&lt;/p&gt;
+&lt;p&gt;因为：&lt;br /&gt;
+管理员忘记删除备份文件&lt;br /&gt;
+.php 会被服务器执行，看不到源码&lt;br /&gt;
+.php.bak 不会执行，直接返回源码&lt;/p&gt;
+&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
+&lt;p&gt;进入容器可以看到如下的提示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-13.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;所以直接去访问这个网站的 index.php 试试，发现不行&lt;/p&gt;
+&lt;p&gt;然后我们依据上述了解，去访问 index.php 的备份文件：index.php.bak&lt;br /&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;url:http://容器域名/index.php.bak&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 浏览器开始下载这个 index.php.bak，用记事本打开可以看到 flag&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;image-12.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;flag: ctfhub&amp;#123;c2f17b7f021a0f11f2424c36&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/03/04/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81/</guid>
             <title>信息泄露-备份信息下载-网站源码</title>
@@ -19,11 +109,11 @@
             <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
             <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
             <pubDate>Wed, 04 Mar 2026 19:10:22 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-备份信息下载-网站源码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份信息下载-网站源码&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份信息下载 - 网站源码&lt;/h1&gt;
+            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-备份文件下载-网站源码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份文件下载-网站源码&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份文件下载 - 网站源码&lt;/h1&gt;
 &lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
 &lt;p&gt;这是一个教学题目，需要我们去找到并且下载网站的源码，但是需要注意的是网站源码的文件名和格式不统一，但是一般存在规律。&lt;/p&gt;
 &lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
-&lt;p&gt;网站开发人员可能不小心将网站源码的备份压缩包一并上传并保留在服务器中，于是他人就可以从服务器中找到网站源码的压缩包等，进而分析网站，并实施其他行为。&lt;/p&gt;
+&lt;p&gt;当开发人员在线上环境中对源代码进行了备份操作，并且将备份文件放在了 web 目录下，就会引起网站源码泄露。&lt;/p&gt;
 &lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
 &lt;p&gt;进入环境后，发现出题人给了我们提示，对于新人还是非常友好的。&lt;br /&gt;
 他告诉我们常见的网站源码备份文件后缀名有：tar、tar.gz、zip、rar，常见的网站源码备份文件名有：web、website、backup、back、www、wwwroot、temp。&lt;/p&gt;
