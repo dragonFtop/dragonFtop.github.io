@@ -8,7 +8,113 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-03-05T05:59:31.842Z</updated>
+    <updated>2026-03-11T12:47:14.415Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/03/11/crypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/</id>
+        <title>密码学概述</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/03/11/crypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/"/>
+        <content type="html">&lt;h1 id=&#34;密码学概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学概述&#34;&gt;#&lt;/a&gt; 密码学概述&lt;/h1&gt;
+&lt;h2 id=&#34;什么是密码学&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是密码学&#34;&gt;#&lt;/a&gt; 什么是密码学？&lt;/h2&gt;
+&lt;p&gt;密码学是研究编制密码和破译密码的技术科学。&lt;br /&gt;
+传统：密码学是研究保密通信的一门学科，即研究在不安全的环境中，防止第三者对信息的窃取。&lt;br /&gt;
+现代：密码学是与信息的&lt;strong&gt;机密性&lt;/strong&gt;、&lt;strong&gt;完整性&lt;/strong&gt;、&lt;strong&gt;可鉴别性&lt;/strong&gt;和&lt;strong&gt;不可抵赖性&lt;/strong&gt;的信息安全问题相关的一门学科。&lt;/p&gt;
+&lt;h2 id=&#34;1-信息安全与密码技术&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-信息安全与密码技术&#34;&gt;#&lt;/a&gt; 1. 信息安全与密码技术&lt;/h2&gt;
+&lt;p&gt;信息安全（&lt;strong&gt;与密码学相关&lt;/strong&gt;）的基本属性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;机密性（Confidentiality）：&lt;br /&gt;
+（1）确保信息为授权这使用而非未授权者。&lt;br /&gt;
+（2）确保未授权这对信息看不懂甚至看不到。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;完整性（Integrity）：&lt;br /&gt;
+（1）数据完整性。&lt;br /&gt;
+（2）系统完整性。&lt;br /&gt;
+（3）确保信息没有被修改。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可鉴别性（Authenticity）：&lt;br /&gt;
+（1）消息鉴别：确保信息来源真实。&lt;br /&gt;
+（2）身份鉴别：确保通信实体真实。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不可抵赖性（Unforgeability）：&lt;br /&gt;
+要求通信实体双方不能抵赖先前的行为以及传输的内容。&lt;br /&gt;
+其他信息安全属性：可靠性、可用性、可控性、可追溯性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;2-密码学起源与发展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-密码学起源与发展&#34;&gt;#&lt;/a&gt; 2. 密码学起源与发展&lt;/h2&gt;
+&lt;p&gt;密码学的发展史可以分为三个阶段：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;古典密码时期：使用原始符号：宗教符号、图画、藏头诗、会意诗等。例子：达芬奇密码桶、天书、卡尔达诺漏板、阴符、阴书。&lt;br /&gt;
+主要特点：是一种文字变换艺术，数据安全依赖于算法的保密。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;近代密码时期：&lt;br /&gt;
+ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
+主要特点：数据安全基于密钥而非算法的保密。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;现代密码时期：&lt;br /&gt;
+香农提出信息熵定义，说明信息可以量化，并作出一系列关于信息安全的贡献。&lt;br /&gt;
+主要特点：密码技术趋于标准化，同时出现量子密码学、后量子密码学和生物密码等新兴密码技术。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;3-密码学基本概念&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-密码学基本概念&#34;&gt;#&lt;/a&gt; 3. 密码学基本概念&lt;/h2&gt;
+&lt;h3 id=&#34;31-密码学主要任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#31-密码学主要任务&#34;&gt;#&lt;/a&gt; 3.1 密码学主要任务&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-16-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 密码学主要分为两个分支：&lt;br /&gt;
+（1）密码编码学：研究密码算法的构造与设计。&lt;br /&gt;
+（2）密码分析学：研究对密码信息的解析方法。&lt;/p&gt;
+&lt;h3 id=&#34;32-保密通信模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#32-保密通信模型&#34;&gt;#&lt;/a&gt; 3.2 保密通信模型&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-17-31.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt;m&lt;/strong&gt; 或&lt;strong&gt; p&lt;/strong&gt; 表示明文、&lt;strong&gt;c&lt;/strong&gt; 表示密文、&lt;strong&gt;E&lt;/strong&gt; 表示加密、&lt;strong&gt;D&lt;/strong&gt; 表示解密、&lt;strong&gt;k&lt;/strong&gt; 表示密钥。&lt;br /&gt;
+&lt;strong&gt;密码系统的五元组&lt;/strong&gt;：&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-20-01.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 对密码算法的要求：&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-20-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 五元组 {M,C,K,E,D} 被称为一个提供机密性服务的密码系统。&lt;/p&gt;
+&lt;h3 id=&#34;33-对密码系统的攻击&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#33-对密码系统的攻击&#34;&gt;#&lt;/a&gt; 3.3 对密码系统的攻击&lt;/h3&gt;
+&lt;p&gt;密码系统的攻击分为三种：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;穷举攻击&lt;br /&gt;
+穷举所有可能的密钥进行破译。&lt;/li&gt;
+&lt;li&gt;统计分析攻击&lt;br /&gt;
+根据明文、密文和密钥的统计规律来破译。&lt;/li&gt;
+&lt;li&gt;解密变换攻击（数学分析攻击）&lt;br /&gt;
+针对加密变换的数学基础，通过数学求解找到解密变换。&lt;br /&gt;
+密码分析攻击类型：&lt;br /&gt;
+（1）惟密文攻击：&lt;br /&gt;
+密码分析者知道密码算法，但仅能根据截获的密文进行分析从而得到明文或者密钥。&lt;br /&gt;
+（2）已知明文攻击：&lt;br /&gt;
+密码分析者除了有截获的密文外，还有一些一致的 “明文 - 密文对” 来破译密码。&lt;br /&gt;
+（3）选择明文攻击：&lt;br /&gt;
+密码分析者不经得到了 “明文 - 密文对”，还可以选择被加密的明文并且获得相应的密文，从而选择特定铭文数据加密成密文，比较明文和密文，从而发现更多信息。&lt;br /&gt;
+（4）选择密文攻击：&lt;br /&gt;
+密码分析者选择一些密文并得到明文，从而推分析出密钥。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="crypto" scheme="https://dragonftop.github.io/categories/crypto/" />
+        <updated>2026-03-11T12:47:14.415Z</updated>
+    </entry>
+    <entry>
+        <id>https://dragonftop.github.io/2026/03/11/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5/</id>
+        <title>计算机系统概述</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/03/11/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5/"/>
+        <content type="html">&lt;h1 id=&#34;计算机系统概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#计算机系统概述&#34;&gt;#&lt;/a&gt; 计算机系统概述&lt;/h1&gt;
+&lt;h2 id=&#34;11-基本构成&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#11-基本构成&#34;&gt;#&lt;/a&gt; 1.1 基本构成&lt;/h2&gt;
+&lt;h2 id=&#34;12-微处理器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#12-微处理器&#34;&gt;#&lt;/a&gt; 1.2 微处理器&lt;/h2&gt;
+&lt;h2 id=&#34;13-指令执行&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#13-指令执行&#34;&gt;#&lt;/a&gt; 1.3 指令执行&lt;/h2&gt;
+&lt;h2 id=&#34;14-中断&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#14-中断&#34;&gt;#&lt;/a&gt; 1.4 中断&lt;/h2&gt;
+&lt;h2 id=&#34;15-存储器层次结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#15-存储器层次结构&#34;&gt;#&lt;/a&gt; 1.5 存储器层次结构&lt;/h2&gt;
+&lt;h2 id=&#34;16-高速缓冲存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#16-高速缓冲存储器&#34;&gt;#&lt;/a&gt; 1.6 高速缓冲存储器&lt;/h2&gt;
+&lt;h2 id=&#34;17-dma&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#17-dma&#34;&gt;#&lt;/a&gt; 1.7 DMA&lt;/h2&gt;
+&lt;h2 id=&#34;18-多cpu和多核&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#18-多cpu和多核&#34;&gt;#&lt;/a&gt; 1.8 多 CPU 和多核&lt;/h2&gt;
+</content>
+        <category term="os" scheme="https://dragonftop.github.io/categories/os/" />
+        <updated>2026-03-11T07:20:08.164Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-.DS_store/</id>
         <title>信息泄露-备份文件下载-.DS_store</title>
