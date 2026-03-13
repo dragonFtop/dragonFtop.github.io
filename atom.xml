@@ -8,7 +8,83 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-03-11T12:47:14.415Z</updated>
+    <updated>2026-03-13T02:45:38.483Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/03/13/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91/</id>
+        <title>计算机网络与因特网</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/03/13/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91/"/>
+        <content type="html">&lt;h1 id=&#34;计算机网络与因特网&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#计算机网络与因特网&#34;&gt;#&lt;/a&gt; 计算机网络与因特网&lt;/h1&gt;
+&lt;h2 id=&#34;什么是因特网what-is-internet&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是因特网what-is-internet&#34;&gt;#&lt;/a&gt; 什么是因特网？（What is Internet?）&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;因特网：network of networks&lt;/strong&gt;&lt;br /&gt;
+ 因特网包含了计算机网络：因特网是一个世界范围的计算机网络。&lt;br /&gt;
+计算机网络一般指的是有传统 PC、linux 工作站以及服务器所构成的网络。但是由于越来越多非传统设备接入网络，所以计算机网络的说法就过时了。&lt;br /&gt;
+因特网的术语称网络中的设备为主机或者端系统。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-13_10-54-28.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 端系统通过通信链路和分组交换机的网络连接到一起。&lt;br /&gt;
+链路上的传输速率以 bit/s 为单位。&lt;br /&gt;
+常见的分组交换机：路由器、链路层交换机。&lt;br /&gt;
+端系统需要通过因特网服务提供商（ISP）接入因特网。&lt;br /&gt;
+端系统、分组交换机和其他因特网不见都要运行多个协议，这些协议控制网络中的信息的接受和发送。&lt;br /&gt;
+因特网主要协议：TCP/IP 协议。其中 TCP 是传输控制协议，IP 是网际协议。&lt;br /&gt;
+因特网标准由阴天野望工程任务组（IETF）制定，IETF 的标准文档称为 RFC，RFC 文档定义了 TCP，IP，HTTP（用于 web）和 SMTP 协议（用于电子邮件）。&lt;br /&gt;
+协议：定义了在两个或多个通信实体之间交换报文的格式和顺序，以及保温的发送 / 接收或其他事件所采取的操作。&lt;/p&gt;
+&lt;h2 id=&#34;网络边缘internet-edge&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络边缘internet-edge&#34;&gt;#&lt;/a&gt; 网络边缘（Internet Edge）&lt;/h2&gt;
+&lt;p&gt;与因特网相连的计算机和其他设备处于因特网边缘，故而被称为端系统：桌面计算机、服务器、移动计算机、一些非传统物品。&lt;br /&gt;
+主机被分为：客户端和服务器。&lt;br /&gt;
+数据中心：提供服务的服务的计算机集群，数据中心的主机被称为刀片服务器。数据中心的目的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;存储数据：提供 web 页面&lt;/li&gt;
+&lt;li&gt;处理数据：提供计算数据能力&lt;/li&gt;
+&lt;li&gt;为其它公司提供云计算&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;接入网&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#接入网&#34;&gt;#&lt;/a&gt; 接入网&lt;/h3&gt;
+&lt;p&gt;将端系统物理连接到边缘路由器的网络。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;家庭接入：DSL（数字用户线）、电缆、光纤（FTTH）、5G 固定式无线。&lt;/li&gt;
+&lt;li&gt;企业（和家庭）接入：以太网和 WiFi。（局域网技术，LAN）&lt;/li&gt;
+&lt;li&gt;广域网接入：3G、4G、5G（基站）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;物理媒介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#物理媒介&#34;&gt;#&lt;/a&gt; 物理媒介&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;双绞铜线：UTP（无屏蔽双绞线）常用在建筑物内的计算机网络。双绞线不容易被光纤代替的原因：双绞线可以在一定距离内提供高速的 LAN 联网。&lt;/li&gt;
+&lt;li&gt;同轴电缆：STP（屏蔽双绞线），常见于电缆电视系统应用。可被用作引导型共享媒介。&lt;/li&gt;
+&lt;li&gt;光纤：细而柔软的、能够引导光脉冲的媒介。一个光脉冲表示一个 bit。一根光纤支持极高的比特速率且不受电磁干扰，但是部署成本较前两种高。&lt;/li&gt;
+&lt;li&gt;陆地无线电信道：不需要安装物理线路，具有穿透墙壁、提供移动用户连接以及长距离承载信号的能力。但存在路径损耗、遮挡衰弱、抗干扰能力弱的弊端。&lt;/li&gt;
+&lt;li&gt;卫星无线电信道：使用同步卫星、近地轨道卫星进行无线电传输的频信道。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;网络核心internet-core&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络核心internet-core&#34;&gt;#&lt;/a&gt; 网络核心（Internet Core）&lt;/h2&gt;
+&lt;p&gt;网络核心：由分组交换机和链路构成的网状网络。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-13_11-39-13.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;分组交换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组交换&#34;&gt;#&lt;/a&gt; 分组交换&lt;/h3&gt;
+&lt;p&gt;在网络应用中，端系统彼此交换报文（message）。&lt;br /&gt;
+交换机主要分为两类：路由器、链路交换机。&lt;br /&gt;
+通信传输时间：一条链路发送 L bit 的分组，链路传输速率 R bit/s，则传输时间 T=L/R。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;存储转发传输：将分组存储在交换机中，然后转发给下一个交换机。具体是指一个交换机开始向输出链路传输该分组的第一个 bit 前，必须接收到整个分组才能进行。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-13_11-44-54.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 如上图，交换机必须接收到完整的 1、2、3 分组后才能向目的地传输。&lt;br /&gt;
+&lt;strong&gt;传输时间计算问题&lt;/strong&gt;：&lt;br /&gt;
+由 N 条速率均为 R 的链路组成的路径，从源到目的地传输 L bit 的分组，传输时间 T=N*L/R。&lt;br /&gt;
+如果传输 P 个分组，则传输时间 T=(N+N-1)*L/R。&lt;/li&gt;
+&lt;li&gt;排队时延和分组丢失：每个分组交换机具有一个输出缓存（输出队列）。&lt;br /&gt;
+&lt;strong&gt;排队时延&lt;/strong&gt;：当链路忙于传输其他分组时，新到达的分组必须在缓存中等待。&lt;br /&gt;
+&lt;strong&gt;分组丢失&lt;/strong&gt;：如果缓存已满，新到达的分组将被丢弃。&lt;/li&gt;
+&lt;li&gt;转发表和路由选择协议：每个端系统具有一个 IP 地址，当源主机项目的端系统发送分组时，源在分组的首部包含了目的地的 IP 地址，而路由器中存在一个转发表，找出导向目的端的合适的传输链路，也就是将目的地址因设为输出链路。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;电路交换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#电路交换&#34;&gt;#&lt;/a&gt; 电路交换&lt;/h3&gt;
+&lt;p&gt;电路交换：为端系统通信会话预留资源，不存在排队等待的问题。也就是端系统直接连接成专线链路。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-13_12-02-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;频分复用 (FDM)：为端系统之间的连接创建一个专设频段，也就是空间上的专属占有，这个频段只用于该通信。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-13_12-07-24.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;时分复用 (TDM)：链路上的时间被划分为固定时段的帧，每个帧又被划分为固定数量的时隙，每个时隙被分配给特定通信连接单独使用，也就是时间上的专属占用，该时间段上只用于该通信。&lt;br /&gt;
+&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-13_12-07-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;分组交换与电路交换对比：分组交换不适用于实时服务，因为它存在时延和丢包的问题，但是它带宽共享更好，更简单、有效、成本低，适合传输并发服务。而电路交换适用于实时服务，但是它需要更多的带宽，更复杂、成本高，适合传输单并发服务，且在静默期，电路交换中的链路处于空闲，造成资源浪费。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="network" scheme="https://dragonftop.github.io/categories/network/" />
+        <updated>2026-03-13T02:45:38.483Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/03/11/crypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/</id>
         <title>密码学概述</title>
@@ -18,7 +94,7 @@
 &lt;p&gt;密码学是研究编制密码和破译密码的技术科学。&lt;br /&gt;
 传统：密码学是研究保密通信的一门学科，即研究在不安全的环境中，防止第三者对信息的窃取。&lt;br /&gt;
 现代：密码学是与信息的&lt;strong&gt;机密性&lt;/strong&gt;、&lt;strong&gt;完整性&lt;/strong&gt;、&lt;strong&gt;可鉴别性&lt;/strong&gt;和&lt;strong&gt;不可抵赖性&lt;/strong&gt;的信息安全问题相关的一门学科。&lt;/p&gt;
-&lt;h2 id=&#34;1-信息安全与密码技术&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-信息安全与密码技术&#34;&gt;#&lt;/a&gt; 1. 信息安全与密码技术&lt;/h2&gt;
+&lt;h2 id=&#34;信息安全与密码技术&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息安全与密码技术&#34;&gt;#&lt;/a&gt; 信息安全与密码技术&lt;/h2&gt;
 &lt;p&gt;信息安全（&lt;strong&gt;与密码学相关&lt;/strong&gt;）的基本属性：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -43,7 +119,7 @@
 其他信息安全属性：可靠性、可用性、可控性、可追溯性。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;2-密码学起源与发展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-密码学起源与发展&#34;&gt;#&lt;/a&gt; 2. 密码学起源与发展&lt;/h2&gt;
+&lt;h2 id=&#34;密码学起源与发展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学起源与发展&#34;&gt;#&lt;/a&gt; 密码学起源与发展&lt;/h2&gt;
 &lt;p&gt;密码学的发展史可以分为三个阶段：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -61,13 +137,13 @@ ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
 主要特点：密码技术趋于标准化，同时出现量子密码学、后量子密码学和生物密码等新兴密码技术。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;3-密码学基本概念&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-密码学基本概念&#34;&gt;#&lt;/a&gt; 3. 密码学基本概念&lt;/h2&gt;
-&lt;h3 id=&#34;31-密码学主要任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#31-密码学主要任务&#34;&gt;#&lt;/a&gt; 3.1 密码学主要任务&lt;/h3&gt;
+&lt;h2 id=&#34;密码学基本概念&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学基本概念&#34;&gt;#&lt;/a&gt; 密码学基本概念&lt;/h2&gt;
+&lt;h3 id=&#34;密码学主要任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学主要任务&#34;&gt;#&lt;/a&gt; 密码学主要任务&lt;/h3&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-16-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
  密码学主要分为两个分支：&lt;br /&gt;
 （1）密码编码学：研究密码算法的构造与设计。&lt;br /&gt;
 （2）密码分析学：研究对密码信息的解析方法。&lt;/p&gt;
-&lt;h3 id=&#34;32-保密通信模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#32-保密通信模型&#34;&gt;#&lt;/a&gt; 3.2 保密通信模型&lt;/h3&gt;
+&lt;h3 id=&#34;保密通信模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#保密通信模型&#34;&gt;#&lt;/a&gt; 保密通信模型&lt;/h3&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-17-31.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
 &lt;strong&gt;m&lt;/strong&gt; 或&lt;strong&gt; p&lt;/strong&gt; 表示明文、&lt;strong&gt;c&lt;/strong&gt; 表示密文、&lt;strong&gt;E&lt;/strong&gt; 表示加密、&lt;strong&gt;D&lt;/strong&gt; 表示解密、&lt;strong&gt;k&lt;/strong&gt; 表示密钥。&lt;br /&gt;
 &lt;strong&gt;密码系统的五元组&lt;/strong&gt;：&lt;br /&gt;
@@ -75,7 +151,7 @@ ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
  对密码算法的要求：&lt;br /&gt;
 &lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/dragonFtop/imagebad/image/PixPin_2026-03-11_21-20-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
  五元组 {M,C,K,E,D} 被称为一个提供机密性服务的密码系统。&lt;/p&gt;
-&lt;h3 id=&#34;33-对密码系统的攻击&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#33-对密码系统的攻击&#34;&gt;#&lt;/a&gt; 3.3 对密码系统的攻击&lt;/h3&gt;
+&lt;h3 id=&#34;对密码系统的攻击&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#对密码系统的攻击&#34;&gt;#&lt;/a&gt; 对密码系统的攻击&lt;/h3&gt;
 &lt;p&gt;密码系统的攻击分为三种：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;穷举攻击&lt;br /&gt;
