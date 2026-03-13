@@ -1,11 +1,22 @@
 {
     "version": "https://jsonfeed.org/version/1",
     "title": "天行健，君子以自强不息",
-    "subtitle": "朝为田舍埋头郎",
+    "subtitle": "朝为田舍埋头郎，暮登天子宝殿堂",
     "icon": "https://dragonftop.github.io/images/favicon.ico",
     "description": "",
     "home_page_url": "https://dragonFtop.github.io",
     "items": [
+        {
+            "id": "https://dragonftop.github.io/2026/03/13/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-log/",
+            "url": "https://dragonftop.github.io/2026/03/13/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-log/",
+            "title": "信息泄露-Git泄露-log",
+            "date_published": "2026-03-13T04:34:39.451Z",
+            "content_html": "",
+            "tags": [
+                "CTF",
+                "Web"
+            ]
+        },
         {
             "id": "https://dragonftop.github.io/2026/03/13/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91/",
             "url": "https://dragonftop.github.io/2026/03/13/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91/",
