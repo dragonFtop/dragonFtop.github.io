@@ -91,13 +91,13 @@
 &lt;li&gt;分组交换与电路交换对比：分组交换不适用于实时服务，因为它存在时延和丢包的问题，但是它带宽共享更好，更简单、有效、成本低，适合传输并发服务。而电路交换适用于实时服务，但是它需要更多的带宽，更复杂、成本高，适合传输单并发服务，且在静默期，电路交换中的链路处于空闲，造成资源浪费。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
-        <category term="network" scheme="https://dragonftop.github.io/categories/network/" />
+        <category term="计算机网络" scheme="https://dragonftop.github.io/categories/network/" />
         <updated>2026-03-13T02:45:38.483Z</updated>
     </entry>
     <entry>
-        <id>https://dragonftop.github.io/2026/03/11/crypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/</id>
+        <id>https://dragonftop.github.io/2026/03/11/appcrypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/</id>
         <title>密码学概述</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2026/03/11/crypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/"/>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/03/11/appcrypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/"/>
         <content type="html">&lt;h1 id=&#34;密码学概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学概述&#34;&gt;#&lt;/a&gt; 密码学概述&lt;/h1&gt;
 &lt;h2 id=&#34;什么是密码学&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是密码学&#34;&gt;#&lt;/a&gt; 什么是密码学？&lt;/h2&gt;
 &lt;p&gt;密码学是研究编制密码和破译密码的技术科学。&lt;br /&gt;
@@ -180,7 +180,7 @@ ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
 密码分析者选择一些密文并得到明文，从而推分析出密钥。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
-        <category term="crypto" scheme="https://dragonftop.github.io/categories/crypto/" />
+        <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
         <updated>2026-03-11T12:47:14.415Z</updated>
     </entry>
     <entry>
@@ -197,7 +197,7 @@ ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
 &lt;h2 id=&#34;17-dma&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#17-dma&#34;&gt;#&lt;/a&gt; 1.7 DMA&lt;/h2&gt;
 &lt;h2 id=&#34;18-多cpu和多核&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#18-多cpu和多核&#34;&gt;#&lt;/a&gt; 1.8 多 CPU 和多核&lt;/h2&gt;
 </content>
-        <category term="os" scheme="https://dragonftop.github.io/categories/os/" />
+        <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
         <updated>2026-03-11T07:20:08.164Z</updated>
     </entry>
     <entry>
