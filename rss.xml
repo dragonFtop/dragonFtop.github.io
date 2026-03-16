@@ -51,7 +51,29 @@
 &lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
 &lt;p&gt;当前大量开发人员使用 git 进行版本控制，对站点自动部署。如果配置不当，可能会将.git 文件夹直接部署到线上环境。这就引起了 git 泄露漏洞。&lt;/p&gt;
 &lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
-&lt;p&gt;进入容器可以看到如下的提示：&lt;/p&gt;
+&lt;p&gt;进入容器可以看到如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_17-56-15.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;尝试访问 &lt;code&gt;.git&lt;/code&gt;  等与 git 相关的文件，发现可以下载 &lt;code&gt;./git&lt;/code&gt;  下的 HEAD 等文件，说明这个网站将 git 文件一起部署到了线上环境。&lt;br /&gt;
+当然也可以使用 &lt;code&gt;dirsearch&lt;/code&gt;  对网站进行目录扫描，同样可以发现网站目录下存放了 &lt;code&gt;.git&lt;/code&gt;  文件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_18-00-02.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+2. 接下来在 kali 中使用 GitHack 工具尝试进行 Git 渗透。&lt;br /&gt;
+先安装 GitHack 工具：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;sudo&lt;/span&gt; git &lt;span class=&#34;built_in&#34;&gt;clone&lt;/span&gt; https://github.com/BugScanTeam/GitHack&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 进入 GitHack 目录：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; GitHack&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 对网站进行 GitHack 渗透，还原并下载网站中的 Git 仓库，保存位置为 GitHack/dist/example.com，注意这里我使用的 GitHack 是 python2 写的，也就需要使用 python2 进行 GitHack。&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python2 GitHack.py http://example.com/.git &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 得到如下结果，git 文件还原到指定目录中：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_18-07-51.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+3. 进入 GitHack/dist/example.com 目录下，查看 Git 提交日志：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_18-08-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 发现 git 存在三次记录和两次改变：init-&amp;gt;add flag-&amp;gt;remove flag&lt;br /&gt;
+4. 我们可以通过比较 init 和 add flag 两次记录之间的差异，或者 add flag 和 remove flag 的差异，最终都可以得到 flag。&lt;br /&gt;
+这里我是比较 add flag 和 remove flag 两次记录之间的差异，得到 flag。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_18-11-43.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;flag:ctfhub&amp;#123;c79c23e1464a642a5986e258&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
