@@ -8,7 +8,72 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-03-15T13:02:00.572Z</updated>
+    <updated>2026-03-16T13:47:07.657Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/03/16/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-stash/</id>
+        <title>信息泄露-Git泄露-satsh</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/03/16/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-stash/"/>
+        <content type="html">&lt;h1 id=&#34;信息泄露-git泄露-satsh&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-git泄露-satsh&#34;&gt;#&lt;/a&gt; 信息泄露 - Git 泄露 - satsh&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 CTFHub 平台上的一道 Git 泄露漏洞专项教学类 Web 题目，核心考察 Git 泄露漏洞的发现与利用方法，重点聚焦 &lt;code&gt;git stash&lt;/code&gt;  相关数据的泄露与提取。&lt;/p&gt;
+&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
+&lt;p&gt;当前大量开发人员使用 Git 进行版本控制，并基于 Git 实现站点自动部署。若服务器配置不当，可能会将包含完整版本记录的 &lt;code&gt;.git&lt;/code&gt;  文件夹直接部署到线上环境，由此引发 Git 泄露漏洞。攻击者可通过该漏洞还原仓库历史、提取未提交 / 已删除的敏感代码或数据，造成信息泄露。&lt;/p&gt;
+&lt;h2 id=&#34;核心知识点git-stash-是什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#核心知识点git-stash-是什么&#34;&gt;#&lt;/a&gt; 核心知识点：Git Stash 是什么&lt;/h2&gt;
+&lt;p&gt;Git Stash（中文常译作 “暂存”）是 Git 的核心功能之一，作用是&lt;strong&gt;临时保存工作区中未提交的修改&lt;/strong&gt;，让工作区快速恢复到干净状态（与 HEAD 提交保持一致），常用于切换分支前暂存未完成的修改。&lt;/p&gt;
+&lt;p&gt;正常情况下，Stash 是纯本地操作，数据存储在本地 &lt;code&gt;.git&lt;/code&gt;  目录中；但如果开发者误将包含 Stash 数据的 &lt;code&gt;.git&lt;/code&gt;  目录部署到线上服务器，就会导致 Stash 内容泄露，带来安全风险。&lt;/p&gt;
+&lt;h2 id=&#34;解题步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题步骤&#34;&gt;#&lt;/a&gt; 解题步骤&lt;/h2&gt;
+&lt;h3 id=&#34;步骤1检测git泄露漏洞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤1检测git泄露漏洞&#34;&gt;#&lt;/a&gt; 步骤 1：检测 Git 泄露漏洞&lt;/h3&gt;
+&lt;p&gt;基于 Git 渗透的基础经验，可通过两种方式验证目标是否存在 Git 泄露：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接访问目标站点的 &lt;code&gt;.git&lt;/code&gt;  目录（如 &lt;code&gt;http://example.com/.git&lt;/code&gt; ）或关键文件（如 &lt;code&gt;.git/HEAD&lt;/code&gt; ），若能正常访问，则说明存在漏洞；&lt;/li&gt;
+&lt;li&gt;使用目录扫描工具（如 dirsearch）扫描目标，检查是否存在 &lt;code&gt;.git&lt;/code&gt;  目录。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如下图为 dirsearch 扫描结果示例：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_21-59-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;步骤2使用githack还原git仓库&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤2使用githack还原git仓库&#34;&gt;#&lt;/a&gt; 步骤 2：使用 GitHack 还原 Git 仓库&lt;/h3&gt;
+&lt;p&gt;确认存在 Git 泄露后，使用 GitHack 工具还原完整的 Git 仓库文件，命令如下：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; GitHack  &lt;span class=&#34;comment&#34;&gt;# 进入GitHack工具目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;python2 GitHack.py http://example.com/.git  &lt;span class=&#34;comment&#34;&gt;# 还原目标站点的.git仓库&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 工具会自动将还原后的仓库文件保存到 &lt;code&gt;GitHack/dist/example.com&lt;/code&gt;  目录下。&lt;br /&gt;
+如下图为 GitHack 执行结果示例：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_22-02-18.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;步骤3分析git提交记录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤3分析git提交记录&#34;&gt;#&lt;/a&gt; 步骤 3：分析 Git 提交记录&lt;/h3&gt;
+&lt;p&gt;进入还原后的仓库目录，先查看 Git 提交日志，排查常规提交记录中是否包含 flag：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; GitHack/dist/example.com  &lt;span class=&#34;comment&#34;&gt;# 进入还原的仓库目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;git &lt;span class=&#34;built_in&#34;&gt;log&lt;/span&gt;  &lt;span class=&#34;comment&#34;&gt;# 查看提交日志&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 如下图为提交日志示例：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_22-03-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;日志显示提交记录为 &lt;code&gt;init-&amp;gt;add flag-&amp;gt;remove flag&lt;/code&gt; ，进一步对比 &lt;code&gt;add flag&lt;/code&gt;  和 &lt;code&gt;remove flag&lt;/code&gt;  的提交差异：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git diff &amp;lt;add flag的提交哈希&amp;gt; &amp;lt;remove flag的提交哈希&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如下图为提交差异对比结果：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_22-04-26.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;发现本次 flag 未直接出现在提交日志或差异中，需进一步排查 Stash 缓存。&lt;/p&gt;
+&lt;h3 id=&#34;步骤4提取git-stash中的flag&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤4提取git-stash中的flag&#34;&gt;#&lt;/a&gt; 步骤 4：提取 Git Stash 中的 flag&lt;/h3&gt;
+&lt;p&gt;根据题意，flag 存储在 Git 的 Stash 缓存中，需通过以下命令提取：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;列出所有 Stash 缓存记录：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git stash list&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 如下图为 Stash 列表结果示例：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_22-06-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看指定 Stash 缓存的详细内容（重点提取 flag）：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git stash show -p stash@&amp;#123;0&amp;#125;  &lt;span class=&#34;comment&#34;&gt;# 查看stash@&amp;#123;0&amp;#125;的完整内容&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 或过滤flag关键字，快速定位&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;git stash show -p stash@&amp;#123;0&amp;#125; | grep flag&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 如下图为 Stash 内容查看结果示例：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-16_22-10-19.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最终获取 flag： &lt;code&gt;ctfhub&amp;#123;c79c23e1464a642a5986e258&amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Git 泄露的核心是线上环境暴露 &lt;code&gt;.git&lt;/code&gt;  目录，可通过目录扫描或直接访问验证漏洞存在；&lt;/li&gt;
+&lt;li&gt;GitHack 是还原泄露 Git 仓库的常用工具，能完整提取仓库文件；&lt;/li&gt;
+&lt;li&gt;若常规提交记录无敏感信息，需重点排查 &lt;code&gt;git stash&lt;/code&gt;  缓存，通过 &lt;code&gt;git stash list&lt;/code&gt;  和 &lt;code&gt;git stash show&lt;/code&gt;  提取暂存的敏感数据。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+        <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
+        <updated>2026-03-16T13:47:07.657Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/03/15/ctf/misc/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B5%81%E9%87%8F-mysql/</id>
         <title>流量分析-数据库流量-mysql</title>
@@ -936,19 +1001,5 @@ config.bak&lt;br /&gt;
         <category term="数据结构" scheme="https://dragonftop.github.io/categories/datastruct/" />
         <category term="数据结构基础" scheme="https://dragonftop.github.io/categories/datastruct/ds1/" />
         <updated>2025-02-24T09:49:32.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://dragonftop.github.io/2025/01/24/datastruct/ds1/%E6%95%99%E6%9D%90%E9%85%8D%E5%A5%97%E7%BD%91%E7%AB%99/</id>
-        <title>数据结构与算法---学习网站</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2025/01/24/datastruct/ds1/%E6%95%99%E6%9D%90%E9%85%8D%E5%A5%97%E7%BD%91%E7%AB%99/"/>
-        <content type="html">&lt;h1 id=&#34;数据结构学习资源&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据结构学习资源&#34;&gt;#&lt;/a&gt; &lt;em&gt;&lt;strong&gt;数据结构学习资源&lt;/strong&gt;&lt;/em&gt;&lt;/h1&gt;
-&lt;h3 id=&#34;数据结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据结构&#34;&gt;#&lt;/a&gt; 数据结构&lt;/h3&gt;
-&lt;h4 id=&#34;1数据结构c语言版全书知识梳理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1数据结构c语言版全书知识梳理&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9pYW1senkuYmxvZy5jc2RuLm5ldC9hcnRpY2xlL2RldGFpbHMvODY1NjA1NzA/ZnJvbXNoYXJlPWJsb2dkZXRhaWwmYW1wO3NoYXJldHlwZT1ibG9nZGV0YWlsJmFtcDtzaGFyZXJJZD04NjU2MDU3MCZhbXA7c2hhcmVyZWZlcj1QQyZhbXA7c2hhcmVzb3VyY2U9MjQwMl84ODE4MDM4MiZhbXA7c2hhcmVmcm9tPWZyb21fbGluaw==&#34;&gt;1.《数据结构》C 语言版全书知识梳理&lt;/span&gt;&lt;/h4&gt;
-&lt;h4 id=&#34;2数据结构严蔚敏版与算法的实现含全部代码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2数据结构严蔚敏版与算法的实现含全部代码&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xhZHlfa2lsbGVyOS9hcnRpY2xlL2RldGFpbHMvODI2OTU4OTU/ZnJvbXNoYXJlPWJsb2dkZXRhaWwmYW1wO3NoYXJldHlwZT1ibG9nZGV0YWlsJmFtcDtzaGFyZXJJZD04MjY5NTg5NSZhbXA7c2hhcmVyZWZlcj1QQyZhbXA7c2hhcmVzb3VyY2U9MjQwMl84ODE4MDM4MiZhbXA7c2hhcmVmcm9tPWZyb21fbGluaw==&#34;&gt;2. 数据结构（严蔚敏版）与算法的实现（含全部代码&lt;/span&gt;&lt;/h4&gt;
-&lt;h4 id=&#34;3数据结构c语言严蔚敏版第二版超详细笔记附带课后习题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3数据结构c语言严蔚敏版第二版超详细笔记附带课后习题&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Nob25neWFuZ18vYXJ0aWNsZS9kZXRhaWxzLzEwOTU0NDcxOT9mcm9tc2hhcmU9YmxvZ2RldGFpbCZhbXA7c2hhcmV0eXBlPWJsb2dkZXRhaWwmYW1wO3NoYXJlcklkPTEwOTU0NDcxOSZhbXA7c2hhcmVyZWZlcj1QQyZhbXA7c2hhcmVzb3VyY2U9MjQwMl84ODE4MDM4MiZhbXA7c2hhcmVmcm9tPWZyb21fbGluaw==&#34;&gt;3. 数据结构 C 语言严蔚敏版 (第二版) 超详细笔记附带课后习题&lt;/span&gt;&lt;/h4&gt;
-</content>
-        <category term="数据结构" scheme="https://dragonftop.github.io/categories/datastruct/" />
-        <category term="数据结构基础" scheme="https://dragonftop.github.io/categories/datastruct/ds1/" />
-        <updated>2025-01-24T09:49:32.000Z</updated>
     </entry>
 </feed>
