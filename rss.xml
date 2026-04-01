@@ -170,7 +170,11 @@ DNS 的作用是把域名转换为 IP, &lt;code&gt;IP address (32 bit)&lt;/code&
 DNS 是在多级名称服务器层次结构中实现的分布式数据库，它存储的是域名和 IP 地址的映射关系。&lt;br /&gt;
 它在应用层实现，一般存在 application-layer protocol host, routers, name servers 这些组件来实现名字与 IP 地址的映射。&lt;br /&gt;
  &lt;code&gt;note&lt;/code&gt; : core Internet function, implemented as application-layer protocol，它是网络的核心功能&lt;br /&gt;
- complexity at network’s “edge”，但是它一是在网络边缘实现（应用层）。&lt;/p&gt;
+ complexity at network’s “edge”，但是它一是在网络边缘实现（应用层）。&lt;br /&gt;
+ &lt;code&gt;域名服务器的分级&lt;/code&gt; ：根 DNS 服务器、顶级域 DNS 服务器、授权域（二级域）DNS 服务器。&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-04-01_11-49-47.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;本站的域名证书：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_11-47-48.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
