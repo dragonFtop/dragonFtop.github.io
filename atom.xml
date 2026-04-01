@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://dragonFtop.github.io</id>
     <title>天行健，君子以自强不息</title>
-    <subtitle>朝为田舍埋头郎，暮登天子宝殿堂</subtitle>
+    <subtitle>胸中一点浩然气，天地千里快哉风</subtitle>
     <icon>https://dragonftop.github.io/images/favicon.ico</icon>
     <link href="https://dragonFtop.github.io" />
     <author>
@@ -24,7 +24,7 @@
  &lt;code&gt;线程&lt;/code&gt; ：CPU 调度的基本单位，是进程内的执行路径&lt;br /&gt;
 可以用一个比喻来说，进程是一个房子，线程是这个房间里的人，房子内有很多财产资源，人可以在房子内完成各种不同的活动。&lt;br /&gt;
 下图易于理解：&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_15-22-17.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-22-17.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;线程相较于进程的优点有：&lt;/p&gt;
 &lt;ol&gt;
@@ -34,7 +34,7 @@
 &lt;li&gt;线程提高了不同执行程序之间的通信效率。进程之间的通信需借助内核，但线程由于与你行在同一个进程内，其存储空间和资源是共享的，所以就不需要内核介入，故线程之间的通信效率更高。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;多线程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#多线程&#34;&gt;#&lt;/a&gt; 多线程&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;PixPin_2026-04-01_15-38-10.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-38-10.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;线程的功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#线程的功能&#34;&gt;#&lt;/a&gt; 线程的功能&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;线程状态&lt;/strong&gt;：与进程一样，线程主要状态有就绪态、运行态、阻塞态。挂起态对于线程来说没有意义，因为进程被挂起使，整个进程中的线程都被挂起，当进程被从硬盘中换出的时候，该进程的所有线程都一同被换出。&lt;br /&gt;
 &lt;strong&gt;线程状态改变&lt;/strong&gt;：&lt;/p&gt;
@@ -82,25 +82,25 @@ script 语言：c#&lt;br /&gt;
 &lt;li&gt;由一组执行的指令、一个当前状态和一组相关的系统资源表征的活动单元。&lt;br /&gt;
 进程的两个基本元素：程序代码（program code）和域代码相关联的数据集 (set of data)&lt;br /&gt;
  进程可以用以下元素来表征，而这些信息被存储在进程控制块中（process control block, PCB）&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_14-23-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_14-23-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;进程状态&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#进程状态&#34;&gt;#&lt;/a&gt; 进程状态&lt;/h2&gt;
 &lt;h3 id=&#34;两状态进程模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#两状态进程模型&#34;&gt;#&lt;/a&gt; 两状态进程模型&lt;/h3&gt;
 &lt;p&gt;进程的状态总体可以分为两种状态：运行态和非运行态，但是这两个状态含义比较泛，比如说非运行状态中又可以分为多种状态。&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_14-31-05.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_14-31-05.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;进程的创建与终止&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#进程的创建与终止&#34;&gt;#&lt;/a&gt; 进程的创建与终止&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;进程的创建：操作系统建立管理该进程的的数据结构，并在内存中为其分配存储空间。&lt;/li&gt;
 &lt;li&gt;创建进程的原因：&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_14-59-29.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_14-59-29.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;进程创建的另一种形式：进程派生，允许进程创建子进程。&lt;/li&gt;
 &lt;li&gt;进程终止：&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_15-01-10.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_15-01-28.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-01-10.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-01-28.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;五状态进程模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#五状态进程模型&#34;&gt;#&lt;/a&gt; 五状态进程模型&lt;/h3&gt;
 &lt;p&gt;五状态分别是：新建态、就绪态、运行态、阻塞态、退出态。&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-01_15-02-21.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-02-21.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;引入挂起态的进程模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#引入挂起态的进程模型&#34;&gt;#&lt;/a&gt; 引入挂起态的进程模型&lt;/h3&gt;
 &lt;p&gt;原因：I/O 设备比 CPU 运行速度慢得多，当 I/O 被一个进程占用时，CPU 不能执行其他进程，故处于空闲状态。这里有两种解方式：一、&lt;/p&gt;
 </content>
