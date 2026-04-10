@@ -8,7 +8,16 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-04-09T09:43:03.811Z</updated>
+    <updated>2026-04-10T10:56:01.000Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/04/10/os/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E8%87%AA%E5%88%9B%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
+        <title>这是一篇测试自创编辑器的博客</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/04/10/os/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E8%87%AA%E5%88%9B%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+        <content type="html">&lt;h1 id=&#34;这是一篇测试编辑器的博客&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这是一篇测试编辑器的博客&#34;&gt;#&lt;/a&gt; 这是一篇测试编辑器的博客&lt;/h1&gt;
+</content>
+        <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
+        <updated>2026-04-10T10:56:01.000Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/04/09/ctf/web/SQL%E6%B3%A8%E5%85%A5-%E6%95%B4%E5%9E%8B%E6%B3%A8%E5%85%A5/</id>
         <title>SQL注入-整型注入</title>
@@ -1288,36 +1297,5 @@ ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
 </content>
         <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
         <updated>2026-03-11T07:20:08.164Z</updated>
-    </entry>
-    <entry>
-        <id>https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-.DS_store/</id>
-        <title>信息泄露-备份文件下载-.DS_store</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-.DS_store/"/>
-        <content type="html">&lt;h1 id=&#34;信息泄露-备份文件下载-ds_store&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份文件下载-ds_store&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份文件下载 -.DS_store&lt;/h1&gt;
-&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
-&lt;p&gt;这是 CTFhub 上的一个 web 教学题目&lt;/p&gt;
-&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
-&lt;p&gt;.DS_Store 是 Mac OS 保存文件夹的自定义属性的隐藏文件。通过.DS_Store 可以知道这个目录里面所有文件的清单。&lt;br /&gt;
-一、.DS_Store 是什么？&lt;br /&gt;
-DS = Desktop Services&lt;br /&gt;
- 是 Mac 系统自动生成 的隐藏文件&lt;br /&gt;
-只要你用 Mac 打开过文件夹，就会自动生成一个 .DS_Store 它里面记录了这个文件夹里有哪些文件&lt;/p&gt;
-&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
-&lt;p&gt;进入容器可以看到题目给的提示&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/image-17.png&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 构造 url：&lt;br /&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;url:http://容器域名/.DS_Store&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 浏览器就会下载.DS_Store 文件&lt;/p&gt;
-&lt;p&gt;用记事本打开这个文件，发现是个乱码&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/image-18.png&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 但是发现这里面 flag here 上面这串似乎是个文本文件名称，由于有效内容只能在容器中去寻找，所以我们试着去在容器中找一下：&lt;br /&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;url:http://容器域名/3c868afccf9741d299ef0b51001223c1.txt&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 于是刚好得到 flag&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/image-19.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;flag:ctfhub&amp;#123;0333a1be6f438f2901b9c02f&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-</content>
-        <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-        <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-        <updated>2026-03-05T05:59:31.842Z</updated>
     </entry>
 </feed>
