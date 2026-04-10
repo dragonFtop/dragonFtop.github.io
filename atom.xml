@@ -8,7 +8,18 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-04-08T06:11:27.895Z</updated>
+    <updated>2026-04-09T09:43:03.811Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/04/09/ctf/web/SQL%E6%B3%A8%E5%85%A5-%E6%95%B4%E5%9E%8B%E6%B3%A8%E5%85%A5/</id>
+        <title>SQL注入-整型注入</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/04/09/ctf/web/SQL%E6%B3%A8%E5%85%A5-%E6%95%B4%E5%9E%8B%E6%B3%A8%E5%85%A5/"/>
+        <content type="html">&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 CTFHub 平台上的一道 SQL 注入专项教学类 Web 题目，核心考察 SQL 注入漏洞的利用方法。&lt;/p&gt;
+</content>
+        <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+        <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
+        <updated>2026-04-09T09:43:03.811Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/04/08/os/%E5%B9%B6%E5%8F%91%EF%BC%9A%E4%BA%92%E6%96%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/</id>
         <title>并发：互斥与同步</title>
@@ -89,16 +100,16 @@
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;封闭性：串行执行的程序独享计算机系统资源&lt;/td&gt;
-&lt;td&gt;开发性：计算机系统资源为并发执行的程序共享&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;封闭性&lt;/strong&gt;：串行执行的程序独享计算机系统资源&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;开发性&lt;/strong&gt;：计算机系统资源为并发执行的程序共享&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;连续性：串行执行的程序不被打断的执行&lt;/td&gt;
-&lt;td&gt;中断性：程序执行一会，停一会，然后再执行一会&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;连续性&lt;/strong&gt;：串行执行的程序不被打断的执行&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;中断性&lt;/strong&gt;：程序执行一会，停一会，然后再执行一会&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;一致性：只要输入是一样的，程序的输出结果不会改变&lt;/td&gt;
-&lt;td&gt;非一致性：即便程序的输入是一样的，但是每次执行的结果可能不同&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;一致性&lt;/strong&gt;：只要输入是一样的，程序的输出结果不会改变&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;非一致性&lt;/strong&gt;：即便程序的输入是一样的，但是每次执行的结果可能不同&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -124,6 +135,154 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr /&gt;
+&lt;h3 id=&#34;进程交互关系对照表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#进程交互关系对照表&#34;&gt;#&lt;/a&gt; 进程交互关系对照表&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Degree of Awareness（感知程度）&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Relationship（关系类型）&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Influence that one Process has on the Other（一个进程对另一个进程的影响）&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Potential Control Problems（潜在的控制问题）&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Processes unaware of each other&lt;/strong&gt;&amp;lt;br&amp;gt; 进程彼此完全不知情&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Competition&lt;/strong&gt;&amp;lt;br&amp;gt; 竞争关系&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;・一个进程的执行结果独立于其他进程的操作 &amp;lt;br&amp;gt;・进程的执行时序可能受影响&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;・互斥（Mutual exclusion）&amp;lt;br&amp;gt;・死锁（针对可重用资源，Deadlock (renewable resource)）&amp;lt;br&amp;gt;・饥饿（Starvation）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Processes indirectly aware of each other (e.g., shared object)&lt;/strong&gt;&amp;lt;br&amp;gt; 进程间接感知彼此（例如：共享对象）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Cooperation by sharing&lt;/strong&gt;&amp;lt;br&amp;gt; 通过共享实现协作&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;・一个进程的执行结果可能依赖于从其他进程获取的信息 &amp;lt;br&amp;gt;・进程的执行时序可能受影响&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;・互斥（Mutual exclusion）&amp;lt;br&amp;gt;・死锁（针对可重用资源，Deadlock (renewable resource)）&amp;lt;br&amp;gt;・饥饿（Starvation）&amp;lt;br&amp;gt;・数据一致性（Data coherence）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Processes directly aware of each other (have communication primitives available to them)&lt;/strong&gt;&amp;lt;br&amp;gt; 进程直接感知彼此（拥有可用的通信原语）&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Cooperation by communication&lt;/strong&gt;&amp;lt;br&amp;gt; 通过通信实现协作&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;・一个进程的执行结果可能依赖于从其他进程获取的信息 &amp;lt;br&amp;gt;・进程的执行时序可能受影响&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;・死锁（针对可消耗资源，Deadlock (consumable resource)）&amp;lt;br&amp;gt;・饥饿（Starvation）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;感知程度的三层划分&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;完全不知情&lt;/strong&gt;：进程之间完全不知道对方的存在，仅通过共享资源（如 CPU、磁盘）产生间接竞争，是最基础的并发场景。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;间接感知&lt;/strong&gt;：进程通过共享变量、共享文件等对象产生关联，知道有其他进程在操作同一资源，但不直接发消息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;直接感知&lt;/strong&gt;：进程通过消息队列、管道、信号等通信原语直接交互，明确知道对方的存在和行为。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;核心概念注解&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;可重用资源（renewable resource）&lt;/strong&gt;：使用后不会被消耗、可重复分配的资源（如 CPU、内存、锁），是竞争 / 共享场景的典型资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可消耗资源（consumable resource）&lt;/strong&gt;：使用后会被消耗、需要生产者生成的资源（如消息、信号、中断），是通信场景的典型资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据一致性（Data coherence）&lt;/strong&gt;：多进程并发读写共享数据时，保证数据最终结果正确、不出现脏读 / 脏写的特性，是共享协作场景的特有问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;三类场景的核心区别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三类场景的核心区别&#34;&gt;#&lt;/a&gt; &lt;strong&gt;三类场景的核心区别&lt;/strong&gt;&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;场景&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;核心特征&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;典型问题&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;竞争关系&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;资源抢占、结果独立&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;互斥、死锁、饥饿&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;共享协作&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;共享对象、结果依赖&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;互斥、死锁、饥饿、数据一致性&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;通信协作&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;直接通信、结果依赖&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;死锁（可消耗资源）、饥饿（无互斥需求）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h3 id=&#34;临界区同步的16字原则详解表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#临界区同步的16字原则详解表&#34;&gt;#&lt;/a&gt; 临界区同步的 16 字原则详解表&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;我为你把这 4 条原则整理成了&lt;strong&gt;结构化表格&lt;/strong&gt;，包含核心定义、作用、通俗解释和关键注意事项，方便你系统理解和记忆👇&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;原则条目&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;核心定义&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;核心作用&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;通俗解释&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;关键注意事项&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;1. 空闲让进&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;当临界区处于空闲状态（无进程访问）时，任何请求进入临界区的进程，都应被允许立即进入&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;保证临界区资源的高效利用，避免资源闲置浪费&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;临界区没人用的时候，谁要进就给谁进，不能故意卡着不让进&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;是&lt;strong&gt;互斥性&lt;/strong&gt;的基础保障，确保资源空闲时能被正常使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;2. 忙则等待&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;当临界区已有进程访问（处于忙碌状态）时，其他请求进入的进程必须等待，不能同时进入&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;严格保证&lt;strong&gt;互斥性&lt;/strong&gt;，同一时刻仅一个进程进入临界区&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;临界区有人在用的时候，其他想进的进程必须在外面等着，不能硬闯&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;是解决竞态条件的核心约束，直接避免共享资源的并发冲突&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;3. 有限等待&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;进程请求进入临界区时，等待的时间必须是有限的，不能无限期等待&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;避免进程出现&lt;strong&gt;饥饿&lt;/strong&gt;问题，保证所有进程都有机会执行&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;就算临界区一直忙，也不能让某个进程永远等下去，必须给它一个能进去的机会&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;是公平性的核心要求，防止高优先级进程长期霸占资源&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;4. 让权等待&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;当进程因无法进入临界区而等待时，必须主动释放 CPU 控制权，不能占用 CPU 空转&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;提升 CPU 利用率，避免忙等（Busy Waiting）浪费资源&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;进程进不去临界区的时候，不能占着 CPU 一直循环检查，要把 CPU 让给其他进程&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;也叫 **“有空让进”**，是区分忙等算法（如 Peterson 算法）和阻塞算法（如信号量）的关键&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;互斥的实现-软件方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#互斥的实现-软件方法&#34;&gt;#&lt;/a&gt; 互斥的实现 - 软件方法&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;PixPin_2026-04-08_15-01-08.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 两种算法：Dekker 算法、Peterson 算法&lt;/p&gt;
+&lt;h2 id=&#34;互斥的实现-硬件方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#互斥的实现-硬件方法&#34;&gt;#&lt;/a&gt; 互斥的实现 - 硬件方法&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;PixPin_2026-04-08_15-23-35.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;中断屏蔽&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-04-08_15-24-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 在上述图片中，在进入区禁止中断发生，也就是一个进程在进入临界区时，不能被其他进程打断，这样，当一个进程进入临界区时，其他进程就无法进入，从而实现了互斥。但对于多核系统无效。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;特殊的硬件指令&lt;br /&gt;
+这里使用的是 CPU 硬件级的指令：CAS 指令&lt;br /&gt;
+ &lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// 原子操作：不可被中断&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;compare_and_swap&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; *addr, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; expected, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; new_val)&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; old_val = *addr;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (old_val == expected) &amp;#123;  &lt;span class=&#34;comment&#34;&gt;// 若当前值等于预期值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        *addr = new_val;        &lt;span class=&#34;comment&#34;&gt;// 则更新为新值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;               &lt;span class=&#34;comment&#34;&gt;// 返回0：交换成功&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;                   &lt;span class=&#34;comment&#34;&gt;// 返回1：交换失败&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;信号量semaphore&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信号量semaphore&#34;&gt;#&lt;/a&gt; 信号量 (Semaphore)&lt;/h2&gt;
+&lt;p&gt;信号量（Semaphore）是一种用于控制进程访问共享资源的同步原语。信号量的作用是控制对共享资源的访问，并确保共享资源被正确地使用。信号量的基本原理是：当一个进程需要访问共享资源时，它将尝试获取信号量的一个可用许可证。如果获取成功，则该进程可以访问共享资源，并释放信号量的许可证。如果获取失败，则该进程将等待，直到有可用的许可证。信号量的主要作用是确保共享资源被正确地使用，并避免资源被多个进程同时访问。&lt;br /&gt;
+信号量是一种数据结构。&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-04-08_15-48-33.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ &lt;code&gt;count&lt;/code&gt;  变量为资源计数器，表示资源的剩余数量，也可称为资源许可证数。&lt;br /&gt;
+ &lt;code&gt;queue&lt;/code&gt;  变量为等待队列，用于保存等待获取信号量的进程。&lt;br /&gt;
+ &lt;code&gt;semWait()&lt;/code&gt;  表示获取信号量的一个可用许可证，如果资源不够，则将进程加入等待队列。&lt;br /&gt;
+ &lt;code&gt;semSignal()&lt;/code&gt;  表示释放信号量的一个许可证，如果等待队列非空，则将等待队列中的下一个进程唤醒。&lt;/p&gt;
+&lt;p&gt;若两个进程之间存在互斥关系，那么需要设置一个信号量，用于控制对共享资源的访问。在一个进程中需要 semWait () 与 semSignal () 成对存在。而两个进程之间的关系为同步关系，则 semWait () 与 semSignal () 分布在两个进程中。&lt;br /&gt;
+常见问题：Producer-Consumer 问题、reader-writer 问题。&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; cnt=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex1=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex2=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;wrriter&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//写数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//存入数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cnt++;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(cnt==&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        semWait(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//读取数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cnt--;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(cnt==&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        semSignal(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    parbegin(w(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),...w(n),r(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),...r(m));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; cnt=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex1=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex2=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;wrriter&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//写数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//存入数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cnt++;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(cnt==&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        semWait(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//读取数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cnt--;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(cnt==&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        semSignal(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    parbegin(w(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),...w(n),r(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),...r(m));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; cnt=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex1=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex2=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Semaphore mutex3=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;wrriter&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex3);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//写数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//存入数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex3);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex3);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cnt++;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(cnt==&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        semWait(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//读取数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semWait(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    cnt--;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(cnt==&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        semSignal(mutex1);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    semSignal(mutex2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title function_&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    parbegin(w(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),...w(n),r(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),...r(m));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 </content>
         <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
         <updated>2026-04-08T06:11:27.895Z</updated>
@@ -1160,32 +1319,5 @@ DS = Desktop Services&lt;br /&gt;
         <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
         <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
         <updated>2026-03-05T05:59:31.842Z</updated>
-    </entry>
-    <entry>
-        <id>https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-vim%E7%BC%93%E5%AD%98/</id>
-        <title>信息泄露-备份文件下载-vim缓存</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2026/03/05/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD-vim%E7%BC%93%E5%AD%98/"/>
-        <content type="html">&lt;h1 id=&#34;信息泄露-备份文件下载-vim缓存&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-备份文件下载-vim缓存&#34;&gt;#&lt;/a&gt; 信息泄露 - 备份文件下载 - vim 缓存&lt;/h1&gt;
-&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
-&lt;p&gt;这是 CTFhub 上的一个 web 教学题目&lt;/p&gt;
-&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
-&lt;p&gt;当开发人员在线上环境中使用 vim 编辑器，在使用过程中会留下 vim 编辑器缓存，当 vim 异常退出时，缓存会一直留在服务器上，引起网站源码泄露。&lt;br /&gt;
-以下是 vim 缓存文件的 3 种常见形式：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/image-14.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
-&lt;p&gt;进入容器看到题目提示：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/image-15.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;于是根据上面的了解我们构造 url 访问：&lt;br /&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;url:http://容器域名/.index.php.swp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 得到.index.php.swp 文件，也就是 index.php 的 vim 编辑缓存。&lt;/p&gt;
-&lt;p&gt;尝试用记事本打开，刚好得到 flag&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/image-16.png&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;flag: ctfhub&amp;#123;91c3562bce82ce127c0c5971&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 但是一般这种情况我们需要使用 vim 编辑器去恢复这个缓存文件：&lt;br /&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vim -r .index.php.swp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-</content>
-        <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-        <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-        <updated>2026-03-05T05:42:05.016Z</updated>
     </entry>
 </feed>
