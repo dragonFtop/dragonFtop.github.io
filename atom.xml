@@ -8,18 +8,7 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-04-10T13:09:22.000Z</updated>
-    <entry>
-        <id>https://dragonftop.github.io/2026/04/10/ctf/web/hello/</id>
-        <title>hello</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2026/04/10/ctf/web/hello/"/>
-        <content type="html">&lt;h1 id=&#34;hello&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hello&#34;&gt;#&lt;/a&gt; hello&lt;/h1&gt;
-&lt;h2 id=&#34;你好&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#你好&#34;&gt;#&lt;/a&gt; 你好&lt;/h2&gt;
-</content>
-        <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-        <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-        <updated>2026-04-10T13:09:22.000Z</updated>
-    </entry>
+    <updated>2026-04-10T10:56:01.000Z</updated>
     <entry>
         <id>https://dragonftop.github.io/2026/04/10/os/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E8%87%AA%E5%88%9B%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
         <title>这是一篇测试自创编辑器的博客</title>
@@ -1252,5 +1241,61 @@ ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
 </content>
         <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
         <updated>2026-03-11T12:47:14.415Z</updated>
+    </entry>
+    <entry>
+        <id>https://dragonftop.github.io/2026/03/11/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5/</id>
+        <title>计算机系统概述</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/03/11/os/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%89%8D%E7%BD%AE%E6%A6%82%E5%BF%B5/"/>
+        <content type="html">&lt;h1 id=&#34;计算机系统概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#计算机系统概述&#34;&gt;#&lt;/a&gt; 计算机系统概述&lt;/h1&gt;
+&lt;h2 id=&#34;11-基本构成&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#11-基本构成&#34;&gt;#&lt;/a&gt; 1.1 基本构成&lt;/h2&gt;
+&lt;p&gt;计算机有四个主要的结构化部件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;处理器：控制计算机操作，执行数据处理功能。&lt;/li&gt;
+&lt;li&gt;内存：存储数据和程序，一般为易失性存储器。与之相对的是磁盘存储器。&lt;/li&gt;
+&lt;li&gt;输入输出模块：在计算机和外部环境之间移动数据。包括辅助存储器设备、通信设备和终端。&lt;/li&gt;
+&lt;li&gt;系统总栈：在处理器、内存和输入、输出模块之间提供通信的设备。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-15_10-56-57.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;12-微处理器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#12-微处理器&#34;&gt;#&lt;/a&gt; 1.2 微处理器&lt;/h2&gt;
+&lt;p&gt;微处理器可以在单个芯片上容纳一个处理器。&lt;br /&gt;
+&lt;strong&gt;发展史&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;多处理器&lt;/strong&gt;，也就是多内核处理器。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;图形处理单元&lt;/strong&gt;：单指令多数据技术，但如今一般不用图形处理单元渲染高级图形。（也就是不用 CPU 渲染图形，而是采用 x86 和 AMD 处理器（GPU）来渲染图形）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数字信号处理器&lt;/strong&gt;：对流信号，如音频和视频进行处理。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;片上系统&lt;/strong&gt;：将 CPU、内存、输入输出设备等集成到一个芯片中，逐渐取代上述传统微处理器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;13-指令执行&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#13-指令执行&#34;&gt;#&lt;/a&gt; 1.3 指令执行&lt;/h2&gt;
+&lt;p&gt;处理器执行的程序是由一组保护在存储器中的指令组成的。&lt;br /&gt;
+单个指令所需要的处理成为一个指令周期。一般包括取指阶段和执行阶段（可能出现中断）。&lt;br /&gt;
+&lt;strong&gt;一般指令周期&lt;/strong&gt;：处理器从存储器中取一条指令，程序计数器（PC）存入下一次要取得指令的地址，取出的指令存入指令存储器（IR），IR 解释指令并执行相应操作（分配存储器单元，执行运算等）。&lt;br /&gt;
+&lt;strong&gt;解释指令的 4 类动作&lt;/strong&gt;：&lt;br /&gt;
+&lt;strong&gt;处理器 &amp;lt;-&amp;gt; 存储器&lt;/strong&gt;：数据从处理器到存储器或从存储器到处理器。&lt;br /&gt;
+&lt;strong&gt;I-&amp;gt; 处理器 -&amp;gt;O&lt;/strong&gt;：数据从输入设备到处理器或从处理器到输出设备。&lt;br /&gt;
+&lt;strong&gt;数据处理&lt;/strong&gt;：与数据相关的算术操作或逻辑操作。&lt;br /&gt;
+&lt;strong&gt;控制&lt;/strong&gt;：改变指令执行顺序。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-15_11-22-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-15_11-25-05.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-15_11-26-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 接下来尝试理解下面的指令执行例子（为了方便都是十进制），其中 AC 是累加处理单元。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-15_11-24-28.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;步骤一&lt;/strong&gt;：根据当前 PC 值，从内存中取出地址为 300 的指令 1940，并保存在 IR 中，PC 值自增 1，即 PC=301。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;步骤二&lt;/strong&gt;：IR 指令为 1940，操作码为 1，地址码为 940，即将地址为 940 的数据 0003 存入 AC 中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;步骤三&lt;/strong&gt;：根据当前 PC 值，从内存中取出地址为 301 的指令 5941，并保存在 IR 中，PC 值自增 1，即 PC=302。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;步骤四&lt;/strong&gt;：IR 指令为 5941，操作码为 5，地址码为 941，将 AC 中的数据 0003 与地址为 941 的数据 0002 相加，结果存入 AC 中。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;步骤五&lt;/strong&gt;：根据当前 PC 值，从内存中取出地址为 302 的指令 2941，并保存在 IR 中，PC 值自增 1，即 PC=303。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;步骤六&lt;/strong&gt;：IR 指令为 2941，操作码为 2，地址码为 941，将 AC 中的数据 0005 存入地址为 941 中。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;14-中断&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#14-中断&#34;&gt;#&lt;/a&gt; 1.4 中断&lt;/h2&gt;
+&lt;p&gt;中断最初是用于提高处理器效率的一种手段，减少处理器空闲浪费。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-15_12-46-01.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;15-存储器层次结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#15-存储器层次结构&#34;&gt;#&lt;/a&gt; 1.5 存储器层次结构&lt;/h2&gt;
+&lt;h2 id=&#34;16-高速缓冲存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#16-高速缓冲存储器&#34;&gt;#&lt;/a&gt; 1.6 高速缓冲存储器&lt;/h2&gt;
+&lt;h2 id=&#34;17-直接内存存取dma&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#17-直接内存存取dma&#34;&gt;#&lt;/a&gt; 1.7 直接内存存取（DMA）&lt;/h2&gt;
+&lt;h2 id=&#34;18-多cpu和多核&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#18-多cpu和多核&#34;&gt;#&lt;/a&gt; 1.8 多 CPU 和多核&lt;/h2&gt;
+</content>
+        <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
+        <updated>2026-03-11T07:20:08.164Z</updated>
     </entry>
 </feed>
