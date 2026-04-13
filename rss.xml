@@ -10,14 +10,72 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Mon, 13 Apr 2026 19:33:06 +0800</pubDate>
-        <lastBuildDate>Mon, 13 Apr 2026 19:33:06 +0800</lastBuildDate>
+        <pubDate>Mon, 13 Apr 2026 21:35:08 +0800</pubDate>
+        <lastBuildDate>Mon, 13 Apr 2026 21:35:08 +0800</lastBuildDate>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/13/appcrypto/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/</guid>
-            <title></title>
+            <title>分组密码</title>
             <link>https://dragonftop.github.io/2026/04/13/appcrypto/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/</link>
-            <pubDate>Mon, 13 Apr 2026 19:33:06 +0800</pubDate>
-            <description><![CDATA[  ]]></description>
+            <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
+            <pubDate>Mon, 13 Apr 2026 21:35:08 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;分组密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组密码&#34;&gt;#&lt;/a&gt; 分组密码&lt;/h1&gt;
+&lt;h2 id=&#34;何为分组密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#何为分组密码&#34;&gt;#&lt;/a&gt; 何为分组密码&lt;/h2&gt;
+&lt;p&gt;分组密码是指将明文分组，对每个分组进行加密，得到密文，最后将密文连接起来，即为分组密码，也称块密码。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_19-44-54.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;分组密码的设计原则&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组密码的设计原则&#34;&gt;#&lt;/a&gt; 分组密码的设计原则&lt;/h2&gt;
+&lt;p&gt;针对安全性的一般设计原则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;扰乱原则，又称混淆原则，密钥和明文以及密文之间的依赖关系相当复杂，以至于这种依赖关系对于密码分析者来说是无法被利用的。&lt;/li&gt;
+&lt;li&gt;扩散原则，使得密钥的每一位影响密文的许多位以防止对密钥进行逐行破译，且明文的每一位也影响密文的许多位以便于隐蔽明文的统计特性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;分组密码的设计方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组密码的设计方法&#34;&gt;#&lt;/a&gt; 分组密码的设计方法&lt;/h2&gt;
+&lt;h3 id=&#34;feistel结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#feistel结构&#34;&gt;#&lt;/a&gt; Feistel 结构&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Feistel&lt;/code&gt;  结构是一种常见的分组密码结构，其基本思路是：&lt;br /&gt;
+将明文分为左右两个部分，即为 L 和 R 部分，L 与 R 一起进行轮变换，每次轮变换中 R 与密钥进行 F 函数运算，下一轮的 L 为上一轮的 R，R 为上一轮的 L 与 R 和密钥进行 F 函数运算的结果异或的结果。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_19-45-33.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;spn结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#spn结构&#34;&gt;#&lt;/a&gt; SPN 结构&lt;/h3&gt;
+&lt;p&gt;SPN 结构可分为两层：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一层 - S 层，也称为替换层，起到扰乱作用。&lt;/li&gt;
+&lt;li&gt;第二层 - P 层，也称为置换层，起到扩散作用。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_19-45-43.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;des加密&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#des加密&#34;&gt;#&lt;/a&gt; DES 加密&lt;/h2&gt;
+&lt;p&gt;DES 加密，即称 Data Encryption Standard，即数据加密标准。&lt;/p&gt;
+&lt;h3 id=&#34;des关键词解释&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#des关键词解释&#34;&gt;#&lt;/a&gt; DES 关键词解释&lt;/h3&gt;
+&lt;p&gt;IP：将明文按照初始置换进行变换。&lt;br /&gt;
+L、R：将一个分组（64bit）中的结果等分为左右两部分得到 L 和 R，L 和 R 各为 32bit。&lt;br /&gt;
+F：每一轮的 R 与密钥进行的轮变换函数。&lt;br /&gt;
+K：参与轮函数，与 R 进行 E 扩展、S 替换后的结果进行异或，密钥长度为 56bit，其中 8bit 为奇偶校验位，有效长度为 48bit。&lt;br /&gt;
+E - 扩展：将 32bit 的明文进行扩展，扩展后的结果为 48bit。&lt;br /&gt;
+S - 替换：将 48bit 的密文进行替换，替换后的结果为 32bit。&lt;br /&gt;
+XOR：与 R 进行 E 扩展、S 替换后的结果与按位异或运算。&lt;br /&gt;
+P - 置换：将上述异或结果进行置换。&lt;br /&gt;
+IP-：轮变换结束后，将结果进行初始置换的逆变换，得到密文。&lt;br /&gt;
+DES 加密过程中的运算按照顺序为：IP（初始置换）- 轮函数 - IP-（初始置换的逆置换）。&lt;br /&gt;
+其中的轮函数为：E - 扩展、S - 替换、与 K 异或、P 置换。&lt;br /&gt;
+流程图如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_19-46-50.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_19-50-27.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;des加密具体流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#des加密具体流程&#34;&gt;#&lt;/a&gt; DES 加密具体流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;初始置换：（这里明文指：一个 64bit 的分组）将明文进行初始置换，将明文分为左右两部分，即为 L 和 R。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_20-04-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;轮变换：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;E 扩展：将 32bit 的 R 进行扩展，如图将 32bit 的 R 按照八行四列的方式排列，然后再第一列前和第四列后按顺序进行扩展，扩展后的结果为 48bit。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_20-06-50.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;S 替换：将 48bit 的 E - 扩展结果进行替换，具体为将 48bit 划分为 8 组 6bit 数据，按照顺序第 i 个分组对应第 i 个 S 盒进行替换，在进行替换时，6bit 的分组中第一个 bit 和最后一个 bit 合并成的二进制数对应 S 盒内的行号，中间 4 个 bit 合并成的二进制数对应 S 盒内的列号，构成一个坐标 Si (b1b6,b2b3b4b5)，将这个分组替换为 Si 盒中对应位置的 0~15 的十进制数，也就是一个四位二进制数，所以该过程将 48bit 又转换为 32bit。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_20-22-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;与 K 异或：将 E 扩展、S 替换后的结果与 32bit 的 K 按位异或运算。&lt;/li&gt;
+&lt;li&gt;P 置换：将与 K 异或的 32bit 结果按照置换函数 P（置换表）进行置换。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_20-21-29.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;逆初始置换：将结果进行初始置换的逆变换，得到密文 C。&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
         </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/12/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88%E5%8F%8A%E8%A7%A3%E6%9E%90/</guid>
