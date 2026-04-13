@@ -10,8 +10,15 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Sun, 12 Apr 2026 15:21:00 +0800</pubDate>
-        <lastBuildDate>Sun, 12 Apr 2026 15:21:00 +0800</lastBuildDate>
+        <pubDate>Mon, 13 Apr 2026 19:33:06 +0800</pubDate>
+        <lastBuildDate>Mon, 13 Apr 2026 19:33:06 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/04/13/appcrypto/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/</guid>
+            <title></title>
+            <link>https://dragonftop.github.io/2026/04/13/appcrypto/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/</link>
+            <pubDate>Mon, 13 Apr 2026 19:33:06 +0800</pubDate>
+            <description><![CDATA[  ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/12/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91%E4%BD%9C%E4%B8%9A%E7%AD%94%E6%A1%88%E5%8F%8A%E8%A7%A3%E6%9E%90/</guid>
             <title>计算机网络与因特网作业答案及解析</title>
@@ -1472,17 +1479,16 @@ A. Nonpersistent HTTP&lt;br /&gt;
 B. Persistent without pipelining&lt;br /&gt;
 C. Persistent with pipelining&lt;br /&gt;
 D. Nonpersistent with pipelining&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;参考答案&lt;/strong&gt;：C&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考答案&lt;/strong&gt;：B&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;详细解析&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;HTTP/1.1 的默认持久连接模式为&lt;strong&gt; Persistent with pipelining（带流水线的持久连接）&lt;/strong&gt;：
+&lt;li&gt;HTTP/1.1 的默认持久连接模式为&lt;strong&gt; Persistent without pipelining（无流水线的持久连接）&lt;/strong&gt;：
 &lt;ul&gt;
 &lt;li&gt;持久连接：TCP 连接在多次请求 - 响应后才关闭，无需每次请求重新建立连接。&lt;/li&gt;
 &lt;li&gt;流水线：客户端可以在收到前一个响应之前，连续发送多个请求，大幅提升性能。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;A 是 HTTP/1.0 的默认模式；B 是 HTTP/1.1 的兼容模式，非默认；D 为错误组合（非持久连接无法使用流水线），因此选 C。&lt;/li&gt;
-&lt;li&gt;补充：题目中标记的 B 为错误答案，正确答案为 C，需注意 HTTP/1.1 的标准定义。&lt;/li&gt;
+&lt;li&gt;A 是 HTTP/1.0 的默认模式；C 是 HTTP/1.1 的兼容模式，非默认；D 为错误组合（非持久连接无法使用流水线），因此选 B。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2 id=&#34;第27题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第27题&#34;&gt;#&lt;/a&gt; 第 27 题&lt;/h2&gt;
@@ -1588,7 +1594,7 @@ A. 1 条，1 条&lt;br /&gt;
  B. 1 条，多条&lt;br /&gt;
  C. 多条，1 条&lt;br /&gt;
  D. 多条，多条&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;参考答案&lt;/strong&gt;：B&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参考答案&lt;/strong&gt;：A&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;详细解析&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;递归 DNS 查询&lt;/strong&gt;的核心特点：
@@ -1597,7 +1603,7 @@ A. 1 条，1 条&lt;br /&gt;
 &lt;li&gt;&lt;strong&gt;本地 DNS 服务器&lt;/strong&gt;：需代替用户主机，依次向根服务器、顶级域名服务器、权威服务器发送&lt;strong&gt;多条&lt;/strong&gt;查询请求，直到获取最终 IP 地址。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;因此用户主机发 1 条，本地服务器发多条，选 B。&lt;/li&gt;
+&lt;li&gt;因此用户主机发 1 条，本地服务器发多条，选 B（X）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;h2 id=&#34;第33题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第33题&#34;&gt;#&lt;/a&gt; 第 33 题&lt;/h2&gt;
@@ -3024,138 +3030,6 @@ TCP/IP 四层协议栈模型：应用层、传输层、网络层、链路层。&
 &lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-19_17-14-09.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;网络嗅探攻击，例如使用 wireshark 这类网络流量分析攻击，抓取到传输的数据包，分析其中内容进行窃密、篡改、重放。&lt;/li&gt;
 &lt;/ol&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/03/11/appcrypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/</guid>
-            <title>密码学概述</title>
-            <link>https://dragonftop.github.io/2026/03/11/appcrypto/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0/</link>
-            <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
-            <pubDate>Wed, 11 Mar 2026 20:47:14 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;密码学概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学概述&#34;&gt;#&lt;/a&gt; 密码学概述&lt;/h1&gt;
-&lt;h2 id=&#34;什么是密码学&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是密码学&#34;&gt;#&lt;/a&gt; 什么是密码学？&lt;/h2&gt;
-&lt;p&gt;密码学是研究编制密码和破译密码的技术科学。&lt;br /&gt;
-传统：密码学是研究保密通信的一门学科，即研究在不安全的环境中，防止第三者对信息的窃取。&lt;br /&gt;
-现代：密码学是与信息的&lt;strong&gt;机密性&lt;/strong&gt;、&lt;strong&gt;完整性&lt;/strong&gt;、&lt;strong&gt;可鉴别性&lt;/strong&gt;和&lt;strong&gt;不可抵赖性&lt;/strong&gt;的信息安全问题相关的一门学科。&lt;/p&gt;
-&lt;h2 id=&#34;信息安全与密码技术&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息安全与密码技术&#34;&gt;#&lt;/a&gt; 信息安全与密码技术&lt;/h2&gt;
-&lt;p&gt;信息安全（&lt;strong&gt;与密码学相关&lt;/strong&gt;）的基本属性：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;机密性（Confidentiality）：&lt;br /&gt;
-（1）确保信息为授权这使用而非未授权者。&lt;br /&gt;
-（2）确保未授权这对信息看不懂甚至看不到。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;完整性（Integrity）：&lt;br /&gt;
-（1）数据完整性。&lt;br /&gt;
-（2）系统完整性。&lt;br /&gt;
-（3）确保信息没有被修改。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;可鉴别性（Authenticity）：&lt;br /&gt;
-（1）消息鉴别：确保信息来源真实。&lt;br /&gt;
-（2）身份鉴别：确保通信实体真实。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;不可抵赖性（Unforgeability）：&lt;br /&gt;
-要求通信实体双方不能抵赖先前的行为以及传输的内容。&lt;br /&gt;
-其他信息安全属性：可靠性、可用性、可控性、可追溯性。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;密码学起源与发展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学起源与发展&#34;&gt;#&lt;/a&gt; 密码学起源与发展&lt;/h2&gt;
-&lt;p&gt;密码学的发展史可以分为三个阶段：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;古典密码时期：使用原始符号：宗教符号、图画、藏头诗、会意诗等。例子：达芬奇密码桶、天书、卡尔达诺漏板、阴符、阴书。&lt;br /&gt;
-主要特点：是一种文字变换艺术，数据安全依赖于算法的保密。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;近代密码时期：&lt;br /&gt;
-ENIGMA 密码机、TYPEX 密码机&lt;br /&gt;
-主要特点：数据安全基于密钥而非算法的保密。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;现代密码时期：&lt;br /&gt;
-香农提出信息熵定义，说明信息可以量化，并作出一系列关于信息安全的贡献。&lt;br /&gt;
-主要特点：密码技术趋于标准化，同时出现量子密码学、后量子密码学和生物密码等新兴密码技术。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;密码学基本概念&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学基本概念&#34;&gt;#&lt;/a&gt; 密码学基本概念&lt;/h2&gt;
-&lt;h3 id=&#34;密码学主要任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学主要任务&#34;&gt;#&lt;/a&gt; 密码学主要任务&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-11_21-16-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 密码学主要分为两个分支：&lt;br /&gt;
-（1）密码编码学：研究密码算法的构造与设计。&lt;br /&gt;
-（2）密码分析学：研究对密码信息的解析方法。&lt;/p&gt;
-&lt;h3 id=&#34;保密通信模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#保密通信模型&#34;&gt;#&lt;/a&gt; 保密通信模型&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-11_21-17-31.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-&lt;strong&gt;m&lt;/strong&gt; 或&lt;strong&gt; p&lt;/strong&gt; 表示明文、&lt;strong&gt;c&lt;/strong&gt; 表示密文、&lt;strong&gt;E&lt;/strong&gt; 表示加密、&lt;strong&gt;D&lt;/strong&gt; 表示解密、&lt;strong&gt;k&lt;/strong&gt; 表示密钥。&lt;br /&gt;
-&lt;strong&gt;密码系统的五元组&lt;/strong&gt;：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-11_21-20-01.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 对密码算法的要求：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-11_21-20-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 五元组 {M,C,K,E,D} 被称为一个提供机密性服务的密码系统。&lt;/p&gt;
-&lt;h3 id=&#34;对密码系统的攻击&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#对密码系统的攻击&#34;&gt;#&lt;/a&gt; 对密码系统的攻击&lt;/h3&gt;
-&lt;p&gt;密码系统的攻击分为三种：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;穷举攻击&lt;br /&gt;
-穷举所有可能的密钥进行破译。&lt;/li&gt;
-&lt;li&gt;统计分析攻击&lt;br /&gt;
-根据明文、密文和密钥的统计规律来破译。&lt;/li&gt;
-&lt;li&gt;解密变换攻击（数学分析攻击）&lt;br /&gt;
-针对加密变换的数学基础，通过数学求解找到解密变换。&lt;br /&gt;
-密码分析攻击类型：&lt;br /&gt;
-（1）惟密文攻击：&lt;br /&gt;
-密码分析者知道密码算法，但仅能根据截获的密文进行分析从而得到明文或者密钥。&lt;br /&gt;
-（2）已知明文攻击：&lt;br /&gt;
-密码分析者除了有截获的密文外，还有一些一致的 “明文 - 密文对” 来破译密码。&lt;br /&gt;
-（3）选择明文攻击：&lt;br /&gt;
-密码分析者不经得到了 “明文 - 密文对”，还可以选择被加密的明文并且获得相应的密文，从而选择特定铭文数据加密成密文，比较明文和密文，从而发现更多信息。&lt;br /&gt;
-（4）选择密文攻击：&lt;br /&gt;
-密码分析者选择一些密文并得到明文，从而推分析出密钥。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;密码系统的安全性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码系统的安全性&#34;&gt;#&lt;/a&gt; 密码系统的安全性&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;无条件安全性：假定攻击者赢有无限的计算机资源，但仍无法破译该密码系统。&lt;/li&gt;
-&lt;li&gt;可证明安全性：将密码系统的安全性归结为某个经过深入研究的数学难题，例如大整数因子分解。&lt;/li&gt;
-&lt;li&gt;计算安全性：即为实际安全性，使用目前最好的算法攻破改密码系统所需要的计算完全超出攻击者的计算资源。&lt;br /&gt;
-综上所述，一个密码系统要达到实际安全性，就要满足以下准则：&lt;br /&gt;
-（1）破译该密码系统的实际计算量（包括计算时间或费用）十分巨大，以至于在实际上是无法实现的。&lt;br /&gt;
-（2）破译该密码系统所需要的计算时间超过被加密信息有用的生命周期。例如，战争中发起战斗攻击的作战命令只需要在战斗打响前需要保密；重要新闻消息在公开报道前需要保密的时间往往也只有几个小时。&lt;br /&gt;
-（3）破译该密码系统的费用超过被加密信息本身的价值。&lt;br /&gt;
- &lt;code&gt;柯克霍夫斯原则&lt;/code&gt; ：即使密码系统中的算法为密码分析者所知，也难以从截获的密文中推导出密钥。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;密码系统设计的基本准则&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码系统设计的基本准则&#34;&gt;#&lt;/a&gt; 密码系统设计的基本准则&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;对于商用密码系统而言，公开密码算法的优点包括：&lt;br /&gt;
-（1）有利于对密码算法的安全性进行公开测试评估；&lt;br /&gt;
-（2）防止密码算法设计者在算法中隐藏后门；&lt;br /&gt;
-（3）易于实现密码算法的标准化；&lt;br /&gt;
-（4）有利于实现密码算法产品的规模化生产，实现低成本和高性能。&lt;/li&gt;
-&lt;li&gt;一个提供机密性服务的密码系统是实际可用的，必须满足如下基本要求：&lt;br /&gt;
-（1）系统的保密性不依赖于对加密体制或算法的保密，而仅依赖于密钥的安全性。“一切秘密寓于密钥之中” 是密码系统设计的一个重要原则。&lt;br /&gt;
-（2）满足实际安全性，使破译者取得密文后在有效时间和成本范围内，确定密钥或相应明文在计算上是不可行的。&lt;br /&gt;
-（3）加密和解密算法应适用于明文空间、密钥空间中的所有元素。&lt;br /&gt;
-（4）加密和解密算法能有效地计算，密码系统易于实现和使用。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;密码算法的分类及特点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码算法的分类及特点&#34;&gt;#&lt;/a&gt; 密码算法的分类及特点&lt;/h3&gt;
-&lt;h4 id=&#34;1-根据密码算法的功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-根据密码算法的功能&#34;&gt;#&lt;/a&gt; 1. 根据密码算法的功能&lt;/h4&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_19-38-11.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h4 id=&#34;2-根据密码算法所用的密钥数量&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-根据密码算法所用的密钥数量&#34;&gt;#&lt;/a&gt; 2. 根据密码算法所用的密钥数量&lt;/h4&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_19-38-56.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 其中，对称密码算法：两两用户安全共享密钥，两两间密钥不同。&lt;br /&gt;
-非对称密码算法：每对用户都有一对不完全相同的密钥，称为密钥对。&lt;br /&gt;
-在安全性方面，对称密码算法是基于复杂的非线性变换与迭代运算实现算法安全，而非对称密码算法则是基于某个公认数学难题而实现安全性。&lt;br /&gt;
-非对称密码算法的特点如下图：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_19-41-25.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h4 id=&#34;3-根据对明文信息的处理方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-根据对明文信息的处理方式&#34;&gt;#&lt;/a&gt; 3. 根据对明文信息的处理方式&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;分组密码：将信息进行分组，一次处理一个数据块，对每一个数据块输出一个输出块。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_19-45-09.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;序列密码：连续地处理输入元素同时输出一个元素。一次加密一个比特或者一个字节。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_19-45-35.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&#34;4-根据密码算法是否可逆&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-根据密码算法是否可逆&#34;&gt;#&lt;/a&gt; 4. 根据密码算法是否可逆&lt;/h4&gt;
-&lt;p&gt;将密码算法分为可逆密码算法和不可逆密码算法。&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
