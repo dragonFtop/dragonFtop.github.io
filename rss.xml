@@ -10,8 +10,40 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Mon, 13 Apr 2026 21:35:08 +0800</pubDate>
-        <lastBuildDate>Mon, 13 Apr 2026 21:35:08 +0800</lastBuildDate>
+        <pubDate>Tue, 14 Apr 2026 10:06:25 +0800</pubDate>
+        <lastBuildDate>Tue, 14 Apr 2026 10:06:25 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/04/14/leetcode/%E3%80%90%E6%95%B0%E7%BB%84%E3%80%91%E6%9C%89%E5%A4%9A%E5%B0%91%E5%B0%8F%E4%BA%8E%E5%BD%93%E5%89%8D%E6%95%B0%E5%AD%97%E7%9A%84%E6%95%B0%E5%AD%97/</guid>
+            <title>【数组】有多少小于当前数字的数字</title>
+            <link>https://dragonftop.github.io/2026/04/14/leetcode/%E3%80%90%E6%95%B0%E7%BB%84%E3%80%91%E6%9C%89%E5%A4%9A%E5%B0%91%E5%B0%8F%E4%BA%8E%E5%BD%93%E5%89%8D%E6%95%B0%E5%AD%97%E7%9A%84%E6%95%B0%E5%AD%97/</link>
+            <category term="leecode" scheme="https://dragonftop.github.io/categories/leecode/" />
+            <pubDate>Tue, 14 Apr 2026 10:06:25 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;strong&gt;给你一个数组 nums，对于其中每个元素 nums [i]，请你统计数组中比它小的所有数字的数目。&lt;br /&gt;
+换而言之，对于每个 nums [i] 你必须计算出有效的 j 的数量，其中 j 满足 j != i 且 nums [j] &amp;lt; nums [i] 。&lt;br /&gt;
+以数组形式返回答案。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 1：&lt;/strong&gt;&lt;br /&gt;
+输入：nums = [8,1,2,2,3]&lt;br /&gt;
+ 输出：[4,0,1,1,3]&lt;br /&gt;
+ 解释：&lt;br /&gt;
+对于 nums [0]=8 存在四个比它小的数字：（1，2，2 和 3）。&lt;br /&gt;
+对于 nums [1]=1 不存在比它小的数字。&lt;br /&gt;
+对于 nums [2]=2 存在一个比它小的数字：（1）。&lt;br /&gt;
+对于 nums [3]=2 存在一个比它小的数字：（1）。&lt;br /&gt;
+对于 nums [4]=3 存在三个比它小的数字：（1，2 和 2）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 2：&lt;/strong&gt;&lt;br /&gt;
+输入：nums = [6,5,4,8]&lt;br /&gt;
+ 输出：[2,1,0,3]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 3：&lt;/strong&gt;&lt;br /&gt;
+输入：nums = [7,7,7,7]&lt;br /&gt;
+ 输出：[0,0,0,0]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;提示：&lt;/strong&gt;&lt;br /&gt;
+ &lt;code&gt;2 &amp;lt;= nums.length &amp;lt;= 500&lt;/code&gt; &lt;br /&gt;
+ &lt;code&gt;0 &amp;lt;= nums[i] &amp;lt;= 100&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//用于sort函数的比较函数，其中比较的对象为pair&amp;lt;int,int&amp;gt;中的第二个数字。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;type&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;cmp&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(pair&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;,&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;amp;a,pair&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;,&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;amp;b)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; a.second&amp;lt;b.second;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;smallerNumbersThanCurrent&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;amp; nums)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;//使用pair&amp;lt;int,int&amp;gt;保存数组元素和索引，并使用sort函数进行排序。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vector&amp;lt;pair&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;,&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;gt;&lt;span class=&#34;built_in&#34;&gt;vec&lt;/span&gt;(nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;());&lt;span class=&#34;comment&#34;&gt;//用于存储nums中索引和元素的对&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vector&amp;lt;pair&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;,&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;gt;&lt;span class=&#34;built_in&#34;&gt;vec1&lt;/span&gt;(nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;());&lt;span class=&#34;comment&#34;&gt;//用于存储排序后的vec中元素&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&lt;span class=&#34;built_in&#34;&gt;result&lt;/span&gt;(nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;());&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            vec[i]=&amp;#123;i,nums[i]&amp;#125;;&lt;span class=&#34;comment&#34;&gt;//vec.first为素为索引，vec.second为元素&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;sort&lt;/span&gt;(vec.&lt;span class=&#34;built_in&#34;&gt;begin&lt;/span&gt;(),vec.&lt;span class=&#34;built_in&#34;&gt;end&lt;/span&gt;(),cmp);&lt;span class=&#34;comment&#34;&gt;//升序排序&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            vec1[i]=&amp;#123;vec[i].first,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&amp;#125;;&lt;span class=&#34;comment&#34;&gt;//存储排序后的vec中对应原来的索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(i&amp;gt;&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&amp;amp;&amp;amp;vec[i].second==vec[i&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;].second)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                vec1[i].second=vec1[i&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;].second;&lt;span class=&#34;comment&#34;&gt;//如果两个元素相等，则小于二者的数字数量相同。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                vec1[i].second=i;&lt;span class=&#34;comment&#34;&gt;//存储vec1中vec[i]的索引，也就是小于该数字的数字数量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            result[vec1[i].first]=vec1[i].second;&lt;span class=&#34;comment&#34;&gt;//按照原来索引将对应数目保存&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; result;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我的 2B 写法：&lt;/strong&gt;&lt;br /&gt;
+&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;smallerNumbersThanCurrent&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;amp; nums)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(bublesort(nums))&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;//使用vector的find函数，找到nums[i]在list中的索引，并保存在nums[i]中&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;auto&lt;/span&gt; it = &lt;span class=&#34;built_in&#34;&gt;find&lt;/span&gt;(list.&lt;span class=&#34;built_in&#34;&gt;begin&lt;/span&gt;(), list.&lt;span class=&#34;built_in&#34;&gt;end&lt;/span&gt;(), nums[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            nums[i]= it-list.&lt;span class=&#34;built_in&#34;&gt;begin&lt;/span&gt;();&lt;span class=&#34;comment&#34;&gt;//这里it返回的是目标的地址，使用it减去list.begin()的地址，赋值给int型的nums[i]，得到索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; nums;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;//主播也是2b，自己写了一个冒泡排序&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;bublesort&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; nums)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; n = nums.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; n - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; j = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; j &amp;lt; n - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; - i; j++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (nums[j] &amp;gt; nums[j + &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;]) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;built_in&#34;&gt;swap&lt;/span&gt;(nums[j], nums[j + &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; nums;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/13/appcrypto/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/</guid>
             <title>分组密码</title>
@@ -2942,151 +2974,6 @@ flag&lt;/p&gt;
 &lt;li&gt;GitHack 工具原理：通过遍历 &lt;code&gt;.git&lt;/code&gt;  文件夹下的文件，还原完整的 Git 仓库结构，支持大多数常见的 Git 泄露场景；&lt;/li&gt;
 &lt;li&gt;环境注意事项：若 Kali 中未安装 Python2，可通过 &lt;code&gt;sudo apt install python2&lt;/code&gt;  快速安装；&lt;/li&gt;
 &lt;li&gt;拓展思路：除 GitHack 外，也可使用 GitTools 等工具实现类似的 Git 仓库还原操作。&lt;/li&gt;
-&lt;/ol&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/03/13/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91/</guid>
-            <title>计算机网络与因特网</title>
-            <link>https://dragonftop.github.io/2026/03/13/network/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9B%A0%E7%89%B9%E7%BD%91/</link>
-            <category term="计算机网络" scheme="https://dragonftop.github.io/categories/network/" />
-            <pubDate>Fri, 13 Mar 2026 10:45:38 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;计算机网络与因特网&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#计算机网络与因特网&#34;&gt;#&lt;/a&gt; 计算机网络与因特网&lt;/h1&gt;
-&lt;h2 id=&#34;什么是因特网what-is-internet&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是因特网what-is-internet&#34;&gt;#&lt;/a&gt; 什么是因特网？（What is Internet?）&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;因特网：network of networks&lt;/strong&gt;&lt;br /&gt;
- 因特网包含了计算机网络：因特网是一个世界范围的计算机网络。&lt;br /&gt;
-计算机网络一般指的是有传统 PC、linux 工作站以及服务器所构成的网络。但是由于越来越多非传统设备接入网络，所以计算机网络的说法就过时了。&lt;br /&gt;
-因特网的术语称网络中的设备为主机或者端系统。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-13_10-54-28.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 端系统通过通信链路和分组交换机的网络连接到一起。&lt;br /&gt;
-链路上的传输速率以 bit/s 为单位。&lt;br /&gt;
-常见的分组交换机：路由器、链路层交换机。&lt;br /&gt;
-端系统需要通过因特网服务提供商（ISP）接入因特网。&lt;br /&gt;
-端系统、分组交换机和其他因特网不见都要运行多个协议，这些协议控制网络中的信息的接受和发送。&lt;br /&gt;
-因特网主要协议：TCP/IP 协议。其中 TCP 是传输控制协议，IP 是网际协议。&lt;br /&gt;
-因特网标准由阴天野望工程任务组（IETF）制定，IETF 的标准文档称为 RFC，RFC 文档定义了 TCP，IP，HTTP（用于 web）和 SMTP 协议（用于电子邮件）。&lt;br /&gt;
-协议：定义了在两个或多个通信实体之间交换报文的格式和顺序，以及保温的发送 / 接收或其他事件所采取的操作。&lt;/p&gt;
-&lt;h2 id=&#34;网络边缘internet-edge&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络边缘internet-edge&#34;&gt;#&lt;/a&gt; 网络边缘（Internet Edge）&lt;/h2&gt;
-&lt;p&gt;与因特网相连的计算机和其他设备处于因特网边缘，故而被称为端系统：桌面计算机、服务器、移动计算机、一些非传统物品。&lt;br /&gt;
-主机被分为：客户端和服务器。&lt;br /&gt;
-数据中心：提供服务的服务的计算机集群，数据中心的主机被称为刀片服务器。数据中心的目的：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;存储数据：提供 web 页面&lt;/li&gt;
-&lt;li&gt;处理数据：提供计算数据能力&lt;/li&gt;
-&lt;li&gt;为其它公司提供云计算&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;接入网&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#接入网&#34;&gt;#&lt;/a&gt; 接入网&lt;/h3&gt;
-&lt;p&gt;将端系统物理连接到边缘路由器的网络。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;家庭接入：DSL（数字用户线）、电缆、光纤（FTTH）、5G 固定式无线。&lt;/li&gt;
-&lt;li&gt;企业（和家庭）接入：以太网和 WiFi。（局域网技术，LAN）&lt;/li&gt;
-&lt;li&gt;广域网接入：3G、4G、5G（基站）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;物理媒介&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#物理媒介&#34;&gt;#&lt;/a&gt; 物理媒介&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;双绞铜线：UTP（无屏蔽双绞线）常用在建筑物内的计算机网络。双绞线不容易被光纤代替的原因：双绞线可以在一定距离内提供高速的 LAN 联网。&lt;/li&gt;
-&lt;li&gt;同轴电缆：STP（屏蔽双绞线），常见于电缆电视系统应用。可被用作引导型共享媒介。&lt;/li&gt;
-&lt;li&gt;光纤：细而柔软的、能够引导光脉冲的媒介。一个光脉冲表示一个 bit。一根光纤支持极高的比特速率且不受电磁干扰，但是部署成本较前两种高。&lt;/li&gt;
-&lt;li&gt;陆地无线电信道：不需要安装物理线路，具有穿透墙壁、提供移动用户连接以及长距离承载信号的能力。但存在路径损耗、遮挡衰弱、抗干扰能力弱的弊端。&lt;/li&gt;
-&lt;li&gt;卫星无线电信道：使用同步卫星、近地轨道卫星进行无线电传输的频信道。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;网络核心internet-core&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络核心internet-core&#34;&gt;#&lt;/a&gt; 网络核心（Internet Core）&lt;/h2&gt;
-&lt;p&gt;网络核心：由分组交换机和链路构成的网状网络。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-13_11-39-13.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;分组交换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组交换&#34;&gt;#&lt;/a&gt; 分组交换&lt;/h3&gt;
-&lt;p&gt;在网络应用中，端系统彼此交换报文（message）。&lt;br /&gt;
-交换机主要分为两类：路由器、链路交换机。&lt;br /&gt;
-通信传输时间：一条链路发送 L bit 的分组，链路传输速率 R bit/s，则传输时间 T=L/R。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;存储转发传输：将分组存储在交换机中，然后转发给下一个交换机。具体是指一个交换机开始向输出链路传输该分组的第一个 bit 前，必须接收到整个分组才能进行。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-13_11-44-54.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 如上图，交换机必须接收到完整的 1、2、3 分组后才能向目的地传输。&lt;br /&gt;
-&lt;strong&gt;传输时间计算问题&lt;/strong&gt;：&lt;br /&gt;
-由 N 条速率均为 R 的链路组成的路径，从源到目的地传输 L bit 的分组，传输时间 T=N*L/R。&lt;br /&gt;
-如果传输 P 个分组，则传输时间 T=(N+N-1)*L/R。&lt;/li&gt;
-&lt;li&gt;排队时延和分组丢失：每个分组交换机具有一个输出缓存（输出队列）。&lt;br /&gt;
-&lt;strong&gt;排队时延&lt;/strong&gt;：当链路忙于传输其他分组时，新到达的分组必须在缓存中等待。&lt;br /&gt;
-&lt;strong&gt;分组丢失&lt;/strong&gt;：如果缓存已满，新到达的分组将被丢弃。&lt;/li&gt;
-&lt;li&gt;转发表和路由选择协议：每个端系统具有一个 IP 地址，当源主机项目的端系统发送分组时，源在分组的首部包含了目的地的 IP 地址，而路由器中存在一个转发表，找出导向目的端的合适的传输链路，也就是将目的地址因设为输出链路。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;电路交换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#电路交换&#34;&gt;#&lt;/a&gt; 电路交换&lt;/h3&gt;
-&lt;p&gt;电路交换：为端系统通信会话预留资源，不存在排队等待的问题。也就是端系统直接连接成专线链路。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-13_12-02-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;频分复用 (FDM)：为端系统之间的连接创建一个专设频段，也就是空间上的专属占有，这个频段只用于该通信。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-13_12-07-24.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;时分复用 (TDM)：链路上的时间被划分为固定时段的帧，每个帧又被划分为固定数量的时隙，每个时隙被分配给特定通信连接单独使用，也就是时间上的专属占用，该时间段上只用于该通信。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-13_12-07-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;分组交换与电路交换对比：分组交换不适用于实时服务，因为它存在时延和丢包的问题，但是它带宽共享更好，更简单、有效、成本低，适合传输并发服务。而电路交换适用于实时服务，但是它需要更多的带宽，更复杂、成本高，适合传输单并发服务，且在静默期，电路交换中的链路处于空闲，造成资源浪费。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;分组交换网中的时延-丢包和吞吐量问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组交换网中的时延-丢包和吞吐量问题&#34;&gt;#&lt;/a&gt; 分组交换网中的时延、丢包和吞吐量问题&lt;/h2&gt;
-&lt;h3 id=&#34;时延&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#时延&#34;&gt;#&lt;/a&gt; 时延&lt;/h3&gt;
-&lt;p&gt;时延一般可分为四种：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;处理时延（节点）：检查分组首部和决定将该分组导向何处所需要的时间。（微秒级以下）&lt;/li&gt;
-&lt;li&gt;排队时延：分组在链路上形成队列等待传输的时间。（毫秒到微秒级）&lt;/li&gt;
-&lt;li&gt;传输时延：将所有分组推向链路所需要的时间。（毫秒到秒级）&lt;/li&gt;
-&lt;li&gt;传播时延：比特从链路起点传输到链路终点所需要的时间。（毫秒级）&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-18_22-45-47.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-&lt;strong&gt; 流量强度&lt;/strong&gt;： &lt;code&gt;L&lt;/code&gt;  一个分组的 bit 大小、 &lt;code&gt;R&lt;/code&gt;  链路传输速率， &lt;code&gt;a&lt;/code&gt;  分组到队列的平均速率，定义流量强度为 &lt;code&gt;La/R&lt;/code&gt; 。&lt;br /&gt;
-若 &lt;code&gt;La/R &amp;gt; 1&lt;/code&gt;  则 bit 到达碎裂平均速率超过该队列传输出去的速率，则该队列会进行&lt;strong&gt;拥塞&lt;/strong&gt;，并且排队时延会持续增大。&lt;br /&gt;
-若 &lt;code&gt;La/R &amp;lt; 1&lt;/code&gt;  则 bit 到达碎裂平均速率小于该队列传输出去的速率，则该队列不会进行&lt;strong&gt;拥塞&lt;/strong&gt;，并且排队时延不会持续增大。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-18_22-54-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;丢包&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#丢包&#34;&gt;#&lt;/a&gt; 丢包&lt;/h3&gt;
-&lt;p&gt;当流量强度接近 1 时，由于队列空间有限，没有多余空间存储新来的分组，路由器会丢弃这个分组，造成丢包。&lt;/p&gt;
-&lt;h3 id=&#34;端到端时延&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#端到端时延&#34;&gt;#&lt;/a&gt; 端到端时延&lt;/h3&gt;
-&lt;p&gt;由于节点的处理时延为微秒级以下，远低于其他时延，所以一般端到端时延如下：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-18_22-57-11.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;吞吐量&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#吞吐量&#34;&gt;#&lt;/a&gt; 吞吐量&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;瞬时吞吐量&lt;/strong&gt;：任一时刻，主机接收到文件的速率（ &lt;code&gt;bps&lt;/code&gt; ，bit per second）。&lt;br /&gt;
-&lt;strong&gt;平均吞吐量&lt;/strong&gt;：主机接收 &lt;code&gt;F bit&lt;/code&gt;  用时 &lt;code&gt;T s&lt;/code&gt; ，平均吞吐量为 &lt;code&gt;F/T&lt;/code&gt; 。&lt;br /&gt;
-在实际传输中，吞吐量取决于瓶颈链路的传输速率，也就是传输速率最小的链路速率。&lt;/p&gt;
-&lt;h2 id=&#34;协议&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#协议&#34;&gt;#&lt;/a&gt; 协议&lt;/h2&gt;
-&lt;h3 id=&#34;协议分层layer&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#协议分层layer&#34;&gt;#&lt;/a&gt; 协议分层 (layer)&lt;/h3&gt;
-&lt;p&gt;在协议分层的架构中，每一层都可以向上一层提供服务，被称为服务模型。每层通过在该层执行某些操作或者使用下一层提供的服务来提供完整服务。 一层协议常常分布在网路组件的各个部分中。&lt;br /&gt;
-协议分层的优缺点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;优点：概念化和结构化，对系统组件的讨论更清晰。模块化是的系统组件更新更容易。&lt;/li&gt;
-&lt;li&gt;缺点：&lt;br /&gt;
-&lt;strong&gt;（1）功能冗余（重复实现）&lt;/strong&gt;&lt;br /&gt;
-高层可能重复实现低层已有的功能，造成资源浪费。&lt;br /&gt;
-比如在链路层和传输层都实现了差错恢复机制。链路层负责每一段链路的错误检测与重传，而传输层又实现了端到端的差错恢复。&lt;br /&gt;
-&lt;strong&gt;（2）跨层信息依赖（违反层次分离）&lt;/strong&gt;&lt;br /&gt;
-分层设计的核心目标是层次分离，即每层只依赖其直接下层提供的服务。&lt;br /&gt;
-某层功能需要依赖其他层才有的信息才能正常工作，例如传输层需要依赖数据链路层或网络层的时间戳信息来计算 RTT（往返时间）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;因特网协议栈&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#因特网协议栈&#34;&gt;#&lt;/a&gt; 因特网协议栈&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;因特网协议栈自顶向下依次为：应用层、运输层、网络层、链路层、物理层。&lt;/strong&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-19_17-03-02.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;应用层：网络应用程序以及应用层协议存在的地方。常见协议有 HTTP、SMTP、DNS 域名系统。&lt;br /&gt;
-这一层的信息分组被称为 &lt;code&gt;报文（message）&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;运输层：在应用程序断电之间传输应用层报文。常见协议有 &lt;code&gt;TCP、UDP&lt;/code&gt; 。&lt;br /&gt;
-其中 &lt;code&gt;TCP&lt;/code&gt;  是面向连接的，提供端到端的可靠性、流量控制、将长报文划分为短报文、拥塞控制机制。 &lt;code&gt;UDP&lt;/code&gt;  是无连接的，提供简单、快速、无可靠传输，它不提供非必要服务。&lt;br /&gt;
-这一层信息分组被称为 &lt;code&gt;报文段（segment）&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;网络层：将网络层的信息分组，被称为 &lt;code&gt;数据报（datagram）&lt;/code&gt; ，从一台主机主动移动到另一台主机。简而言之就是提供导航服务：寻址和标识、路由选择等。常见协议有 &lt;code&gt;IP、ICMP&lt;/code&gt; 。&lt;/li&gt;
-&lt;li&gt;链路层：网络层依托于链路层，完成数据报在链路上节点间的传输，覆盖范围是上一个节点的网络层到下一个节点的网络层。常见的协议有以太网、DOCSIS 协议。&lt;br /&gt;
-链路层的信息分组被称为 &lt;code&gt;帧（frame）&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;物理层：这一层仍是链路相关，也就是对链路层的物理描述，协议内容与数据传输的物理介质有关。这一层的信息被称为 &lt;code&gt;比特（bit）&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;封装encapsulate&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#封装encapsulate&#34;&gt;#&lt;/a&gt; 封装（encapsulate&lt;/h3&gt;
-&lt;p&gt;每一层都会在上一层的信息分组的基础上添加本层特有的首部字段，形成本层的信息分组，这个过程叫做封装。&lt;br /&gt;
-自顶向下的封装过程如下：应用层报文（application-layer message）-&amp;gt; 运输层报文段（transport-layer segment）-&amp;gt; 网络层数据报（network-layer datagram）-&amp;gt; 链路层帧（link-layer frame）。&lt;br /&gt;
-每一层的分组 = 首部字段 + 有效载荷字段（上一层分组）。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-19_17-09-24.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;osi七层协议栈模型与tcpip四层协议栈模型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#osi七层协议栈模型与tcpip四层协议栈模型&#34;&gt;#&lt;/a&gt; OSI 七层协议栈模型与 TCP/IP 四层协议栈模型&lt;/h3&gt;
-&lt;p&gt;OSI 七层协议栈模型：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。&lt;br /&gt;
-TCP/IP 四层协议栈模型：应用层、传输层、网络层、链路层。&lt;br /&gt;
-二者功能对比表如下：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-19_17-17-55.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h2 id=&#34;网络攻击&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络攻击&#34;&gt;#&lt;/a&gt; 网络攻击&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;常见网络攻击类型：&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;有害程序攻击：攻击者将 &lt;code&gt;恶意程序（malware）&lt;/code&gt; ，如木马、病毒、蠕虫、后门、恶意软件、恶意脚本通过网络发送给目标主机，并运行，而大多数恶意程序可以 &lt;code&gt;自我复制（self-replicating）&lt;/code&gt; 进一步感染更多主机，形成 &lt;code&gt;僵尸网络（botnet）&lt;/code&gt; 。&lt;/li&gt;
-&lt;li&gt;攻击者访问控制攻击：攻击者访问控制攻击，也叫 &lt;code&gt;拒绝服务攻击（DoS attack）&lt;/code&gt; ，攻击者通过发送大量请求，导致目标主机无法响应，从而导致目标主机无法正常处理用户请求。&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-19_17-14-09.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;网络嗅探攻击，例如使用 wireshark 这类网络流量分析攻击，抓取到传输的数据包，分析其中内容进行窃密、篡改、重放。&lt;/li&gt;
 &lt;/ol&gt;
  ]]></description>
         </item>
