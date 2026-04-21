@@ -51,46 +51,6 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/16/ctf/web/%E5%AF%86%E7%A0%81%E5%8F%A3%E4%BB%A4-%E5%BC%B1%E5%8F%A3%E4%BB%A4/</guid>
-            <title>密码口令-弱口令</title>
-            <link>https://dragonftop.github.io/2026/04/16/ctf/web/%E5%AF%86%E7%A0%81%E5%8F%A3%E4%BB%A4-%E5%BC%B1%E5%8F%A3%E4%BB%A4/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-            <pubDate>Thu, 16 Apr 2026 19:11:38 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;待整理为 blog&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/16/ctf/web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A3%80%E6%B5%8B/</guid>
-            <title>文件上传-文件头检测</title>
-            <link>https://dragonftop.github.io/2026/04/16/ctf/web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A3%80%E6%B5%8B/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-            <pubDate>Thu, 16 Apr 2026 19:10:39 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;待整理为 blog&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/16/ctf/web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%89%8D%E7%AB%AF%E9%AA%8C%E8%AF%81/</guid>
-            <title>文件上传-前端验证</title>
-            <link>https://dragonftop.github.io/2026/04/16/ctf/web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%89%8D%E7%AB%AF%E9%AA%8C%E8%AF%81/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-            <pubDate>Thu, 16 Apr 2026 19:10:19 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;待整理为 blog&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/16/ctf/web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E6%97%A0%E9%AA%8C%E8%AF%81/</guid>
-            <title>文件上传-无验证</title>
-            <link>https://dragonftop.github.io/2026/04/16/ctf/web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E6%97%A0%E9%AA%8C%E8%AF%81/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-            <pubDate>Thu, 16 Apr 2026 19:08:03 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;待整理为 blog&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/15/os/%E4%BA%92%E6%96%A5%E4%B8%8E%E5%90%8C%E6%AD%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
             <title>互斥与同步的实现</title>
             <link>https://dragonftop.github.io/2026/04/15/os/%E4%BA%92%E6%96%A5%E4%B8%8E%E5%90%8C%E6%AD%A5%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
@@ -325,9 +285,60 @@ DES 加密过程中的运算按照顺序为：IP（初始置换）- 轮函数 - 
 &lt;li&gt;P 置换：将与 K 异或的 32bit 结果按照置换函数 P（置换表）进行置换。&lt;br /&gt;
 &lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-13_20-21-29.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol&gt;
+&lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;逆初始置换：将结果进行初始置换的逆变换，得到密文 C。&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;其中每轮密钥 K 的生成：最开始去除奇偶校验后为 56bit，分为 C 和 D 两部分（每部分 28bit），每一轮后密钥 CD 部分分别循环左移，左移结果再进行 PC-2 置换。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_10-33-23.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_10-35-29.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;点击跳转&lt;/strong&gt;&lt;br /&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl4aWFveHUvYXJ0aWNsZXMvNzczNjkxNy5odG1s&#34;&gt; DES 算法详细讲解&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;des加密的互补性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#des加密的互补性&#34;&gt;#&lt;/a&gt; DES 加密的互补性&lt;/h3&gt;
+&lt;p&gt;DES 加密的互补性是指：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_10-45-52.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;分组密码的工作模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分组密码的工作模式&#34;&gt;#&lt;/a&gt; 分组密码的工作模式&lt;/h2&gt;
+&lt;p&gt;这里的分组密码的工作模式是指加密过程中块与块之间的工作联系。&lt;/p&gt;
+&lt;h3 id=&#34;电子代码本模式-ecbelectronic-code-book&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#电子代码本模式-ecbelectronic-code-book&#34;&gt;#&lt;/a&gt; 电子代码本模式（ ECB，Electronic Code Book）&lt;/h3&gt;
+&lt;p&gt;将每块明文加密成相应的密码块，若最后一块不足 64bit，则用一些任意二进制序列填充。这样相同的明文块总被加密成相同的密文块。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;优点：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;（1）实现简单，是一种最简易的工作方式；&lt;/li&gt;
+&lt;li&gt;（2）不同明文分组的加密可并行实施，尤其是硬件实现时速度很快&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;缺点：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;（1）相同明文分组对应相同密文分组&lt;/li&gt;
+&lt;li&gt;（2）不能隐蔽明文分组的统计规律和结构规律，各密文块间缺乏相关性，信息易于受到块替换攻击 。算法本质上相当于一个 “大的单字母替换”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;应用：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;（1）用于随机数的加密保护&lt;/li&gt;
+&lt;li&gt;（2）用于单分组明文的加密&lt;br /&gt;
+&lt;strong&gt;示意图：&lt;/strong&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_10-51-21.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;ECB 受到替换攻击的例子：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_11-24-01.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;密码块链接模式cbccipher-block-chain&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码块链接模式cbccipher-block-chain&#34;&gt;#&lt;/a&gt; 密码块链接模式（CBC，Cipher Block Chain）&lt;/h3&gt;
+&lt;p&gt;在 ECB 的基础上加入反馈机制，当前明文块在加密之前要与前面的密文块进行异或。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_11-29-47.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-21_11-30-05.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt; 特点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1) 同一明文块会产生不同的密文块；算法不再是一个 “大的单字母替换”&lt;/li&gt;
+&lt;li&gt;(2)  有误码扩散，同时又有自同步特性；&lt;br /&gt;
+若 Ci 在传送过程中出错，则解密时会造成 mi 和 mi+1 两个明文块都出错，但后面的密文块仍然能自动正确恢复。&lt;/li&gt;
+&lt;li&gt;(3)  只有当所有 64 比特块到达后才能开始编解码，不能直接用于交互式终端。否则传输带宽浪费严重。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;密码反馈模式cfbcipher-feedback&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码反馈模式cfbcipher-feedback&#34;&gt;#&lt;/a&gt; 密码反馈模式（CFB，Cipher FeedBack）&lt;/h3&gt;
  ]]></description>
         </item>
         <item>
@@ -2252,17 +2263,6 @@ D. II 和 III&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/09/ctf/web/SQL%E6%B3%A8%E5%85%A5-%E6%95%B4%E5%9E%8B%E6%B3%A8%E5%85%A5/</guid>
-            <title>SQL注入-整型注入</title>
-            <link>https://dragonftop.github.io/2026/04/09/ctf/web/SQL%E6%B3%A8%E5%85%A5-%E6%95%B4%E5%9E%8B%E6%B3%A8%E5%85%A5/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-            <pubDate>Thu, 09 Apr 2026 17:43:03 +0800</pubDate>
-            <description><![CDATA[ &lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
-&lt;p&gt;待整理为 blog&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/08/os/%E5%B9%B6%E5%8F%91%EF%BC%9A%E4%BA%92%E6%96%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/</guid>
             <title>并发：互斥与同步</title>
             <link>https://dragonftop.github.io/2026/04/08/os/%E5%B9%B6%E5%8F%91%EF%BC%9A%E4%BA%92%E6%96%A5%E4%B8%8E%E5%90%8C%E6%AD%A5/</link>
@@ -3461,6 +3461,214 @@ peer 向索引服务器请求文件位置信息&lt;br /&gt;
  &lt;code&gt;$sha1$bf45c36a4dfb73378247a6311eac4f80f48fcb92&lt;/code&gt; &lt;br /&gt;
  对于这种哈希值，除去前缀 &lt;code&gt;$sha1$&lt;/code&gt; ，剩下的就是 flag.txt 的哈希值。前两个字符 bf 是 flag.txt 被进行哈希后存放的文件夹，剩下的字符串就是 flag.txt 文件的文件名。所以我们构造如下 url 即可访问得到 flag.txt 文件。&lt;br /&gt;
  &lt;code&gt;http://example.com/bf/45c36a4dfb73378247a6311eac4f80f48fcb92&lt;/code&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/appcrypto/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
+            <title>古典密码学</title>
+            <link>https://dragonftop.github.io/2026/03/17/appcrypto/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+            <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
+            <pubDate>Tue, 17 Mar 2026 19:58:03 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;古典密码学&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#古典密码学&#34;&gt;#&lt;/a&gt; 古典密码学&lt;/h1&gt;
+&lt;h2 id=&#34;替代密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#替代密码&#34;&gt;#&lt;/a&gt; 替代密码&lt;/h2&gt;
+&lt;h3 id=&#34;何为替代密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#何为替代密码&#34;&gt;#&lt;/a&gt; 何为替代密码&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;替代密码是指先建立一个替换表，以查表得方式将需要加密的明文替换为密文，在解密时反向替换为明文。其中的替换表就是密钥。&lt;/li&gt;
+&lt;li&gt;根据使用的替换表数量，可以分为以下两种替换密码：&lt;br /&gt;
+（1）单表替换密码：加解密使用一个固定的替换表。&lt;br /&gt;
+（2）多表替代密码：加解密使用多个的替换表。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;替代密码的加密算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#替代密码的加密算法&#34;&gt;#&lt;/a&gt; 替代密码的加密算法&lt;/h3&gt;
+&lt;h4 id=&#34;单表替代密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单表替代密码&#34;&gt;#&lt;/a&gt; 单表替代密码&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;1. 一般单表替代密码&lt;/strong&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-04-03.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-04-16.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 示例：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-05-21.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 移位密码&lt;/strong&gt;&lt;br /&gt;
+移位密码中，将 26 个字母与 0-25 数字进行映射成对，例如下图：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-08-52.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 加密时，明文映射成数字后加上移位步长，得到密文数字，在映射为字母。即为密文。解密时，密文映射数字然后减去移位步长，得到明文数字，再映射为字母，即得到明文。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-10-50.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 使用上述映射表的例子如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-11-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 其中，当密钥为 3 时，为 Ceasar 密码。&lt;br /&gt;
+&lt;strong&gt;3. 仿射密码&lt;/strong&gt;&lt;br /&gt;
+和移位密码比较相似，其加密和解密变换如下，其实就是衍生到利用线性变换：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-13-23.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-13-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 显然当 K1=1 时即为移位密码，当 K2=0 时为乘法密码。&lt;br /&gt;
+&lt;strong&gt;4. 密钥短语密码&lt;/strong&gt;&lt;br /&gt;
+选择一个英文短语或者单词穿作为密钥去掉其中重复的字母后得到一个无重复字母的字符串，然后作为开头，将其他没出现的字母按字母表顺序排列后面形成替换表。&lt;br /&gt;
+如下图，以单词 key 作为密钥得到的替换表为：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-19-29.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;单表替换密码的安全性分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单表替换密码的安全性分析&#34;&gt;#&lt;/a&gt; 单表替换密码的安全性分析&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;存在的最大问题：明文中的单字母出现频率分布与密文中对应替换字母的出现频率相同。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;多表替代密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#多表替代密码&#34;&gt;#&lt;/a&gt; 多表替代密码&lt;/h3&gt;
+&lt;p&gt;使用多个替换表将明文替换为密文。&lt;br /&gt;
+&lt;strong&gt;1. 维吉尼亚密码 (Vingere)&lt;/strong&gt;&lt;br /&gt;
+ 基本思想：将明文分块，不同块使用不同的替换表进行替换，得到密文。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-30-31.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 加密变换：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-31-08.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 解密变换：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-31-25.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt;1. 希尔密码 (Hill)&lt;/strong&gt;&lt;br /&gt;
+ 基本思想：将明文字母通过线性变换得到密文字母。解密即为该线性变换的逆变换。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-40-51.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-35-26.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 另外，涉及一个线性代数中的内容如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-35-42.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 一次一密密码&lt;/strong&gt;&lt;br /&gt;
+要求：密钥时真正的随机序列、密钥长度大于等于明文长度、每个密钥只能用一次，不可重复。（&lt;strong&gt;现实中很难实现&lt;/strong&gt;）&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-37-05.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt;4. Playfair 密码&lt;/strong&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-41-23.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-41-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+Playfair 密码特点：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_20-42-01.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;置换密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#置换密码&#34;&gt;#&lt;/a&gt; 置换密码&lt;/h2&gt;
+&lt;h3 id=&#34;周期置换密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周期置换密码&#34;&gt;#&lt;/a&gt; 周期置换密码&lt;/h3&gt;
+&lt;p&gt;将明文字符按一定长度 n 进行分组，然后构造一个密钥，也就是长度为 n 的置换，比如（1，3，5，4，2）这种置换，将明文周期性（长度为 n）的按顺序进行替换，得到密文。&lt;br /&gt;
+例子：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-47-22.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt; 首先分组&lt;/strong&gt;：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-47-42.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt; 然后每个组进行置换&lt;/strong&gt;：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-48-03.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 得到密文： &lt;code&gt;ytcoprahggypr&lt;/code&gt; &lt;br /&gt;
+&lt;strong&gt; 注意&lt;/strong&gt;：如果密钥长度 n 不整除明文长度，则需要把明文补全，使用提前定义好的补全字符，比如 x、@、#、% 等补全。&lt;br /&gt;
+另外，周期置换密码其实可以看做成 hill 密码的特例，以上述例子为例，其线性变换矩阵为：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-52-25.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-52-19.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 对应其逆变换为：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-52-44.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-52-53.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 其加密矩阵的特点是每行只有一个 1，其余为 0，数学上也被称为置换矩阵，其逆矩阵是置换矩阵的转置矩阵。&lt;/p&gt;
+&lt;h3 id=&#34;列置换矩阵&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#列置换矩阵&#34;&gt;#&lt;/a&gt; 列置换矩阵&lt;/h3&gt;
+&lt;p&gt;列置换矩阵是将明文按照密钥长度 n，每行分成 n 列，然后按照密钥进行列置换，得到密文。&lt;br /&gt;
+示例如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-57-10.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加密过程&lt;br /&gt;
+首先分组，也就是每行四个排列：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-57-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 然后按照密钥进行列置换，得到密文：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-06_14-57-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;解密过程&lt;br /&gt;
+根据加密密钥逆向求出列置换的逆置换，然后进行列置换，得到明文。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;转轮机密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#转轮机密码&#34;&gt;#&lt;/a&gt; 转轮机密码&lt;/h2&gt;
+&lt;p&gt;转轮机密码解密过程需了解。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/ctf/misc/LSB%E9%9A%90%E5%86%99/</guid>
+            <title>LSB隐写</title>
+            <link>https://dragonftop.github.io/2026/03/17/ctf/misc/LSB%E9%9A%90%E5%86%99/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="杂项" scheme="https://dragonftop.github.io/categories/ctf/misc/" />
+            <pubDate>Tue, 17 Mar 2026 11:29:21 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;lsb隐写&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lsb隐写&#34;&gt;#&lt;/a&gt; LSB 隐写&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是一个 Ctfhub 上的一个 LSB 隐写题目，题目给一张图片，要求我们找到 flag。&lt;/p&gt;
+&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
+&lt;p&gt;LSB（Least Significant Bit）LSB，即最低有效位，LSB 是二进制数中的最低位，LSB 是二进制数最右边的位。&lt;br /&gt;
+把要隐藏的信息（文本 / 文件） 转换成二进制，然后替换图片像素颜色通道的最低位，因为最低位的改变肉眼不可见，却能偷偷藏下数据。&lt;/p&gt;
+&lt;h2 id=&#34;解题步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题步骤&#34;&gt;#&lt;/a&gt; 解题步骤&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;题目只给了一个简单的校徽，没有其他有效内容，根据题意考虑是 LSB 隐写。&lt;/li&gt;
+&lt;li&gt;使用 LSB 隐写解析工具 zsteg 解析图片，发现在 rgb 模式的 lsb（最低位）隐藏了一个 280*280 的图片。&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;zsteg image.png&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;提取 (Extract) LSB 隐写的图片，并查看图片内容，发现是一个二维码图片：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;zsteg -E image.png &amp;gt; hidden.png&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-37-36.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;解析二维码，获取 flag：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-38-19.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/ctf/misc/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</guid>
+            <title>zip伪加密</title>
+            <link>https://dragonftop.github.io/2026/03/17/ctf/misc/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="杂项" scheme="https://dragonftop.github.io/categories/ctf/misc/" />
+            <pubDate>Tue, 17 Mar 2026 11:05:26 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;zip伪加密&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#zip伪加密&#34;&gt;#&lt;/a&gt; zip 伪加密&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 buuctf 上的一个杂项题，题目给一个 zip 文件，需要解密才能打开。但根据题目可以知道这个 zip 不是真正加密，所以需要去分析。&lt;/p&gt;
+&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;首先打开 zip 文件，可以看到里面有一个叫 &lt;code&gt;flag.txt&lt;/code&gt;  的文件：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-07-01.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 但是解压显示被加密了。&lt;/li&gt;
+&lt;li&gt;将 zip 文件拖入 010editor，查找 zip 加密文件头：50 4B 01 02&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-09-09.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 其 ASCII 码对应为：PK&lt;/li&gt;
+&lt;li&gt;将其十六进制后面的 09 00 修改为 00 00 后保存，即可解开 zip 文件的伪加密。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-11-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;获取 flag：直接重新解压压缩包，得到 flag：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-12-35.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/ctf/misc/rar%E5%8E%8B%E7%BC%A9%E8%A1%A8%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3/</guid>
+            <title>rar加密压缩包基础破解</title>
+            <link>https://dragonftop.github.io/2026/03/17/ctf/misc/rar%E5%8E%8B%E7%BC%A9%E8%A1%A8%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="杂项" scheme="https://dragonftop.github.io/categories/ctf/misc/" />
+            <pubDate>Tue, 17 Mar 2026 10:57:23 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;rar加密压缩包基础破解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#rar加密压缩包基础破解&#34;&gt;#&lt;/a&gt; rar 加密压缩包基础破解&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 buuctf 上的一个杂项基础题，题目给出一个 rar 加密压缩包，需要解密才能打开。&lt;/p&gt;
+&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
+&lt;p&gt;题目给了一个加密的 rar 压缩包：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-02-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 直接上工具： &lt;code&gt;ARCHPR&lt;/code&gt; &lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-00-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 这里由于是基础题，所以直接配置暴力破解为从 0-9，然后长度为 1-4，直接开始暴力破解，即可得到压缩包密码：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-01-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 解压成功，得到 flag&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-index/</guid>
+            <title>信息泄露-Git泄露-index</title>
+            <link>https://dragonftop.github.io/2026/03/17/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-index/</link>
+            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
+            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
+            <pubDate>Tue, 17 Mar 2026 10:16:35 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-git泄露-index&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-git泄露-index&#34;&gt;#&lt;/a&gt; 信息泄露 - Git 泄露 - index&lt;/h1&gt;
+&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
+&lt;p&gt;这是 CTFHub 平台上的一道 Git 泄露漏洞专项教学类 Web 题目，核心考察 Git 泄露漏洞的利用方法。&lt;/p&gt;
+&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
+&lt;p&gt;当前大量开发人员使用 Git 进行版本控制，并通过自动化工具部署站点。若部署配置不当，项目的 &lt;code&gt;.git&lt;/code&gt;  文件夹会被直接部署到线上生产环境，攻击者可通过该文件夹还原整个代码仓库，引发 Git 泄露漏洞。&lt;/p&gt;
+&lt;h2 id=&#34;解题步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题步骤&#34;&gt;#&lt;/a&gt; 解题步骤&lt;/h2&gt;
+&lt;h3 id=&#34;1-验证git泄露&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-验证git泄露&#34;&gt;#&lt;/a&gt; 1. 验证 Git 泄露&lt;/h3&gt;
+&lt;p&gt;这里根据前面的经验，我们直接对容器进行 &lt;code&gt;GitHack&lt;/code&gt;  渗透：&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python2 GitHack.py http://example.com/.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 命令执行完成后，GitHack 会自动将还原的 Git 仓库保存到 &lt;code&gt;GitHack/dist/example.com&lt;/code&gt;  目录下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-20-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-检查提交log&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-检查提交log&#34;&gt;#&lt;/a&gt; 2. 检查提交 log&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; dist&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; example.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;git &lt;span class=&#34;built_in&#34;&gt;log&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 提交 log 如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-21-17.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-尝试比较两次提交的差异&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-尝试比较两次提交的差异&#34;&gt;#&lt;/a&gt; 3. 尝试比较两次提交的差异&lt;/h3&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git diff &amp;lt;add flag的提交哈希&amp;gt; &amp;lt;remove flag的提交哈希&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+ 差异如下，发现直接得到了 flag：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-22-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4考虑题目的目的index&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4考虑题目的目的index&#34;&gt;#&lt;/a&gt; 4. 考虑题目的目的 index&lt;/h3&gt;
+&lt;p da73d88936010da1eeeb36e945ec4b97=&#34;&#34;&gt;这里还是按照题目的意思走一遍，查看一下 index 文件&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-23-36.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 发现存在 &lt;code&gt;index.html&lt;/code&gt;  文件，打开查看，但是没有 flag：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-24-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 遍历这几个文件后，在 &lt;code&gt;190412730421341.txt&lt;/code&gt;  这个文件里发现了 flag：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-25-53.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 当然这也就是 log 记录里提到的提交 &lt;code&gt;add flag&lt;/code&gt;  的文件及内容。&lt;br /&gt;
+&lt;strong&gt;ctfhub{c79c23e1464a642a5986e258}&lt;/strong&gt;&lt;br /&gt;
+flag&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
