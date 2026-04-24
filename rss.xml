@@ -10,15 +10,74 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Thu, 16 Apr 2026 20:01:50 +0800</pubDate>
-        <lastBuildDate>Thu, 16 Apr 2026 20:01:50 +0800</lastBuildDate>
+        <pubDate>Fri, 24 Apr 2026 20:26:31 +0800</pubDate>
+        <lastBuildDate>Fri, 24 Apr 2026 20:26:31 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/04/24/leetcode/%E3%80%90%E5%8D%95%E8%B0%83%E6%A0%88%E3%80%91%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC/</guid>
+            <title>【单调栈】商品价格</title>
+            <link>https://dragonftop.github.io/2026/04/24/leetcode/%E3%80%90%E5%8D%95%E8%B0%83%E6%A0%88%E3%80%91%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC/</link>
+            <category term="leetcode" scheme="https://dragonftop.github.io/categories/leetcode/" />
+            <pubDate>Fri, 24 Apr 2026 20:26:31 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;单调栈商品价格&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单调栈商品价格&#34;&gt;#&lt;/a&gt; 【单调栈】商品价格&lt;/h1&gt;
+&lt;h2 id=&#34;题目&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目&#34;&gt;#&lt;/a&gt; 题目&lt;/h2&gt;
+&lt;p&gt;给你一个数组 prices ，其中 prices [i] 是商店里第 i 件商品的价格。&lt;/p&gt;
+&lt;p&gt;商店里正在进行促销活动，如果你要买第 i 件商品，那么你可以得到与 prices [j] 相等的折扣，其中 j 是满足 j &amp;gt; i 且 prices [j] &amp;lt;= prices [i] 的 最小下标 ，如果没有满足条件的 j ，你将没有任何折扣。&lt;/p&gt;
+&lt;p&gt;请你返回一个数组，数组中第 i 个元素是折扣后你购买商品 i 最终需要支付的价格。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 1：&lt;/strong&gt;&lt;br /&gt;
+输入：prices = [8,4,6,2,3]&lt;br /&gt;
+ 输出：[4,2,4,2,3]&lt;br /&gt;
+ 解释：&lt;br /&gt;
+商品 0 的价格为 price [0]=8 ，你将得到 prices [1]=4 的折扣，所以最终价格为 8 - 4 = 4 。&lt;br /&gt;
+商品 1 的价格为 price [1]=4 ，你将得到 prices [3]=2 的折扣，所以最终价格为 4 - 2 = 2 。&lt;br /&gt;
+商品 2 的价格为 price [2]=6 ，你将得到 prices [3]=2 的折扣，所以最终价格为 6 - 2 = 4 。&lt;br /&gt;
+商品 3 和 4 都没有折扣。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 2：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;输入：prices = [1,2,3,4,5]&lt;br /&gt;
+ 输出：[1,2,3,4,5]&lt;br /&gt;
+ 解释：在这个例子中，所有商品都没有折扣。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 3：&lt;/strong&gt;&lt;br /&gt;
+输入：prices = [10,1,1,6]&lt;br /&gt;
+ 输出：[9,0,1,6]&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;提示：&lt;/strong&gt;&lt;br /&gt;
+ &lt;code&gt;1 &amp;lt;= prices.length &amp;lt;= 500&lt;/code&gt; &lt;br /&gt;
+ &lt;code&gt;1 &amp;lt;= prices[i] &amp;lt;= 10^3&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解答&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解答&#34;&gt;#&lt;/a&gt; 解答&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;finalPrices&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;amp; prices)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        stack&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; s;&lt;span class=&#34;comment&#34;&gt;//这个栈用来存储已经还未找到折扣的商品的索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(prices.size()&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&#34;comment&#34;&gt;//存储已经找到折扣的商品的可以折扣的价格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;prices.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt;(!s.&lt;span class=&#34;built_in&#34;&gt;empty&lt;/span&gt;()&amp;amp;&amp;amp;prices[i]&amp;lt;=prices[s.&lt;span class=&#34;built_in&#34;&gt;top&lt;/span&gt;()])&amp;#123;&lt;span class=&#34;comment&#34;&gt;//栈不为空且栈顶元素比当前元素小&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                m[s.&lt;span class=&#34;built_in&#34;&gt;top&lt;/span&gt;()]=prices[i];&lt;span class=&#34;comment&#34;&gt;//说明当前元素可以折扣&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                s.&lt;span class=&#34;built_in&#34;&gt;pop&lt;/span&gt;();&lt;span class=&#34;comment&#34;&gt;//弹出已经找到折扣的商品的索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            s.&lt;span class=&#34;built_in&#34;&gt;push&lt;/span&gt;(i);&lt;span class=&#34;comment&#34;&gt;//如果栈为空或者栈顶元素比当前元素大，则将当前元素入栈，等待找到折扣&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;prices.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;()&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            prices[i]-=m[i];&lt;span class=&#34;comment&#34;&gt;//减去可以折扣的价格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; prices;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/04/22/os/%E6%AD%BB%E9%94%81%E4%B8%8E%E9%A5%A5%E9%A5%BF/</guid>
+            <title>死锁与饥饿</title>
+            <link>https://dragonftop.github.io/2026/04/22/os/%E6%AD%BB%E9%94%81%E4%B8%8E%E9%A5%A5%E9%A5%BF/</link>
+            <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
+            <pubDate>Wed, 22 Apr 2026 14:08:22 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;死锁与饥饿&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#死锁与饥饿&#34;&gt;#&lt;/a&gt; 死锁与饥饿&lt;/h1&gt;
+&lt;p&gt;&lt;img data-src=&#34;PixPin_2026-04-22_14-10-49.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;死锁&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#死锁&#34;&gt;#&lt;/a&gt; 死锁&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;死锁：两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;死锁产生的原因：资源竞争和进程推荐顺序不当。&lt;br /&gt;
+出现死锁的充要条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mutual exclusion (互斥)– Only one process may use a resource at a time&lt;/li&gt;
+&lt;li&gt;Hold-and-wait (占有且等待)– A process may hold allocated resources while&lt;br /&gt;
+awaiting assignment of others&lt;/li&gt;
+&lt;li&gt;No preemption (非抢占)– No resource can be forcibly removed (强行抢占)&lt;br /&gt;
+form a process holding it&lt;/li&gt;
+&lt;li&gt;Circular wait (循环等待)– A closed chain of processes exists (封闭进程链), such that each process holds at least one resource needed by the next process in the chain&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/16/leetcode/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/</guid>
             <title>【动态规划】矩阵不同路径</title>
             <link>https://dragonftop.github.io/2026/04/16/leetcode/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/</link>
             <category term="leetcode" scheme="https://dragonftop.github.io/categories/leetcode/" />
             <pubDate>Thu, 16 Apr 2026 20:01:50 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。&lt;/p&gt;
+            <description><![CDATA[ &lt;h1 id=&#34;动态规划矩阵不同路径&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动态规划矩阵不同路径&#34;&gt;#&lt;/a&gt; 【动态规划】矩阵不同路径&lt;/h1&gt;
+&lt;h2 id=&#34;题目&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目&#34;&gt;#&lt;/a&gt; 题目&lt;/h2&gt;
+&lt;p&gt;一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。&lt;/p&gt;
 &lt;p&gt;机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。&lt;/p&gt;
 &lt;p&gt;问总共有多少条不同的路径？&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例 1：&lt;/strong&gt;&lt;br /&gt;
@@ -3613,64 +3672,6 @@ Playfair 密码特点：&lt;br /&gt;
 &lt;li&gt;获取 flag：直接重新解压压缩包，得到 flag：&lt;br /&gt;
 &lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-12-35.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
 &lt;/ol&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/ctf/misc/rar%E5%8E%8B%E7%BC%A9%E8%A1%A8%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3/</guid>
-            <title>rar加密压缩包基础破解</title>
-            <link>https://dragonftop.github.io/2026/03/17/ctf/misc/rar%E5%8E%8B%E7%BC%A9%E8%A1%A8%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="杂项" scheme="https://dragonftop.github.io/categories/ctf/misc/" />
-            <pubDate>Tue, 17 Mar 2026 10:57:23 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;rar加密压缩包基础破解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#rar加密压缩包基础破解&#34;&gt;#&lt;/a&gt; rar 加密压缩包基础破解&lt;/h1&gt;
-&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
-&lt;p&gt;这是 buuctf 上的一个杂项基础题，题目给出一个 rar 加密压缩包，需要解密才能打开。&lt;/p&gt;
-&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
-&lt;p&gt;题目给了一个加密的 rar 压缩包：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-02-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 直接上工具： &lt;code&gt;ARCHPR&lt;/code&gt; &lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-00-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 这里由于是基础题，所以直接配置暴力破解为从 0-9，然后长度为 1-4，直接开始暴力破解，即可得到压缩包密码：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_11-01-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 解压成功，得到 flag&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/03/17/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-index/</guid>
-            <title>信息泄露-Git泄露-index</title>
-            <link>https://dragonftop.github.io/2026/03/17/ctf/web/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-Git%E6%B3%84%E9%9C%B2-index/</link>
-            <category term="CTF" scheme="https://dragonftop.github.io/categories/ctf/" />
-            <category term="Web" scheme="https://dragonftop.github.io/categories/ctf/web/" />
-            <pubDate>Tue, 17 Mar 2026 10:16:35 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;信息泄露-git泄露-index&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露-git泄露-index&#34;&gt;#&lt;/a&gt; 信息泄露 - Git 泄露 - index&lt;/h1&gt;
-&lt;h2 id=&#34;题目介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目介绍&#34;&gt;#&lt;/a&gt; 题目介绍&lt;/h2&gt;
-&lt;p&gt;这是 CTFHub 平台上的一道 Git 泄露漏洞专项教学类 Web 题目，核心考察 Git 泄露漏洞的利用方法。&lt;/p&gt;
-&lt;h2 id=&#34;出题背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#出题背景&#34;&gt;#&lt;/a&gt; 出题背景&lt;/h2&gt;
-&lt;p&gt;当前大量开发人员使用 Git 进行版本控制，并通过自动化工具部署站点。若部署配置不当，项目的 &lt;code&gt;.git&lt;/code&gt;  文件夹会被直接部署到线上生产环境，攻击者可通过该文件夹还原整个代码仓库，引发 Git 泄露漏洞。&lt;/p&gt;
-&lt;h2 id=&#34;解题步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题步骤&#34;&gt;#&lt;/a&gt; 解题步骤&lt;/h2&gt;
-&lt;h3 id=&#34;1-验证git泄露&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-验证git泄露&#34;&gt;#&lt;/a&gt; 1. 验证 Git 泄露&lt;/h3&gt;
-&lt;p&gt;这里根据前面的经验，我们直接对容器进行 &lt;code&gt;GitHack&lt;/code&gt;  渗透：&lt;br /&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python2 GitHack.py http://example.com/.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 命令执行完成后，GitHack 会自动将还原的 Git 仓库保存到 &lt;code&gt;GitHack/dist/example.com&lt;/code&gt;  目录下：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-20-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-检查提交log&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-检查提交log&#34;&gt;#&lt;/a&gt; 2. 检查提交 log&lt;/h3&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; dist&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; example.com&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;git &lt;span class=&#34;built_in&#34;&gt;log&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 提交 log 如下：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-21-17.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;3-尝试比较两次提交的差异&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-尝试比较两次提交的差异&#34;&gt;#&lt;/a&gt; 3. 尝试比较两次提交的差异&lt;/h3&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git diff &amp;lt;add flag的提交哈希&amp;gt; &amp;lt;remove flag的提交哈希&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
- 差异如下，发现直接得到了 flag：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-22-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;4考虑题目的目的index&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4考虑题目的目的index&#34;&gt;#&lt;/a&gt; 4. 考虑题目的目的 index&lt;/h3&gt;
-&lt;p da73d88936010da1eeeb36e945ec4b97=&#34;&#34;&gt;这里还是按照题目的意思走一遍，查看一下 index 文件&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-23-36.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 发现存在 &lt;code&gt;index.html&lt;/code&gt;  文件，打开查看，但是没有 flag：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-24-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 遍历这几个文件后，在 &lt;code&gt;190412730421341.txt&lt;/code&gt;  这个文件里发现了 flag：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-03-17_10-25-53.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 当然这也就是 log 记录里提到的提交 &lt;code&gt;add flag&lt;/code&gt;  的文件及内容。&lt;br /&gt;
-&lt;strong&gt;ctfhub{c79c23e1464a642a5986e258}&lt;/strong&gt;&lt;br /&gt;
-flag&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
