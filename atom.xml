@@ -1084,8 +1084,12 @@ U_sender = 8 μs / (8 μs + 30,000 μs) ≈ 0.00027&lt;/p&gt;
 &lt;img data-src=&#34;PixPin_2026-04-29_08-58-33.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;go-back-n-protocol&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#go-back-n-protocol&#34;&gt;#&lt;/a&gt; Go-Back-N protocol&lt;/h3&gt;
 &lt;p&gt;引入 pipelined protocol 存在的问题：一旦出现问题，如何让接收方最终能够接收到完整数据是比较困难的，所以引入了 Go-Back-N protocol。&lt;br /&gt;
-&lt;img data-src=&#34;PixPin_2026-04-29_09-02-57.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9tZWRpYS5wZWFyc29uY21nLmNvbS9hdy9lY3Nfa3Vyb3NlX2NvbXBuZXR3b3JrXzcvY3cvY29udGVudC9pbnRlcmFjdGl2ZWFuaW1hdGlvbnMvZ28tYmFjay1uLXByb3RvY29sL2luZGV4Lmh0bWw=&#34;&gt;demo 实验&lt;/span&gt;&lt;/p&gt;
+&lt;img data-src=&#34;PixPin_2026-04-29_09-02-57.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9tZWRpYS5wZWFyc29uY21nLmNvbS9hdy9lY3Nfa3Vyb3NlX2NvbXBuZXR3b3JrXzcvY3cvY29udGVudC9pbnRlcmFjdGl2ZWFuaW1hdGlvbnMvZ28tYmFjay1uLXByb3RvY29sL2luZGV4Lmh0bWw=&#34;&gt;demo 实验&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;selective-repeat-protocol&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#selective-repeat-protocol&#34;&gt;#&lt;/a&gt; Selective Repeat protocol&lt;/h3&gt;
+&lt;p&gt;引入 Go-Back-N protocol 存在的问题：Go-Back-N protocol 的缺点是，如果发送方发送了多个数据包，而接收方只接收了一个，那么发送方就会一直等待，直到接收方接收到所有数据包。&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-04-29_09-06-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;tcp&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tcp&#34;&gt;#&lt;/a&gt; TCP&lt;/h2&gt;
 </content>
         <category term="计算机网络" scheme="https://dragonftop.github.io/categories/network/" />
         <updated>2026-04-15T00:05:35.093Z</updated>
