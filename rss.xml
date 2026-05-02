@@ -10,8 +10,161 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Thu, 30 Apr 2026 10:30:12 +0800</pubDate>
-        <lastBuildDate>Thu, 30 Apr 2026 10:30:12 +0800</lastBuildDate>
+        <pubDate>Sat, 02 May 2026 20:38:57 +0800</pubDate>
+        <lastBuildDate>Sat, 02 May 2026 20:38:57 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/05/02/leetcode/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</guid>
+            <title>【动态规划】最长回文子串</title>
+            <link>https://dragonftop.github.io/2026/05/02/leetcode/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/</link>
+            <category term="leetcode" scheme="https://dragonftop.github.io/categories/leetcode/" />
+            <pubDate>Sat, 02 May 2026 20:38:57 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;动态规划最长回文子串&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#动态规划最长回文子串&#34;&gt;#&lt;/a&gt; 【动态规划】最长回文子串&lt;/h1&gt;
+&lt;h2 id=&#34;题目&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目&#34;&gt;#&lt;/a&gt; 题目&lt;/h2&gt;
+&lt;p&gt;给你一个字符串 s，找到 s 中最长的 回文 子串。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 1&lt;/strong&gt;：&lt;br /&gt;
+输入：s = &amp;quot;babad&amp;quot;&lt;br /&gt;
+输出：&amp;quot;bab&amp;quot;&lt;br /&gt;
+解释：&amp;quot;aba&amp;quot; 同样是符合题意的答案。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例 2&lt;/strong&gt;：&lt;br /&gt;
+输入：s = &amp;quot;cbbd&amp;quot;&lt;br /&gt;
+输出：&amp;quot;bb&amp;quot;&lt;/p&gt;
+&lt;p&gt;提示：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;1 &amp;lt;= s.length &amp;lt;= 1000&lt;/code&gt; &lt;br /&gt;
+ &lt;code&gt;s 仅由数字和英文字母组成&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解答&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解答&#34;&gt;#&lt;/a&gt; 解答&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;string &lt;span class=&#34;title&#34;&gt;longestPalindrome&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(string s)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; n = s.&lt;span class=&#34;built_in&#34;&gt;length&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (n==&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; s;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; start=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,maxlen=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;//定义状态数组，dp[i][j]表示s[i...j]是否为回文串,同时这样定义就构成了一个二维的表格我把它展示在后面&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vector&amp;lt;vecotr&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;dp&lt;/span&gt;(n,&lt;span class=&#34;built_in&#34;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;(&lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;,n));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=n&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;;i&amp;gt;=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i--)&amp;#123;&lt;span class=&#34;comment&#34;&gt;//这里我选择行从下往上，列从左往右&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; j=i;j&amp;lt;n;j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(s[i]==s[j])&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(i-j&amp;lt;&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;)&amp;#123;&lt;span class=&#34;comment&#34;&gt;//这一部分详细分析在后面&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        dp[i][j]=&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &amp;#125;&lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        dp[i][j]=dp[i&lt;span class=&#34;number&#34;&gt;+1&lt;/span&gt;][i&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;];&lt;span class=&#34;comment&#34;&gt;//回文子串的内部一定也是回文子串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    dp[i][j]=&lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;;&lt;span class=&#34;comment&#34;&gt;//如果两端字符不同，该字串一定不是回文子串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(dp[i][j]&amp;amp;&amp;amp;(j-i&lt;span class=&#34;number&#34;&gt;+1&lt;/span&gt;)&amp;gt;maxLen)&amp;#123;&lt;span class=&#34;comment&#34;&gt;//如果s[i..j]是回文子串，则判断其长度是否比之前的最大值大，如果更大则更新start和maxlen&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    maxlen=j-i&lt;span class=&#34;number&#34;&gt;+1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    start=i;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; s.&lt;span class=&#34;built_in&#34;&gt;substr&lt;/span&gt;(start,maxlen)；&lt;span class=&#34;comment&#34;&gt;//返回最大回文子串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解析&#34;&gt;#&lt;/a&gt; 解析&lt;/h2&gt;
+&lt;h2 id=&#34;dpij表格示例假设s为ababaaba&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#dpij表格示例假设s为ababaaba&#34;&gt;#&lt;/a&gt; dp [i][j] 表格示例：&lt;br /&gt;
+假设 s 为 ababaaba&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;i (始)\j（终）&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;0&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;2&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;3&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;4&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;5&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;6&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;7&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;fasle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;fasle&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ture&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ture&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ture&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ture&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;true&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ture&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ture&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在这个表格中可以看出，我们只填写对角线上半矩阵，因为子串开始位置一定小于终止位置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于动态规划最重要的信息是构建状态转移方程，这里我们发现如果 s [i]!=s [j]，则说明 s [i..j] 一定不是回文子串，所以直接 dp [i][j]=false 即可，但当 s [i]==s [j] 时，dp [i][j] 的值取决于其左下角 dp [i+1][j-1] 的值，也就是 s [i..j] 要是回文串的前提时 s [i+1..j-1] 是回文子串，这样就构造出了状态转移方程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主对角线上的元素一定是 true，因为一个字符本身就是回文串，但是这个条件没啥用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态规划的边界是回文串长度 &amp;lt;=2 时，如果 s [i]&lt;mark&gt; s [j]，则说明要么 i&lt;/mark&gt;j，也就是 s [i] 和 s [j] 是同一个字符，要么 s [i] 和 s [j] 相邻且相同，构成 &lt;code&gt;aa&lt;/code&gt;  这样的回文串，由此我们遍历 i、j 填表的顺序秩序满足 dp [i][j] 可以访问 dp [i+1][j-1]，也就是可以访问元素左下角相邻元素即可，由此完成完整动态规划。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这里可以按两种方式遍历这个表：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;行从下往上，列从左往右&lt;/li&gt;
+&lt;li&gt;列从右往左，行从上往下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/04/30/leetcode/%E3%80%90%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%91%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2/</guid>
             <title>【动态规划】最大正方形</title>
@@ -3910,45 +4063,6 @@ D. II 和 III&lt;/p&gt;
 &lt;/table&gt;
 &lt;p&gt;消息（message）的结构：&lt;br /&gt;
 &lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-15_14-21-35.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/01/os/%E7%BA%BF%E7%A8%8B/</guid>
-            <title>线程</title>
-            <link>https://dragonftop.github.io/2026/04/01/os/%E7%BA%BF%E7%A8%8B/</link>
-            <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
-            <pubDate>Wed, 01 Apr 2026 15:11:45 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;线程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#线程&#34;&gt;#&lt;/a&gt; 线程&lt;/h1&gt;
-&lt;h2 id=&#34;进程与线程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#进程与线程&#34;&gt;#&lt;/a&gt; 进程与线程&lt;/h2&gt;
-&lt;p&gt;进程的两个重要特点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;具有资源所有权：进程可以占据计算机资源，比如 CPU、内存、I/O 设备等。&lt;/li&gt;
-&lt;li&gt;调度 / 执行：进程执行时具有执行轨迹，不同进程的执行交替进行。进程具有执行态和被操作系统分配的优先级，可以被调度和分派。&lt;br /&gt;
-为了区别这两个特点，产生了线程的概念。&lt;br /&gt;
- &lt;code&gt;进程&lt;/code&gt; ：资源分配的基本单位，是运行中的程序&lt;br /&gt;
- &lt;code&gt;线程&lt;/code&gt; ：CPU 调度的基本单位，是进程内的执行路径&lt;br /&gt;
-可以用一个比喻来说，进程是一个房子，线程是这个房间里的人，房子内有很多财产资源，人可以在房子内完成各种不同的活动。&lt;br /&gt;
-下图易于理解：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-22-17.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;线程相较于进程的优点有：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在已创建的进程中创建新的线程比创建一个全新的进程快得多。&lt;/li&gt;
-&lt;li&gt;线程终止时间比进程短。&lt;/li&gt;
-&lt;li&gt;同一进程内线程的切换快于进程间的切换。&lt;/li&gt;
-&lt;li&gt;线程提高了不同执行程序之间的通信效率。进程之间的通信需借助内核，但线程由于与你行在同一个进程内，其存储空间和资源是共享的，所以就不需要内核介入，故线程之间的通信效率更高。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;多线程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#多线程&#34;&gt;#&lt;/a&gt; 多线程&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-04-01_15-38-10.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;线程的功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#线程的功能&#34;&gt;#&lt;/a&gt; 线程的功能&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;线程状态&lt;/strong&gt;：与进程一样，线程主要状态有就绪态、运行态、阻塞态。挂起态对于线程来说没有意义，因为进程被挂起使，整个进程中的线程都被挂起，当进程被从硬盘中换出的时候，该进程的所有线程都一同被换出。&lt;br /&gt;
-&lt;strong&gt;线程状态改变&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;派生：进程被创建的同时会在该进程中派生出一个线程，后续进程中的线程也可以派生出新的线程。&lt;/li&gt;
-&lt;li&gt;阻塞：线程在等待事件时出现排队阻塞。&lt;/li&gt;
-&lt;li&gt;解除阻塞：线程被试间阻塞后被转移到就绪队列&lt;/li&gt;
-&lt;li&gt;结束：线程结束后释放其上下文和栈空间。&lt;/li&gt;
-&lt;/ol&gt;
  ]]></description>
         </item>
     </channel>
