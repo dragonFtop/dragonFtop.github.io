@@ -1612,6 +1612,22 @@ Speed-matching service：send rate 与 receive rate 相契合。&lt;br /&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;h3 id=&#34;tcp中的拥塞控制congestion-control&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tcp中的拥塞控制congestion-control&#34;&gt;#&lt;/a&gt; TCP 中的拥塞控制 (Congestion Control)&lt;/h3&gt;
+&lt;p&gt;拥塞控制中的重点概念：带宽检测、拥塞窗口、接收窗口、慢启动、拥塞避免、三次重复确认、超时、快速重传、快速恢复。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;带宽检测 (probing for bandwidthc)：指发送数据的速率持续增大，当遇到数据包 loss 时时候，说明网络拥塞，带宽不足，减小发送数据的速率的这类方式。&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-05-11_20-28-11.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;拥塞窗口 (congestion window)：sender 方发送数据包的窗口，一般度量为多少个 MSS (最大段大小)，拥塞窗口是动态变化的，且存在阈值，其值取决于 min (cwnd, rwnd)，其实还需要考虑 ssthresh（阈值）。&lt;/li&gt;
+&lt;li&gt;接收窗口 (receive window)：receiver 方接收数据包的窗口，其大小为接收 buffer 的剩余空间。&lt;/li&gt;
+&lt;li&gt;慢启动 (slow start)：拥塞窗口指数级 (翻倍) 增长，便于快速探测网络中的最大可用带宽，尽可能快速传输。&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-05-11_20-34-57.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;拥塞避免 (congestion avoidance)：当 cwnd&amp;gt;=ssthresh 时，拥塞窗口线性（+1）增长，以逐步适应网络中的真实带宽。&lt;/li&gt;
+&lt;li&gt;三次重复确认 (three-way handshake)：如果某一个 segment 发送后收到三个 ack 的序号 == 该 segment 的 seq，则认为该 segment 丢失，并重新发送该 segment。&lt;/li&gt;
+&lt;li&gt;超时 (timeout)：当某一个 segment 发送后没有在 timeout interval 内收到 ack，则认为该 segment 丢失，并重新发送该 segment。&lt;/li&gt;
+&lt;li&gt;快速重传 (fast retransmit)：由于三次重复确认而被判为丢包的情况下的数据包快速重传机制。&lt;/li&gt;
+&lt;li&gt;快速恢复 (fast recovery)：与快速重传机制同时进行，拥塞窗口大小减半，并进入拥塞避免模式。&lt;br /&gt;
+&lt;img data-src=&#34;PixPin_2026-05-11_20-49-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
  ]]></description>
         </item>
         <item>
