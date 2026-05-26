@@ -135,6 +135,194 @@
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/05/21/AI/Security/</guid>
+            <title>Security</title>
+            <link>https://dragonftop.github.io/2026/05/21/AI/Security/</link>
+            <category term="AI" scheme="https://dragonftop.github.io/categories/AI/" />
+            <pubDate>Thu, 21 May 2026 20:39:33 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;security&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#security&#34;&gt;#&lt;/a&gt; Security&lt;/h1&gt;
+&lt;h2 id=&#34;数据投毒攻击-data-poisoning&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据投毒攻击-data-poisoning&#34;&gt;#&lt;/a&gt; 数据投毒攻击 (Data Poisoning)&lt;/h2&gt;
+&lt;p&gt;攻击效果：让模型学习到后门或者有偏见的决策。&lt;br /&gt;
+攻击对象：训练模型使用的数据。&lt;br /&gt;
+数据来源也就是攻击渠道：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公开数据回流，一些模型训练数据来源于网络中的文本、图片等，训练者在网络上爬取后整理为训练集，攻击者故意在网络上传恶意数据等训练方爬取。&lt;/li&gt;
+&lt;li&gt;用户反馈 / UGC 投毒，如搜索引擎、推荐系统、AI 客服这些通过用户反馈的信息来返库训练自身的模型，如果攻击者反馈虚假信息就可以让这些模型在反馈更新时受影响。&lt;/li&gt;
+&lt;li&gt;联邦学习中的恶意参与者，故意上传恶意的梯度或数据，污染全局模型。&lt;/li&gt;
+&lt;li&gt;污染开源社区数据集，即训练方下载的数据集。&lt;/li&gt;
+&lt;li&gt;攻击方伪装为数据标注团队，给数据集打上错误标签。&lt;/li&gt;
+&lt;li&gt;内部威胁，一般比较少见。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总之攻击存在数据流的各个环节：爬虫获取 -&amp;gt; 清洗 -&amp;gt; 标注 -&amp;gt; 混合 -&amp;gt; 训练&lt;/p&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据来源验证与可信源筛选：优先使用经过审计的权威数据集，对爬取数据进行域名白名单、内容哈希校验。&lt;/li&gt;
+&lt;li&gt;异常样本检测：基于统计分布（如均值、方差、聚类）检测离群样本，在训练前剔除可疑数据。&lt;/li&gt;
+&lt;li&gt;鲁棒训练：使用差分隐私训练（DP-SGD），在梯度中加入噪声，降低单一样本对模型的影响。&lt;/li&gt;
+&lt;li&gt;集成学习与剪枝：训练多个子模型投票，或对模型神经元进行剪枝，去除对后门敏感的路径。&lt;/li&gt;
+&lt;li&gt;联邦学习防御：使用拜占庭容错聚合算法（如 Krum、Trimmed Mean、Median），过滤恶意参与方的异常梯度。&lt;/li&gt;
+&lt;li&gt;数据版本控制与溯源：使用数据版本工具（如 DVC）记录每次训练的数据集快照，便于事后审计与回滚。&lt;/li&gt;
+&lt;li&gt;人工抽检与交叉验证：对标注结果进行多轮交叉验证，监测标注质量一致性，识别恶意标注行为。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;对抗样本攻击-adversarial-example&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#对抗样本攻击-adversarial-example&#34;&gt;#&lt;/a&gt; 对抗样本攻击 (Adversarial Example)&lt;/h2&gt;
+&lt;p&gt;攻击效果：在输入数据上添加人眼不可察觉的微小扰动，导致模型做出完全错误的预测（如让自动驾驶将停止标志识别为限速标志）。&lt;br /&gt;
+攻击对象：模型推理阶段的输入数据。&lt;br /&gt;
+常见攻击方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FGSM（快速梯度符号法）：沿损失函数梯度方向添加扰动，单步生成对抗样本。&lt;/li&gt;
+&lt;li&gt;PGD（投影梯度下降）：多步迭代 FGSM，攻击强度更大、更难防御。&lt;/li&gt;
+&lt;li&gt;C&amp;amp;W 攻击：基于优化的攻击，最小化扰动幅度的同时保证误分类，可绕过多数防御。&lt;/li&gt;
+&lt;li&gt;黑盒攻击：攻击者无模型内部信息，通过查询输出构造替代模型来生成对抗样本。&lt;/li&gt;
+&lt;li&gt;物理对抗攻击：在真实世界中放置对抗性贴纸 / 涂鸦（如路牌上的贴纸），物理环境下欺骗模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对抗训练：将对抗样本加入训练集中，让模型学会抵抗扰动，是目前最有效的防御之一。&lt;/li&gt;
+&lt;li&gt;输入变换：对输入进行 JPEG 压缩、随机裁剪、缩放、位深度缩减等预处理，破坏对抗扰动。&lt;/li&gt;
+&lt;li&gt;梯度掩蔽：使用不可微操作或梯度混淆技术，阻碍攻击者计算梯度（但可被近似梯度绕过）。&lt;/li&gt;
+&lt;li&gt;蒸馏防御：使用知识蒸馏训练模型，使模型在输入附近更平滑，降低对扰动的敏感度。&lt;/li&gt;
+&lt;li&gt;随机化：推理时对输入做随机 resizing、随机 padding，增加攻击者精确控制扰动的难度。&lt;/li&gt;
+&lt;li&gt;检测过滤：训练二分类器检测输入是否为对抗样本，或基于特征一致性（如局部 / 全局预测对比）判别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;提示注入攻击-prompt-injection&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#提示注入攻击-prompt-injection&#34;&gt;#&lt;/a&gt; 提示注入攻击 (Prompt Injection)&lt;/h2&gt;
+&lt;p&gt;攻击效果：攻击者构造恶意提示词，覆盖或绕过 LLM 的系统指令，让模型执行非预期行为（数据泄露、内容越权、工具调用滥用）。&lt;br /&gt;
+攻击对象：大语言模型（LLM）的提示词接口。&lt;br /&gt;
+常见攻击形式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接注入：用户输入中直接包含覆盖系统提示的指令，如 &amp;quot;Ignore all previous instructions...&amp;quot;。&lt;/li&gt;
+&lt;li&gt;间接注入：恶意内容隐藏在网页、文档、邮件等外部数据源中，模型在检索 / 阅读时被间接控制。&lt;/li&gt;
+&lt;li&gt;多模态注入：在图片、音频中嵌入隐藏指令文字，多模态模型解析时被执行。&lt;/li&gt;
+&lt;li&gt;多轮对话劫持：通过多轮对话逐步瓦解模型的安全约束，每一轮看似无害，累积达到越狱。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入清洗与过滤：对用户输入进行敏感词过滤、特殊字符转义、长度限制。&lt;/li&gt;
+&lt;li&gt;指令隔离：将系统指令与用户输入用特殊分隔符明确分开，使用不同 token 段标记，防止越权访问。&lt;/li&gt;
+&lt;li&gt;输出监控：对模型输出进行实时审查，检测是否包含系统提示泄露或越权内容。&lt;/li&gt;
+&lt;li&gt;最小权限原则：限制模型可调用的工具范围和参数，工具返回结果在送入模型前做脱敏处理。&lt;/li&gt;
+&lt;li&gt;检索增强生成防御：对检索到的外部文档做文本指纹识别，标记非用户直接输入的内容。&lt;/li&gt;
+&lt;li&gt;LLM 护栏（Guardrails）：部署 NeMo Guardrails、Guardrails AI 等框架，在输入 / 输出两端建立规则屏障。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;越狱攻击-jailbreak&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#越狱攻击-jailbreak&#34;&gt;#&lt;/a&gt; 越狱攻击 (Jailbreak)&lt;/h2&gt;
+&lt;p&gt;攻击效果：通过精心设计的提示词绕过 LLM 的安全对齐机制，让模型生成有害内容（如制作武器、恶意代码、虚假信息）。&lt;br /&gt;
+攻击对象：LLM 的安全对齐层（RLHF/DPO 训练形成的安全限制）。&lt;br /&gt;
+常见攻击模式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;角色扮演：要求模型扮演无道德限制的角色（如 &amp;quot;DAN&amp;quot; - Do Anything Now）。&lt;/li&gt;
+&lt;li&gt;编码绕过：用 Base64、摩斯码、ASCII 码等编码恶意问题，绕过关键词过滤。&lt;/li&gt;
+&lt;li&gt;多语言绕过：使用低资源语言（如祖鲁语）提问，利用安全对齐在多语言上的覆盖不足。&lt;/li&gt;
+&lt;li&gt;思维链劫持：要求模型先输出「安全的」推理过程，再逐步引导到危险结论。&lt;/li&gt;
+&lt;li&gt;上下文混淆：在长上下文中嵌套大量无害指令，将恶意问题隐藏在中间或末尾。&lt;/li&gt;
+&lt;li&gt;格式化欺骗：要求模型以 JSON / 代码形式输出有害信息，伪装为「格式任务」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安全对齐训练：使用 RLHF、DPO、Constitutional AI 等方法训练模型拒绝有害请求。&lt;/li&gt;
+&lt;li&gt;提示分类器：在请求进入模型前用轻量级分类器判断是否为越狱尝试。&lt;/li&gt;
+&lt;li&gt;输入扰动 / 改写：对用户输入做同义改写，破坏越狱模板的精确结构，保留语义。&lt;/li&gt;
+&lt;li&gt;Perplexity 检测：越狱提示往往词序列反常（高困惑度），基于困惑度阈值过滤可疑请求。&lt;/li&gt;
+&lt;li&gt;SmoothLLM：对输入进行多次随机扰动后取多数输出，降低单一越狱模板的成功率。&lt;/li&gt;
+&lt;li&gt;红队测试与持续对抗训练：定期进行自动化 + 人工红队攻击，发现新的越狱模式后补充训练数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;模型窃取攻击-model-extraction&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#模型窃取攻击-model-extraction&#34;&gt;#&lt;/a&gt; 模型窃取攻击 (Model Extraction)&lt;/h2&gt;
+&lt;p&gt;攻击效果：攻击者通过大量查询模型 API，逐步复制出功能相近的替代模型，窃取知识产权或获取后续攻击的「白盒」条件。&lt;br /&gt;
+攻击对象：商业模型 API（如 GPT-4、Claude 的对外接口）和本地部署模型。&lt;br /&gt;
+常见攻击方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查询 - 响应学习：用大量输入查询目标模型，将输入 - 输出对作为训练集训练替代模型。&lt;/li&gt;
+&lt;li&gt;边信道辅助：结合模型推理时间、功耗、缓存访问模式等侧信道信息辅助窃取。&lt;/li&gt;
+&lt;li&gt;硬件物理提取：通过读取设备存储芯片、内存快照直接获取模型权重文件。&lt;/li&gt;
+&lt;li&gt;基于置信度的提取：利用 API 返回的完整概率分布（softmax 向量）比仅返回标签更精确地复现决策边界。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输出限制：API 仅返回 top-1 或 top-k 标签，不返回完整概率向量，减少信息泄露。&lt;/li&gt;
+&lt;li&gt;查询频率限制：对单个账户 / IP 的 API 调用频率做限流，阻断大规模查询采集。&lt;/li&gt;
+&lt;li&gt;查询异常检测：监测查询的多样性、间隔、分布模式，识别批量特征采集行为。&lt;/li&gt;
+&lt;li&gt;水印嵌入：在模型输出或中间层嵌入数字水印，后续可通过触发特定输入验证窃取模型来源。&lt;/li&gt;
+&lt;li&gt;输出扰动：在 softmax 输出中加入微小噪声，不影响最终决策但干扰精确的蒸馏复制。&lt;/li&gt;
+&lt;li&gt;硬件防护：部署设备使用可信执行环境（TEE）加密存储权重，设置防篡改电路。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;成员推断攻击-membership-inference&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#成员推断攻击-membership-inference&#34;&gt;#&lt;/a&gt; 成员推断攻击 (Membership Inference)&lt;/h2&gt;
+&lt;p&gt;攻击效果：判断某条特定数据是否被用于训练目标模型，可用于推断用户参与了敏感数据集（如医疗诊断、政治倾向）。&lt;br /&gt;
+攻击对象：已训练的模型及训练数据中的个体隐私。&lt;br /&gt;
+常见攻击方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;影子模型法：攻击者用相似数据分布训练多个「影子模型」，分别训练含有目标样本和不含目标样本的版本，训练一个二分类攻击模型来区分「成员」与「非成员」的模型输出差异。&lt;/li&gt;
+&lt;li&gt;基于置信度的攻击：模型对训练集中的样本通常输出更高置信度，攻击者利用置信度差异推断。&lt;/li&gt;
+&lt;li&gt;标签攻击：仅利用模型预测的标签（而非置信度分数）进行推断，适用于仅返回硬标签的 API。&lt;/li&gt;
+&lt;li&gt;基于损失的攻击：使用样本在模型上的损失值做阈值判断，训练样本通常损失更低。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;差分隐私训练（DP-SGD）：在训练时给梯度加入高斯噪声并做裁剪，提供 (ε, δ)- 差分隐私保证，从数学上限制成员推断的成功率上界。&lt;/li&gt;
+&lt;li&gt;模型正则化：L2 正则化、Dropout、Early Stopping 等可减少过拟合，缩小训练 / 非训练样本的输出差异。&lt;/li&gt;
+&lt;li&gt;知识蒸馏：使用教师 - 学生蒸馏训练，蒸馏过程平滑了输出分布，降低对特定训练样本的记忆。&lt;/li&gt;
+&lt;li&gt;输出降维：只返回精简输出（单标签），不暴露置信度或概率分布。&lt;/li&gt;
+&lt;li&gt;对抗性正则化：训练时加入对抗目标，专门最小化成员推断攻击的 AUC。&lt;/li&gt;
+&lt;li&gt;MemGuard：对输出置信度向量做对抗性噪声处理，干扰攻击模型分类器的判断。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;模型逆向攻击-model-inversion&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#模型逆向攻击-model-inversion&#34;&gt;#&lt;/a&gt; 模型逆向攻击 (Model Inversion)&lt;/h2&gt;
+&lt;p&gt;攻击效果：从已训练模型中重建出训练数据的近似内容，例如从人脸识别模型重建出训练集中的人脸图像、从语言模型恢复训练文本。&lt;br /&gt;
+攻击对象：模型参数和输出中隐含的训练数据信息。&lt;br /&gt;
+常见攻击方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;梯度逆向：在联邦学习或分布式训练中，从共享的梯度更新反向重建原始训练数据（Deep Leakage from Gradients）。&lt;/li&gt;
+&lt;li&gt;置信度优化：固定模型参数，优化输入使其在某个目标类上的置信度最大化，得到该类别的代表性输入。&lt;/li&gt;
+&lt;li&gt;GAN 辅助重建：利用对抗生成网络作为先验，在优化的同时约束生成内容符合自然分布。&lt;/li&gt;
+&lt;li&gt;语言模型文本重建：设计特定提示诱导 LLM 逐字复述训练数据（可提取记忆攻击）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;差分隐私训练：同上，梯度加噪，破坏从梯度到原始数据的可逆性。&lt;/li&gt;
+&lt;li&gt;梯度压缩 / 稀疏化：只传输部分梯度（top-k 稀疏化）或量化梯度，减少可提取的信息量。&lt;/li&gt;
+&lt;li&gt;安全多方计算（MPC）与同态加密：联邦学习中用密码学方法聚合梯度，各参与方无法获取他人的原始梯度。&lt;/li&gt;
+&lt;li&gt;输出裁剪与降维：不返回高维完整输出，限制可用信息量。&lt;/li&gt;
+&lt;li&gt;梯度扰动：在共享梯度前加入自适应噪声，使逆向数据与真实数据不可区分。&lt;/li&gt;
+&lt;li&gt;知识蒸馏去敏化：使用蒸馏模型发布服务，蒸馏过程丢弃了大量原始数据的细节信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;后门攻击-backdoor-attack&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#后门攻击-backdoor-attack&#34;&gt;#&lt;/a&gt; 后门攻击 (Backdoor Attack)&lt;/h2&gt;
+&lt;p&gt;攻击效果：在模型中植入隐藏的后门触发器，模型对正常输入表现正常，但当输入包含特定触发器（特定图案、单词、像素模式）时输出攻击者指定的错误结果。&lt;br /&gt;
+攻击对象：模型训练过程、预训练权重供应链。&lt;br /&gt;
+常见攻击方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据投毒植后门：在训练数据中混入含有触发器的中毒样本，标签改为目标错误类。&lt;/li&gt;
+&lt;li&gt;权重投毒：直接篡改预训练模型权重，植入后门（如发布带后门的开源模型到 HuggingFace）。&lt;/li&gt;
+&lt;li&gt;迁移学习后门：发布看似正常的预训练模型，用户微调后仍保留后门行为。&lt;/li&gt;
+&lt;li&gt;物理后门：触发器为真实世界物体（如特定眼镜框），可用于攻破物理场景下的人脸识别系统。&lt;/li&gt;
+&lt;li&gt;无标签后门：不修改训练标签，仅通过扰动嵌入空间使含触发器的特征向目标类的特征聚类靠拢。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入预处理与触发器中和：对图像做空间变换、颜色归一化，或使用 Neural Cleanse 逆向检测潜在触发器。&lt;/li&gt;
+&lt;li&gt;模型诊断：对模型进行 STRIP 检测，故意在输入上叠加不同图案，观察输出熵的变化来发现后门。&lt;/li&gt;
+&lt;li&gt;微调与遗忘：在干净数据上对可疑模型进行额外微调（Fine-Pruning），削弱后门神经元连接。&lt;/li&gt;
+&lt;li&gt;供应链验证：使用官方发布的模型校验哈希值，从可信源下载预训练权重。&lt;/li&gt;
+&lt;li&gt;神经元剪枝：分析模型中对干净数据和触发数据响应差异最大的神经元，将其剪除。&lt;/li&gt;
+&lt;li&gt;鲁棒知识蒸馏：使用干净数据做蒸馏，将教师模型的知识迁移给学生模型时会弱化后门模式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;重构提取记忆攻击-extractable-memory&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#重构提取记忆攻击-extractable-memory&#34;&gt;#&lt;/a&gt; 重构 / 提取记忆攻击 (Extractable Memory)&lt;/h2&gt;
+&lt;p&gt;攻击效果：从 LLM 中直接提取训练数据原文片段，包括个人身份信息、API 密钥、私密对话内容等。&lt;br /&gt;
+攻击对象：LLM 对训练数据的记忆倾向。&lt;br /&gt;
+常见攻击方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;采样生成攻击：对模型进行大量随机采样，从生成文本中发现逐字重复训练数据的样本。&lt;/li&gt;
+&lt;li&gt;提示引导提取：通过精心设计的提示（如 &amp;quot;Repeat the following text: ...&amp;quot;）诱导模型补全出训练数据。&lt;/li&gt;
+&lt;li&gt;前缀匹配攻击：给模型提供训练文本的前缀，观察模型是否能准确补全剩余部分。&lt;/li&gt;
+&lt;li&gt;排序金丝雀测试：人为在训练数据中埋点「金丝雀」文本，事后检测模型是否能复现来评估记忆程度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;防御手段：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;训练数据去重：在训练前对数据集做精确去重和近似去重（MinHash、SimHash），降低重复内容被记忆的概率。&lt;/li&gt;
+&lt;li&gt;差分隐私微调：在模型发布的最终阶段使用 DP 微调，限制对训练样本的记忆程度。&lt;/li&gt;
+&lt;li&gt;输出过滤：对模型输出进行正则匹配，检测并拦截包含 PII、密钥格式、电话号码等内容。&lt;/li&gt;
+&lt;li&gt;训练数据审查：在训练前扫描数据集，移除或脱敏 PII、密钥、敏感 URL。&lt;/li&gt;
+&lt;li&gt;降低模型容量 / 早停：减少模型参数量或提前停止训练，控制对数据的记忆程度。&lt;/li&gt;
+&lt;li&gt;K - 匿名化：确保训练数据中每条信息的出现次数不低于 K 次，单一出现的高敏感信息难以被重建。&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/05/21/AI/AI_Security_Keywords/</guid>
             <title>AI 安全领域关键词完全词典</title>
             <link>https://dragonftop.github.io/2026/05/21/AI/AI_Security_Keywords/</link>
@@ -7977,39 +8165,6 @@ A、可以拥有目前最先进的计算资源&lt;br /&gt;
  &lt;code&gt;1 &amp;lt;= n &amp;lt;= 500&lt;/code&gt; &lt;br /&gt;
 grid 只包含小写英文字母。&lt;/p&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;containsCycle&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;char&lt;/span&gt;&amp;gt;&amp;gt;&amp;amp; grid)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; m = grid.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; n = grid[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 访问标记数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;vis&lt;/span&gt;(m, &lt;span class=&#34;built_in&#34;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;(n, &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 遍历每个格子&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; m; ++i) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; j = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; j &amp;lt; n; ++j) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;comment&#34;&gt;// 未访问过就开始 DFS，父节点坐标 (-1,-1)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (!vis[i][j] &amp;amp;&amp;amp; &lt;span class=&#34;built_in&#34;&gt;dfs&lt;/span&gt;(grid, vis, i, j, &lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// DFS 函数：当前坐标(i,j)，父坐标(fai,faj)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;dfs&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;char&lt;/span&gt;&amp;gt;&amp;gt;&amp;amp; grid, vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;&amp;gt;&amp;amp; vis, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;             &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; j, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; fai, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; faj)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; m = grid.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; n = grid[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 已经访问过 → 找到环&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (vis[i][j]) &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 标记当前节点已访问&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vis[i][j] = &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 四个方向：上下左右&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; dirs[&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;][&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;] = &amp;#123;&amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;auto&lt;/span&gt;&amp;amp; dir : dirs) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; x = i + dir[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; y = j + dir[&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 跳过父节点（不走回头路）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (x == fai &amp;amp;&amp;amp; y == faj) &lt;span class=&#34;keyword&#34;&gt;continue&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 边界合法 + 字符相同&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (x &amp;gt;= &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; x &amp;lt; m &amp;amp;&amp;amp; y &amp;gt;=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; y &amp;lt; n &amp;amp;&amp;amp; grid[x][y] == grid[i][j]) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;built_in&#34;&gt;dfs&lt;/span&gt;(grid, vis, x, y, i, j)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/24/leetcode/%E3%80%90%E5%8D%95%E8%B0%83%E6%A0%88%E3%80%91%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC/</guid>
-            <title>【单调栈】商品价格</title>
-            <link>https://dragonftop.github.io/2026/04/24/leetcode/%E3%80%90%E5%8D%95%E8%B0%83%E6%A0%88%E3%80%91%E5%95%86%E5%93%81%E4%BB%B7%E6%A0%BC/</link>
-            <category term="leetcode" scheme="https://dragonftop.github.io/categories/leetcode/" />
-            <pubDate>Fri, 24 Apr 2026 20:26:31 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;单调栈商品价格&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单调栈商品价格&#34;&gt;#&lt;/a&gt; 【单调栈】商品价格&lt;/h1&gt;
-&lt;h2 id=&#34;题目&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目&#34;&gt;#&lt;/a&gt; 题目&lt;/h2&gt;
-&lt;p&gt;给你一个数组 prices ，其中 prices [i] 是商店里第 i 件商品的价格。&lt;/p&gt;
-&lt;p&gt;商店里正在进行促销活动，如果你要买第 i 件商品，那么你可以得到与 prices [j] 相等的折扣，其中 j 是满足 j &amp;gt; i 且 prices [j] &amp;lt;= prices [i] 的 最小下标 ，如果没有满足条件的 j ，你将没有任何折扣。&lt;/p&gt;
-&lt;p&gt;请你返回一个数组，数组中第 i 个元素是折扣后你购买商品 i 最终需要支付的价格。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例 1：&lt;/strong&gt;&lt;br /&gt;
-输入：prices = [8,4,6,2,3]&lt;br /&gt;
- 输出：[4,2,4,2,3]&lt;br /&gt;
- 解释：&lt;br /&gt;
-商品 0 的价格为 price [0]=8 ，你将得到 prices [1]=4 的折扣，所以最终价格为 8 - 4 = 4 。&lt;br /&gt;
-商品 1 的价格为 price [1]=4 ，你将得到 prices [3]=2 的折扣，所以最终价格为 4 - 2 = 2 。&lt;br /&gt;
-商品 2 的价格为 price [2]=6 ，你将得到 prices [3]=2 的折扣，所以最终价格为 6 - 2 = 4 。&lt;br /&gt;
-商品 3 和 4 都没有折扣。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例 2：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;输入：prices = [1,2,3,4,5]&lt;br /&gt;
- 输出：[1,2,3,4,5]&lt;br /&gt;
- 解释：在这个例子中，所有商品都没有折扣。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;示例 3：&lt;/strong&gt;&lt;br /&gt;
-输入：prices = [10,1,1,6]&lt;br /&gt;
- 输出：[9,0,1,6]&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;提示：&lt;/strong&gt;&lt;br /&gt;
- &lt;code&gt;1 &amp;lt;= prices.length &amp;lt;= 500&lt;/code&gt; &lt;br /&gt;
- &lt;code&gt;1 &amp;lt;= prices[i] &amp;lt;= 10^3&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;解答&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解答&#34;&gt;#&lt;/a&gt; 解答&lt;/h2&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;finalPrices&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt;&amp;amp; prices)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        stack&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; s;&lt;span class=&#34;comment&#34;&gt;//这个栈用来存储已经还未找到折扣的商品的索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;function&#34;&gt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;&amp;gt; &lt;span class=&#34;title&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(prices.size()&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;span class=&#34;comment&#34;&gt;//存储已经找到折扣的商品的可以折扣的价格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;prices.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt;(!s.&lt;span class=&#34;built_in&#34;&gt;empty&lt;/span&gt;()&amp;amp;&amp;amp;prices[i]&amp;lt;=prices[s.&lt;span class=&#34;built_in&#34;&gt;top&lt;/span&gt;()])&amp;#123;&lt;span class=&#34;comment&#34;&gt;//栈不为空且栈顶元素比当前元素小&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                m[s.&lt;span class=&#34;built_in&#34;&gt;top&lt;/span&gt;()]=prices[i];&lt;span class=&#34;comment&#34;&gt;//说明当前元素可以折扣&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                s.&lt;span class=&#34;built_in&#34;&gt;pop&lt;/span&gt;();&lt;span class=&#34;comment&#34;&gt;//弹出已经找到折扣的商品的索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            s.&lt;span class=&#34;built_in&#34;&gt;push&lt;/span&gt;(i);&lt;span class=&#34;comment&#34;&gt;//如果栈为空或者栈顶元素比当前元素大，则将当前元素入栈，等待找到折扣&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt;(&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;i&amp;lt;prices.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;()&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            prices[i]-=m[i];&lt;span class=&#34;comment&#34;&gt;//减去可以折扣的价格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; prices;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
