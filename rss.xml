@@ -10,8 +10,135 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Sun, 24 May 2026 13:15:37 +0800</pubDate>
-        <lastBuildDate>Sun, 24 May 2026 13:15:37 +0800</lastBuildDate>
+        <pubDate>Tue, 26 May 2026 14:39:00 +0800</pubDate>
+        <lastBuildDate>Tue, 26 May 2026 14:39:00 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/05/26/appcrypto/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/</guid>
+            <title>数字签名</title>
+            <link>https://dragonftop.github.io/2026/05/26/appcrypto/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/</link>
+            <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
+            <pubDate>Tue, 26 May 2026 14:39:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名&#34;&gt;#&lt;/a&gt; 数字签名&lt;/h1&gt;
+&lt;h2 id=&#34;数字签名概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名概述&#34;&gt;#&lt;/a&gt; 数字签名概述&lt;/h2&gt;
+&lt;h3 id=&#34;数字签名作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名作用&#34;&gt;#&lt;/a&gt; 数字签名作用&lt;/h3&gt;
+&lt;p&gt;数字签名作用方面：鉴别、数据完整性、抗抵赖性&lt;br /&gt;
+主要作用： &lt;code&gt;将消息和拥有消息的实体可信地联系起来。&lt;/code&gt; &lt;br /&gt;
+数字签名分类：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_14-50-02.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;何为数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#何为数字签名&#34;&gt;#&lt;/a&gt; 何为数字签名&lt;/h3&gt;
+&lt;h3 id=&#34;数字签名的特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的特性&#34;&gt;#&lt;/a&gt; 数字签名的特性&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;签名不可伪造：除了合法的签名者之外，任何其他人伪造其签名是困难的。&lt;/li&gt;
+&lt;li&gt;签名不可抵赖：签名者事后不能否认自己的签名。&lt;/li&gt;
+&lt;li&gt;签名是可信的：任何人都可以验证签名的有效性。&lt;/li&gt;
+&lt;li&gt;签名是不可复制的：对一个消息的签名不能通过复制变为另一个消息的签名。&lt;/li&gt;
+&lt;li&gt;签名的消息是不可更改的：经签名的消息不能被篡改。一旦签名的消息被篡改，则任何人都可以发现消息与签名之间的不一致性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;数字签名的组成部分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的组成部分&#34;&gt;#&lt;/a&gt; 数字签名的组成部分&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;签名算法：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_14-55-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;验证算法：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_14-56-07.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;数字签名的设计要求&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的设计要求&#34;&gt;#&lt;/a&gt; 数字签名的设计要求&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;签名必须依赖于被签名消息的比特模式 (签名与消息应该是一个不可分割的整体)；&lt;/li&gt;
+&lt;li&gt;签名必须使用某些对发送者是唯一的信息，以防止伪造和抵赖；&lt;/li&gt;
+&lt;li&gt;数字签名的产生、识别和验证应该相对容易；&lt;/li&gt;
+&lt;li&gt;伪造一个数字签名在计算上是不可行的；(无论是通过对已有的数字签名来构造新消息，还是对给定的消息伪造一个数字签名)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基于公钥密码的数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于公钥密码的数字签名&#34;&gt;#&lt;/a&gt; 基于公钥密码的数字签名&lt;/h3&gt;
+&lt;p&gt;公钥密码中的使用私钥加密消息可以做到数字签名的效果，例如 RSA 用私钥签名，用公钥验证。&lt;br /&gt;
+但是直接使用 RSA 加密消息进行数字签名存在选择明文攻击：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-06-16.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 这种问题的产生根源是：数字签名内容和消息内容为一体，验证数字签名时暴漏了明文。&lt;br /&gt;
+解决方案：将签名信息和报文分离，形成独立的签名块；&lt;/p&gt;
+&lt;h2 id=&#34;数字签名的执行方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的执行方式&#34;&gt;#&lt;/a&gt; 数字签名的执行方式&lt;/h2&gt;
+&lt;p&gt;数字签名执行方式分为两类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;直接数字签名：只有通信双方参与，并假定双方有共享的秘密密钥，或接收一方知道发送方的公开密钥。&lt;br /&gt;
+存在问题：
+&lt;ul&gt;
+&lt;li&gt;发送方抵赖&lt;/li&gt;
+&lt;li&gt;有效性依赖于发送方密钥的安全性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;具有仲裁的数字签名：在通信双方的基础上引入了第三方仲裁者参与。
+&lt;ul&gt;
+&lt;li&gt;应用对称加密，仲裁者可以看到消息内容&lt;/li&gt;
+&lt;li&gt;应用对称加密，仲裁者不能看到消息内容&lt;/li&gt;
+&lt;li&gt;应用公钥加密，仲裁者不能看到消息内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;rsa数字签名方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#rsa数字签名方案&#34;&gt;#&lt;/a&gt; RSA 数字签名方案&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-14-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+RSA 数字签名方案图解：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-14-49.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 注：这里只是对消息签名，只考虑鉴别性（消息没加密）&lt;/p&gt;
+&lt;h3 id=&#34;elgamal-数字签名方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#elgamal-数字签名方案&#34;&gt;#&lt;/a&gt; ElGamal 数字签名方案&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-18-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-24-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 这里对于验证等式正确性的证明如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-25-56.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ElGamel 算法方案图解：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-26-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;总之，ElGamel 可以表达为以下三目运算语句&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-30-31.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数字签名标准dss&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名标准dss&#34;&gt;#&lt;/a&gt; 数字签名标准 (DSS)&lt;/h3&gt;
+&lt;p&gt;DSS 中采用 DSA 作为数字签名算法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;DSA 的参数：p、q、g、x、y&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-01-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;strong&gt; 其中 p、q、g 为系统公开参数，x 和分别为私钥和公钥&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DSA 签名过程：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-07-00.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DSA 签名验证过程：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-07-26.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;基于椭圆曲线的数字签名算法ecdsa&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于椭圆曲线的数字签名算法ecdsa&#34;&gt;#&lt;/a&gt; 基于椭圆曲线的数字签名算法 ECDSA&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;ECDSA 参数：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-10-40.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;ECDSA 签名过程：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-12-19.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;ESDSA 签名验证过程：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-12-46.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ECDSA 算法的图解：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-15-24.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;特殊签名方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#特殊签名方案&#34;&gt;#&lt;/a&gt; 特殊签名方案&lt;/h2&gt;
+&lt;h3 id=&#34;不可否认签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#不可否认签名&#34;&gt;#&lt;/a&gt; 不可否认签名&lt;/h3&gt;
+&lt;p&gt;必须由签名者参加的情况下才能进行签名验证，所以签名验证成功后签名者不可以否认。&lt;br /&gt;
+不可否认签名方案包括三个部分：签名算法、验证算法、否认协议&lt;/p&gt;
+&lt;h3 id=&#34;盲数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#盲数字签名&#34;&gt;#&lt;/a&gt; 盲数字签名&lt;/h3&gt;
+&lt;p&gt;签名者不知道数据内容而签名。&lt;br /&gt;
+有两个很显著的特点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;消息内容对签名者不可见&lt;/li&gt;
+&lt;li&gt;在签名被接受者公开后，签名者不能追踪签名&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;也就是匿名、无记名投票，其基本结构：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-23-07.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;群签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#群签名&#34;&gt;#&lt;/a&gt; 群签名&lt;/h3&gt;
+&lt;h2 id=&#34;国密sm2算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#国密sm2算法&#34;&gt;#&lt;/a&gt; 国密 SM2 算法&lt;/h2&gt;
+&lt;p&gt;SM2 是椭圆曲线公钥密码算法&lt;br /&gt;
+其中包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数字签名算法&lt;/li&gt;
+&lt;li&gt;密钥交换协议&lt;/li&gt;
+&lt;li&gt;公钥加密算法&lt;br /&gt;
+有关此节：SM2-1：数字签名算法&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://dragonftop.github.io/2026/05/24/leetcode/%E3%80%90%E5%A0%86%E3%80%91%E5%A4%9A%E6%B1%82%E5%92%8C%E6%9E%84%E9%80%A0%E7%9B%AE%E6%A0%87%E6%95%B0%E7%BB%84/</guid>
             <title>【动态规划】多求和构造目标数组</title>
@@ -6882,6 +7009,84 @@ SHA (安全散列算法)，是美国 FIPS 认证的安全散列算法：SHA-1，
  类比上述的生日问题，给定一个散列函数 H (x)，其输出散列码为 m bit，则共有 2^m 种不同的散列码输出。&lt;br /&gt;
 那么 n=2^m，按照上述公式可以求得出现哈希碰撞的概率大于 0.5 的输入数量 k 为：&lt;br /&gt;
 &lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-21_14-26-00.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;消息鉴别报文鉴别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#消息鉴别报文鉴别&#34;&gt;#&lt;/a&gt; 消息鉴别（报文鉴别）&lt;/h1&gt;
+&lt;h2 id=&#34;报文鉴别目的&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#报文鉴别目的&#34;&gt;#&lt;/a&gt; 报文鉴别目的&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;报文是由确认的发送方产生的；&lt;/li&gt;
+&lt;li&gt;报文内容没有被篡改过，包括报文是按与发送时相同的顺序收到的。&lt;/li&gt;
+&lt;li&gt;消息是按与发送时的相同顺序收到的。&lt;/li&gt;
+&lt;li&gt;业务的不可否认性，也称抗抵赖性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实现报文鉴别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实现报文鉴别&#34;&gt;#&lt;/a&gt; 实现报文鉴别&lt;/h2&gt;
+&lt;p&gt;实现报文鉴别有三大主要方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;报文加密：用对称密钥算法加密后的密文作为鉴别符&lt;/li&gt;
+&lt;li&gt;报文鉴别码 (MAC)：使用共享的秘密信息（密钥）产生一个数据分组用于鉴别，即密码检验&lt;/li&gt;
+&lt;li&gt;散列函数：计算消息的散列值作为鉴别符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基于报文加密的消息鉴别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于报文加密的消息鉴别&#34;&gt;#&lt;/a&gt; 基于报文加密的消息鉴别&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;利用 &lt;code&gt;对称加密&lt;/code&gt; 体制实现消息鉴别：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-44-56.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 特点：提供机密性、提供鉴别但不提供数字签名（发送方可以抵赖）。&lt;/li&gt;
+&lt;li&gt;利用公钥密码体制实现消息鉴别：&lt;br /&gt;
+（1）提供鉴别和抗抵赖&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-46-52.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 特点：能实现数字签名的功能，提供鉴别和抗抵赖。&lt;br /&gt;
+（2）在前面的基础上提供机密性保护（加密）&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-49-21.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 特点：提供机密性、数字签名和鉴别&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;基于报文鉴别码的消息鉴别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于报文鉴别码的消息鉴别&#34;&gt;#&lt;/a&gt; 基于报文鉴别码的消息鉴别&lt;/h3&gt;
+&lt;p&gt;消息鉴别码 (MAC) 或报文鉴别码，是用于提供数据原发鉴别，和数据完整性的密码校验值。类似于引入一个带有密钥 K 的处理函数生成类似于散列码的块作为 MAC。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-51-52.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-52-14.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 应用方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;仅对消息进行 hash 处理得到散列码与消息拼接：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-55-49.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;先对消息 hash 处理，然后将散列码和消息拼接后再加密：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-57-00.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;先对消息进行加密，然后再对密文进行 hash 处理得到散列码与密文拼接：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_16-57-52.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;基于散列函数的消息鉴别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于散列函数的消息鉴别&#34;&gt;#&lt;/a&gt; 基于散列函数的消息鉴别&lt;/h3&gt;
+&lt;p&gt;散列函数本身不使用密钥，不能有效保护信息的完整性&lt;br /&gt;
+所以基于散列函数的消息鉴别方式应该引入加密&lt;br /&gt;
+与报文鉴别码的区别：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;报文鉴别码方式&lt;/th&gt;
+&lt;th&gt;散列函数方式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;由使用密钥的函数和报文生成 MAC&lt;/td&gt;
+&lt;td&gt;由散列函数配合加密算法生成 MAC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;以下为六种散列 + 加密的组合&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对报文 hash 处理 + 对报文和散列码拼接结果对称加密&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-14-28.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;对报文 hash 处理 + 对散列码对称加密&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-14-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;对报文 hash 处理 + 对散列码用发送方私钥加密&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-14-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;对报文 hash 处理 + 对散列码用发生方私钥加密 + 对报文和鉴别块拼接结果对称加密&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-15-15.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;仅使用散列算法，但先让报文 M 和 S 拼接后 hash 处理&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-15-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;在 5 的基础上引入对称加密&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-15-44.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;一种特殊的 MAC 算法： &lt;code&gt;HMAC&lt;/code&gt; ：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-17-41.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 注意：K 需要补齐到 b 位（补 0）&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_17-23-47.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -8128,43 +8333,6 @@ A、可以拥有目前最先进的计算资源&lt;br /&gt;
 我从左往右遍历的过程中，栈用来存储还没有找到右边界元素的索引（栈中索引对应的值一定是单调递增的）。&lt;br /&gt;
 每当遍历到一个元素的时候，我们检查这个元素是否是栈中元素的右边界，也就是如果当前元素的值比栈顶元素小（相等也不行），当前元素就是栈顶元素的右边界，栈顶元素找到了右边界，可以弹出了。&lt;br /&gt;
 每次遍历到一个元素，我们都将这个元素入栈，让其在栈中等待找到右边界。&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/04/26/leetcode/%E3%80%90DFS%E3%80%91%E4%BA%8C%E7%BB%B4%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%A3%80%E6%B5%8B%E7%8E%AF/</guid>
-            <title>【DFS】二维网格图中检测环</title>
-            <link>https://dragonftop.github.io/2026/04/26/leetcode/%E3%80%90DFS%E3%80%91%E4%BA%8C%E7%BB%B4%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%A3%80%E6%B5%8B%E7%8E%AF/</link>
-            <category term="leetcode" scheme="https://dragonftop.github.io/categories/leetcode/" />
-            <pubDate>Sun, 26 Apr 2026 09:54:39 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;dfs二维网格图中检测环&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#dfs二维网格图中检测环&#34;&gt;#&lt;/a&gt; 【DFS】二维网格图中检测环&lt;/h1&gt;
-&lt;h2 id=&#34;题目&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目&#34;&gt;#&lt;/a&gt; 题目&lt;/h2&gt;
-&lt;p&gt;给你一个二维字符网格数组 grid ，大小为 m x n ，你需要检查 grid 中是否存在 相同值 形成的环。&lt;/p&gt;
-&lt;p&gt;一个环是一条开始和结束于同一个格子的长度 大于等于 4 的路径。对于一个给定的格子，你可以移动到它上、下、左、右四个方向相邻的格子之一，可以移动的前提是这两个格子有 相同的值 。&lt;/p&gt;
-&lt;p&gt;同时，你也不能回到上一次移动时所在的格子。比方说，环  (1, 1) -&amp;gt; (1, 2) -&amp;gt; (1, 1) 是不合法的，因为从 (1, 2) 移动到 (1, 1) 回到了上一次移动时的格子。&lt;/p&gt;
-&lt;p&gt;如果 grid 中有相同值形成的环，请你返回 true ，否则返回 false 。&lt;/p&gt;
-&lt;p&gt;示例 1：&lt;br /&gt;
-&lt;img data-src=&#34;https://assets.leetcode.cn/aliyun-lc-upload/uploads/2020/08/22/5482e1.png&#34; alt=&#34;1&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;输入：grid = [[&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;],[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;a&amp;quot;],[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;a&amp;quot;],[&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;]]&lt;br /&gt;
- 输出：true&lt;br /&gt;
- 解释：如下图所示，有 2 个用不同颜色标出来的环：&lt;br /&gt;
-&lt;img data-src=&#34;https://assets.leetcode.cn/aliyun-lc-upload/uploads/2020/08/22/5482e11.png&#34; alt=&#34;2&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;示例 2：&lt;br /&gt;
-&lt;img data-src=&#34;https://assets.leetcode.cn/aliyun-lc-upload/uploads/2020/08/22/5482e2.png&#34; alt=&#34;3&#34; /&gt;&lt;br /&gt;
- 输入：grid = [[&amp;quot;c&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;a&amp;quot;],[&amp;quot;c&amp;quot;,&amp;quot;d&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;c&amp;quot;],[&amp;quot;c&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;e&amp;quot;,&amp;quot;c&amp;quot;],[&amp;quot;f&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;c&amp;quot;,&amp;quot;c&amp;quot;]]&lt;br /&gt;
- 输出：true&lt;br /&gt;
- 解释：如下图所示，只有高亮所示的一个合法环：&lt;br /&gt;
-&lt;img data-src=&#34;https://assets.leetcode.cn/aliyun-lc-upload/uploads/2020/08/22/5482e22.png&#34; alt=&#34;4&#34; /&gt;&lt;br /&gt;
- 示例 3：&lt;br /&gt;
-&lt;img data-src=&#34;https://assets.leetcode.cn/aliyun-lc-upload/uploads/2020/08/22/5482e3.png&#34; alt=&#34;5&#34; /&gt;&lt;br /&gt;
- 输入：grid = [[&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;b&amp;quot;],[&amp;quot;b&amp;quot;,&amp;quot;z&amp;quot;,&amp;quot;b&amp;quot;],[&amp;quot;b&amp;quot;,&amp;quot;b&amp;quot;,&amp;quot;a&amp;quot;]]&lt;br /&gt;
- 输出：false&lt;/p&gt;
-&lt;p&gt;提示：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;m == grid.length&lt;/code&gt; &lt;br /&gt;
- &lt;code&gt;n == grid[i].length&lt;/code&gt; &lt;br /&gt;
- &lt;code&gt;1 &amp;lt;= m &amp;lt;= 500&lt;/code&gt; &lt;br /&gt;
- &lt;code&gt;1 &amp;lt;= n &amp;lt;= 500&lt;/code&gt; &lt;br /&gt;
-grid 只包含小写英文字母。&lt;/p&gt;
-&lt;p&gt;&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;containsCycle&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;char&lt;/span&gt;&amp;gt;&amp;gt;&amp;amp; grid)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; m = grid.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; n = grid[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 访问标记数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;vis&lt;/span&gt;(m, &lt;span class=&#34;built_in&#34;&gt;vector&lt;/span&gt;&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;(n, &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 遍历每个格子&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; m; ++i) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; j = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; j &amp;lt; n; ++j) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;comment&#34;&gt;// 未访问过就开始 DFS，父节点坐标 (-1,-1)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (!vis[i][j] &amp;amp;&amp;amp; &lt;span class=&#34;built_in&#34;&gt;dfs&lt;/span&gt;(grid, vis, i, j, &lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// DFS 函数：当前坐标(i,j)，父坐标(fai,faj)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;dfs&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;char&lt;/span&gt;&amp;gt;&amp;gt;&amp;amp; grid, vector&amp;lt;vector&amp;lt;&lt;span class=&#34;type&#34;&gt;bool&lt;/span&gt;&amp;gt;&amp;gt;&amp;amp; vis, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;             &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; j, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; fai, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; faj)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; m = grid.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; n = grid[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 已经访问过 → 找到环&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (vis[i][j]) &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 标记当前节点已访问&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        vis[i][j] = &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 四个方向：上下左右&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; dirs[&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;][&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;] = &amp;#123;&amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;-1&lt;/span&gt;&amp;#125;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;auto&lt;/span&gt;&amp;amp; dir : dirs) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; x = i + dir[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; y = j + dir[&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 跳过父节点（不走回头路）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (x == fai &amp;amp;&amp;amp; y == faj) &lt;span class=&#34;keyword&#34;&gt;continue&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 边界合法 + 字符相同&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (x &amp;gt;= &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; x &amp;lt; m &amp;amp;&amp;amp; y &amp;gt;=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; y &amp;lt; n &amp;amp;&amp;amp; grid[x][y] == grid[i][j]) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;built_in&#34;&gt;dfs&lt;/span&gt;(grid, vis, x, y, i, j)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
