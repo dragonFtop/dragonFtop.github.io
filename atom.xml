@@ -8,7 +8,28 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-05-27T06:04:17.000Z</updated>
+    <updated>2026-05-29T01:57:26.950Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/05/29/leetcode/%E3%80%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%91%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F%E5%8C%96/</id>
+        <title>【字符串】密钥格式化</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/05/29/leetcode/%E3%80%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%91%E5%AF%86%E9%92%A5%E6%A0%BC%E5%BC%8F%E5%8C%96/"/>
+        <content type="html">&lt;h1 id=&#34;密钥格式化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密钥格式化&#34;&gt;#&lt;/a&gt; 密钥格式化&lt;/h1&gt;
+&lt;h2 id=&#34;题目&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#题目&#34;&gt;#&lt;/a&gt; 题目&lt;/h2&gt;
+&lt;p&gt;给定一个许可密钥字符串 &lt;code&gt;s&lt;/code&gt; ，仅由字母、数字字符和破折号组成。字符串由  &lt;code&gt;n&lt;/code&gt;  个破折号分成  &lt;code&gt;n + 1&lt;/code&gt;  组。你也会得到一个整数  &lt;code&gt;k&lt;/code&gt;  。&lt;/p&gt;
+&lt;p&gt;我们想要重新格式化字符串  &lt;code&gt;s&lt;/code&gt; ，使每一组包含  &lt;code&gt;k&lt;/code&gt;  个字符，除了第一组，它可以比  &lt;code&gt;k&lt;/code&gt;  短，但仍然必须包含至少一个字符。此外，两组之间必须插入破折号，并且应该将所有小写字母转换为大写字母。&lt;/p&gt;
+&lt;p&gt;返回 重新格式化的许可密钥 。&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;示例 1：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输入：S = &amp;quot;5F3Z-2e-9-w&amp;quot;, k = 4  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&amp;quot;5F3Z-2E9W&amp;quot;  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：字符串 S 被分成了两个部分，每部分 4 个字符；  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     注意，两个额外的破折号需要删掉。  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br /&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;示例 2：  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输入：S = &amp;quot;2-5g-3-J&amp;quot;, k = 2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&amp;quot;2-5G-3J&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：字符串 S 被分成了 3 个部分，按照前面的规则描述，第一部分的字符可以少于给定的数量，其余部分皆为 2 个字符。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;提示:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;1 &amp;lt;= s.length &amp;lt;= 105&lt;/code&gt; &lt;br /&gt;
+ &lt;code&gt;s 只包含字母、数字和破折号 &#39;-&#39;.&lt;/code&gt; &lt;br /&gt;
+ &lt;code&gt;1 &amp;lt;= k &amp;lt;= 104&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#解题&#34;&gt;#&lt;/a&gt; 解题&lt;/h2&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt; &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;lt;cctype&amp;gt;&lt;/span&gt;    &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;string &lt;span class=&#34;title&#34;&gt;licenseKeyFormatting&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(string s, &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; k)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        string result;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; count = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;//反转字符串，倒序处理&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; i = s.&lt;span class=&#34;built_in&#34;&gt;size&lt;/span&gt;() - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;; i &amp;gt;= &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; --i) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (s[i] == &lt;span class=&#34;string&#34;&gt;&amp;#x27;-&amp;#x27;&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;continue&lt;/span&gt;; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            result += &lt;span class=&#34;built_in&#34;&gt;toupper&lt;/span&gt;(s[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            ++count;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (count % k == &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                result += &lt;span class=&#34;string&#34;&gt;&amp;#x27;-&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (!result.&lt;span class=&#34;built_in&#34;&gt;empty&lt;/span&gt;() &amp;amp;&amp;amp; result.&lt;span class=&#34;built_in&#34;&gt;back&lt;/span&gt;() == &lt;span class=&#34;string&#34;&gt;&amp;#x27;-&amp;#x27;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            result.&lt;span class=&#34;built_in&#34;&gt;pop_back&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;//再反转&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;reverse&lt;/span&gt;(result.&lt;span class=&#34;built_in&#34;&gt;begin&lt;/span&gt;(), result.&lt;span class=&#34;built_in&#34;&gt;end&lt;/span&gt;());&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; result;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+        <category term="leetcode" scheme="https://dragonftop.github.io/categories/leetcode/" />
+        <updated>2026-05-29T01:57:26.950Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/05/27/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</id>
         <title>进程调度</title>
@@ -8425,163 +8446,5 @@ Hill 密码以分组多字母为单位整体代换，打乱了单字母的原始
 </content>
         <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
         <updated>2026-04-26T05:07:41.762Z</updated>
-    </entry>
-    <entry>
-        <id>https://dragonftop.github.io/2026/04/26/appcrypto/%E3%80%90%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0%E3%80%91%E6%A6%82%E5%BF%B5%E6%80%A7%E9%A2%98%E7%9B%AE%E6%95%B4%E7%90%86/</id>
-        <title>【密码学概述】概念性题目整理</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2026/04/26/appcrypto/%E3%80%90%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0%E3%80%91%E6%A6%82%E5%BF%B5%E6%80%A7%E9%A2%98%E7%9B%AE%E6%95%B4%E7%90%86/"/>
-        <content type="html">&lt;h1 id=&#34;密码学概述概念性题目整理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#密码学概述概念性题目整理&#34;&gt;#&lt;/a&gt; 【密码学概述】概念性题目整理&lt;/h1&gt;
-&lt;hr /&gt;
-&lt;h2 id=&#34;单选题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单选题&#34;&gt;#&lt;/a&gt; 单选题&lt;/h2&gt;
-&lt;h3 id=&#34;第1题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第1题&#34;&gt;#&lt;/a&gt; 第 1 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：常规加密技术通常是指 ( )。&lt;br /&gt;
-A、隐写术&lt;br /&gt;
- B、保密通信&lt;br /&gt;
- C、对称加密技术&lt;br /&gt;
- D、非对称加密技术&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：C&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：常规加密也叫对称密钥加密、单密钥加密，通信双方使用相同的密钥完成加解密，是最早、最传统的加密技术，因此常规加密技术特指对称加密技术。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第2题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第2题&#34;&gt;#&lt;/a&gt; 第 2 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：以下关于对称密码体制的描述中，错误的是 ( )&lt;br /&gt;
- A、对称密码体制的加密密钥和解密密钥相同或可相互导出。&lt;br /&gt;
-B、对称密码体制是指加密算法和解密算法相同的密码算法。&lt;br /&gt;
-C、加解密处理速度快是对称密钥密码体制的优点之一。&lt;br /&gt;
-D、对称密码体制的密钥管理较非对称密码更困难。&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：B&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：对称密码的核心定义是&lt;strong&gt;密钥相同 / 可互推&lt;/strong&gt;，而非算法一定相同；B 选项概念表述错误。对称算法计算量小、速度快；同时需要提前分发共享密钥，大规模场景下密钥分发与管理远难于非对称密码。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第3题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第3题&#34;&gt;#&lt;/a&gt; 第 3 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：以下关于公开密钥密码体制的描述中，错误的是 ( )&lt;br /&gt;
- A、加解密处理代价较常规密钥密码体制大，一般不直接用于对数据文件的加密。&lt;br /&gt;
-B、密码算法加解密的密钥不同，解密密钥仍要求保密，但加密密钥应公开。&lt;br /&gt;
-C、公开密钥密码就是密钥可以公开的密码体制。&lt;br /&gt;
-D、公开密钥密码体制较常规密钥密码体制有更好的开放性。&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：C&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：公开密钥密码（非对称加密）是&lt;strong&gt;一对密钥&lt;/strong&gt;：公钥公开、私钥严格保密，不是所有密钥都可以公开。非对称加密运算复杂度高，通常只用来加密对称密钥、数字签名，不会直接加密大体积文件；相比对称密码，无需提前共享秘密密钥，开放性、扩展性更强。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第4题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第4题&#34;&gt;#&lt;/a&gt; 第 4 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：密码学中，受限制的密码算法是指 ( )。&lt;br /&gt;
-A、不安全的算法&lt;br /&gt;
- B、其安全性依赖于对算法的保密&lt;br /&gt;
- C、受专利法保护，不能公开使用的算法&lt;br /&gt;
- D、其安全性依赖于对密钥的保密&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：B&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：受限制算法的安全根基是&lt;strong&gt;隐藏算法本身细节&lt;/strong&gt;，一旦算法泄露就彻底失去安全性；现代密码学遵循柯克霍夫斯原则：算法公开，安全性仅依赖密钥保密。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第5题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第5题&#34;&gt;#&lt;/a&gt; 第 5 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：以下对密码系统攻击目标的描述中，正确的是 ( )。&lt;br /&gt;
-A、破译出解密算法的细节&lt;br /&gt;
- B、在不知道密钥的前提下，破译或部分破译加密信息，甚至密钥。&lt;br /&gt;
-C、破译出加密算法的细节&lt;br /&gt;
- D、破译出加解密算法&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：B&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：现代密码攻击默认算法完全公开，攻击者目标是&lt;strong&gt;未知密钥的情况下&lt;/strong&gt;，还原明文、推算密钥，而非破解公开的算法本身。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第6题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第6题&#34;&gt;#&lt;/a&gt; 第 6 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：密码学的两个分支是 ( ) 和密码分析学。其中前者是对信息进行编码以保护信息的一门学问，后者是研究分析破译密码的学问。&lt;br /&gt;
-A、密码协议&lt;br /&gt;
- B、密码设计学&lt;br /&gt;
- C、密码应用&lt;br /&gt;
- D、密码编码学&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：D&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：密码学分为两大基础分支：&lt;strong&gt;密码编码学&lt;/strong&gt;（研究如何设计加密方案、保护信息）、&lt;strong&gt;密码分析学&lt;/strong&gt;（研究如何破解密码、还原信息）。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第7题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第7题&#34;&gt;#&lt;/a&gt; 第 7 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：密码分析通常是指 ( )。&lt;br /&gt;
-A、对加密与解密算法的构造与设计&lt;br /&gt;
- B、对加密信息的攻击 (破译) 过程&lt;br /&gt;
- C、如何使消息保密的技术&lt;br /&gt;
- D、对信息的编码分析过程&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：B&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：密码分析就是密码破译，指攻击者针对密文、加密系统开展破解、推导明文或密钥的攻击行为。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第8题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第8题&#34;&gt;#&lt;/a&gt; 第 8 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：评估密码系统安全性的主要方法不包括 ( )。&lt;br /&gt;
-A、无条件安全性&lt;br /&gt;
- B、计算安全性&lt;br /&gt;
- C、密钥安全性&lt;br /&gt;
- D、可证明安全性&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：C&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：密码安全的三类主流评估标准：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;无条件安全（信息论安全，无限算力也无法破解）&lt;/li&gt;
-&lt;li&gt;计算安全（现有算力、时间条件下无法有效破解）&lt;/li&gt;
-&lt;li&gt;可证明安全（可数学规约证明安全强度）&lt;br /&gt;
-密钥安全性不属于独立的系统安全评估分类。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第9题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第9题&#34;&gt;#&lt;/a&gt; 第 9 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：1949 年 () 发表了 “保密系统的通信理论” 一文，这篇文章奠定了密码学的理论基础，推动着密码学从艺术向科学的转变。&lt;br /&gt;
-A、Hellman&lt;br /&gt;
-B、Shamir&lt;br /&gt;
-C、Shannon&lt;br /&gt;
-D、Diffie&lt;br /&gt;
-&lt;strong&gt; 答案&lt;/strong&gt;：C&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：克劳德・香农（Shannon）1949 年发表该著作，用信息论系统化定义密码安全，让密码学从经验技巧正式变为严谨科学。Diffie、Hellman、Shamir 是非对称加密领域的代表人物。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第10题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第10题&#34;&gt;#&lt;/a&gt; 第 10 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：以下对密码攻击者假设的描述，错误的是 ( )。&lt;br /&gt;
-A、可以拥有目前最先进的计算资源&lt;br /&gt;
- B、可以不惜成本&lt;br /&gt;
- C、可以拥有足够的时间&lt;br /&gt;
- D、不知道密码算法的细节&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：D&lt;br /&gt;
-&lt;strong&gt; 解析&lt;/strong&gt;：密码学默认&lt;strong&gt;柯克霍夫斯假设&lt;/strong&gt;：攻击者完全知晓完整的密码算法细节，仅密钥保密；同时默认攻击者具备顶级算力、充足时间与成本。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h2 id=&#34;判断题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#判断题&#34;&gt;#&lt;/a&gt; 判断题&lt;/h2&gt;
-&lt;h3 id=&#34;第11题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第11题&#34;&gt;#&lt;/a&gt; 第 11 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：不可能存在理论上可确保安全的密码体制&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：存在理论上绝对安全（无条件安全）的密码，典型如一次一密（One-Time Pad），只要密钥满足真随机、长度≥明文、只用一次，就无法被攻破。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第12题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第12题&#34;&gt;#&lt;/a&gt; 第 12 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：现代密码体制把算法和密钥分开，只需要保证密钥的保密性就行了，算法是可以公开的&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：对&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：柯克霍夫斯原则核心：算法公开、标准化公开审查，所有安全仅依靠密钥保密，大幅提升密码系统的实际安全水平。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第13题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第13题&#34;&gt;#&lt;/a&gt; 第 13 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：尽管没有信息加密的密钥，但只要知道加密算法的细节就可以对信息进行解密&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：现代密码设计保证：公开算法、无密钥的情况下，无法从密文还原明文。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第14题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第14题&#34;&gt;#&lt;/a&gt; 第 14 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：对称密码算法是指加密算法和解密算法相同的密码算法&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：对称密码的定义是&lt;strong&gt;加解密使用的密钥相同、或可互相推导&lt;/strong&gt;，算法本身不一定完全相同。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第15题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第15题&#34;&gt;#&lt;/a&gt; 第 15 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：单密钥密码算法是指仅有加密密钥的密码算法&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：单密钥（对称密码）是&lt;strong&gt;同一个密钥既用于加密、也用于解密&lt;/strong&gt;，不是只有加密密钥。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第16题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第16题&#34;&gt;#&lt;/a&gt; 第 16 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：公开密钥密码就是密钥可以公开的密码体制&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：仅公钥对外公开，对应的私钥必须严格保密、绝对不能公开，并非全部密钥都可公开。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第17题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第17题&#34;&gt;#&lt;/a&gt; 第 17 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：密码学包括两大分支，即密码编码学和密码分析学&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：对&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：密码学标准两大分支：编码学（造密码、保信息）、分析学（破密码、攻系统）。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第18题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第18题&#34;&gt;#&lt;/a&gt; 第 18 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：一个密码系统的保密性不能依赖于对加密体制或算法的保密，而仅依赖于密钥的安全性&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：对&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：符合柯克霍夫斯设计原则，依赖算法保密的算法安全性极差，一旦算法泄露系统就彻底失效。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第19题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第19题&#34;&gt;#&lt;/a&gt; 第 19 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：密钥少，便于管理是常规密码算法的优点之一&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：常规对称密码的缺点就是密钥分发、管理难度大；用户数量增多时，密钥数量爆炸式增长，管理极其复杂。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;第20题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第20题&#34;&gt;#&lt;/a&gt; 第 20 题&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;题目&lt;/strong&gt;：加解密处理速度快、保密程度高是非对称密钥密码体制的优点之一&lt;br /&gt;
-&lt;strong&gt;答案&lt;/strong&gt;：错&lt;br /&gt;
-&lt;strong&gt;解析&lt;/strong&gt;：非对称密码运算量大、加解密速度慢；速度快是对称密码的特点，非对称密码优势是密钥管理、签名、密钥协商能力。&lt;/p&gt;
-&lt;hr /&gt;
-</content>
-        <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
-        <updated>2026-04-26T05:02:43.035Z</updated>
     </entry>
 </feed>
