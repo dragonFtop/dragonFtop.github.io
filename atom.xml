@@ -8,7 +8,100 @@
     <author>
       <name>Zheng Feng</name>
     </author>
-    <updated>2026-06-01T15:47:29.530Z</updated>
+    <updated>2026-06-03T00:17:27.839Z</updated>
+    <entry>
+        <id>https://dragonftop.github.io/2026/06/03/network/%E9%93%BE%E8%B7%AF%E5%B1%82/</id>
+        <title>链路层</title>
+        <link rel="alternate" href="https://dragonftop.github.io/2026/06/03/network/%E9%93%BE%E8%B7%AF%E5%B1%82/"/>
+        <content type="html">&lt;h1 id=&#34;链路层&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#链路层&#34;&gt;#&lt;/a&gt; 链路层&lt;/h1&gt;
+&lt;h2 id=&#34;链路层提供的服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#链路层提供的服务&#34;&gt;#&lt;/a&gt; 链路层提供的服务&lt;/h2&gt;
+&lt;p&gt;链路层提供的服务是负责相邻节点之间的数据传输（transferring datagram from one node to adjacent node over a link）&lt;br /&gt;
+不同的链路有不同的链路层协议，不同链路层协议提供不同服务。&lt;br /&gt;
+主要提供两类服务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流量控制 (flow control)&lt;/li&gt;
+&lt;li&gt;差错检测 (error detection)&lt;/li&gt;
+&lt;li&gt;半双工和全双工 (half-duplex and full-duplex)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;错误检测和纠正&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#错误检测和纠正&#34;&gt;#&lt;/a&gt; 错误检测和纠正&lt;/h2&gt;
+&lt;p&gt;在链路层会对网络层的 datagram 进行检错和纠错，核心是通过检错与纠错位 (EDC) 实现：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_10-03-30.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 虽然引入了检错机制，但是仍然存在极少的差漏。EDC 部位的长度越大，对于检错的效果越好。&lt;br /&gt;
+以下是两种不同方式的校验：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;奇偶校验&lt;/li&gt;
+&lt;li&gt;循环冗余校验&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;奇偶校验party-checking&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#奇偶校验party-checking&#34;&gt;#&lt;/a&gt; 奇偶校验（Party Checking）&lt;/h3&gt;
+&lt;p&gt;在固定长度 d bits 的 data 段后掺入一个 party bit 位用于记录该段 data 内的 1 的个数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;even 校验：这 d+1bit 中 1 的个数为偶数&lt;/li&gt;
+&lt;li&gt;odd 校验：这 d+1bit 中的 1 的个数为奇数&lt;br /&gt;
+一维奇偶校验：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_10-11-48.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 二维奇偶校验：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_10-15-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;循环冗余校验crc&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#循环冗余校验crc&#34;&gt;#&lt;/a&gt; 循环冗余校验（CRC）&lt;/h3&gt;
+&lt;p&gt;首先选择一个 n 次多项式，确定其模 2 的形式（二进制），然后在 data 的尾部上 n 个 0，然后进行除法运算得到余数 R，注意除法运算中，均采用类似异或的方式进行（非最高位都通过异或计算）。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_10-16-46.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;多路访问协议multiple-access-protocols&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#多路访问协议multiple-access-protocols&#34;&gt;#&lt;/a&gt; 多路访问协议 (Multiple access protocols)&lt;/h2&gt;
+&lt;h3 id=&#34;信道划分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信道划分&#34;&gt;#&lt;/a&gt; 信道划分&lt;/h3&gt;
+&lt;h3 id=&#34;随机访问random-access&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#随机访问random-access&#34;&gt;#&lt;/a&gt; 随机访问（Random Access）&lt;/h3&gt;
+&lt;h4 id=&#34;纯alohapure-aloha&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#纯alohapure-aloha&#34;&gt;#&lt;/a&gt; 纯 ALOHA（Pure ALOHA）&lt;/h4&gt;
+&lt;p&gt;比较糟糕的机制&lt;/p&gt;
+&lt;h4 id=&#34;时隙alohaslotted-aloha&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#时隙alohaslotted-aloha&#34;&gt;#&lt;/a&gt; 时隙 ALOHA (Slotted ALOHA)：&lt;/h4&gt;
+&lt;p&gt;前提：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有帧等长&lt;/li&gt;
+&lt;li&gt;所有时隙等长且恰好能发送一帧&lt;/li&gt;
+&lt;li&gt;只能在时隙开始时发送&lt;/li&gt;
+&lt;li&gt;节点时钟是同步的&lt;/li&gt;
+&lt;li&gt;多节点同时发送，所有节点都能检测到冲突&lt;br /&gt;
+实际运作：如果节点之间没有冲突（collision），那么节点就发送帧，如果节点之间存在冲突，那么节点都不发送，在后续的时隙中各个节点以概率 p 重传帧，重新检测是否冲突，直到不再冲突，成功发送。&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_10-30-43.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 优点：&lt;/li&gt;
+&lt;li&gt;单节点可以全速率传输&lt;/li&gt;
+&lt;li&gt;去中心化，只需要时隙保持同步（sync）&lt;br /&gt;
+缺点：&lt;/li&gt;
+&lt;li&gt;collision 造成的时隙浪费&lt;/li&gt;
+&lt;li&gt;存在空闲时隙（idle slots）&lt;/li&gt;
+&lt;li&gt;时钟不一定能完全同步&lt;/li&gt;
+&lt;li&gt;节点可能在传输数据包的同时才发现冲突（晚矣）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个机制的效率通过成功传输帧的时隙所占整体时隙的比例：&lt;br /&gt;
+假定每个节点传输帧的概率为 p，则对于 N 个发送帧的节点来说，一个时隙中有帧发送成功的概率为：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_10-39-38.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 由此可以使用这个概率作为效率衡量标准&lt;br /&gt;
+当 N-&amp;gt; 无穷大时，可以通过数学求证得到： &lt;code&gt;Max efficiency=37%&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;载波侦听多路访问csma&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#载波侦听多路访问csma&#34;&gt;#&lt;/a&gt; 载波侦听多路访问（CSMA）&lt;/h4&gt;
+&lt;p&gt;CSMA 总之就一句话：信道空闲，传送帧；信道忙，延迟传输。不打扰当前链路上传输的任务。&lt;br /&gt;
+但是仍然存在 collision，因为存在传播时延，当帧在链路上传输的时候，其他节点可能还没有监听到，就像声音传播也是需要时间的。&lt;br /&gt;
+所以也需要引入 Collision Detection 机制：当检测到链路忙时，等待足够时间（确保当前链路传输任务完成）后，再发送帧。&lt;/p&gt;
+&lt;h4 id=&#34;轮流发送taking-turns&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#轮流发送taking-turns&#34;&gt;#&lt;/a&gt; 轮流发送（Taking turns）&lt;/h4&gt;
+&lt;p&gt;所有节点采用轮流获得发送权限的方式发送帧，类似于排队，这样不会存在 collision。&lt;br /&gt;
+一个 master 节点邀请多个 slave 节点来轮流发送帧。&lt;br /&gt;
+在轮询过程中，使用令牌传递的方式，只有获得令牌的节点才能发送帧。这样看来有一个极大的缺点，如果一个节点拿到了令牌而不传递，导致整个 turn 出现问题：单点故障。&lt;/p&gt;
+&lt;h2 id=&#34;mac地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mac地址&#34;&gt;#&lt;/a&gt; MAC 地址&lt;/h2&gt;
+&lt;p&gt;MAC 地址由 IEEE 分发，其前三个字节表示设备厂商信息。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unicast 单播地址：用于一对一通信的地址。&lt;/li&gt;
+&lt;li&gt;Broadcast 广播地址：用于一对所有通信的地址，只作为目的地址。&lt;/li&gt;
+&lt;li&gt;组播 / 多播地址：用于一对多通信的地址，只作为目的地址。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;IP 地址和 MAC 地址的区别：&lt;/strong&gt;&lt;br /&gt;
+MAC 地址就像你的名字，而 IP 地址就像你的住址，一个 LAN 网络就像一个地区。你在所有的地区（LAN）中的名字（MAC）不变，但是当你从一个地区（LAN）搬到另一个地区（LAN）中后，你的住址（IP）变了。IP 取决于网络分布，而 MAC 取决于设备的网卡。&lt;/p&gt;
+&lt;h3 id=&#34;arp地址解析协议&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#arp地址解析协议&#34;&gt;#&lt;/a&gt; ARP 地址解析协议&lt;/h3&gt;
+&lt;p&gt;在已知主机的 IP 地址的情况下，如何获取其 MAC 地址？-&amp;gt;ARP 协议&lt;br /&gt;
+ ARP Table:IP 和 MAC 的 map&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_11-35-57.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 这里的 TTL 不是跳数了，这里表示对应条目的映射保留时间，超过 TTL 被遗忘。&lt;br /&gt;
+根据 IP 地址去找 MAC 地址的机制如下：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_11-40-39.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
+</content>
+        <category term="计算机网络" scheme="https://dragonftop.github.io/categories/network/" />
+        <updated>2026-06-03T00:17:27.839Z</updated>
+    </entry>
     <entry>
         <id>https://dragonftop.github.io/2026/06/01/os/15-%E6%AD%BB%E9%94%81-%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90/</id>
         <title>死锁-题目解析</title>
@@ -1875,6 +1968,53 @@ B. 进程状态变为就绪&lt;br /&gt;
 &lt;li&gt;装满输入数据的缓冲队列&lt;/li&gt;
 &lt;li&gt;装满输出数据的缓冲队列&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1 id=&#34;如何提高io效率&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何提高io效率&#34;&gt;#&lt;/a&gt; 如何提高 I/O 效率&lt;/h1&gt;
+&lt;h2 id=&#34;为什么需要提高io效率&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么需要提高io效率&#34;&gt;#&lt;/a&gt; 为什么需要提高 I/O 效率&lt;/h2&gt;
+&lt;p&gt;实际情况中 I/O 的运行速度非常慢，在一些场景中 I/O 会拖累 CPU，而降低系统性能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将内存中的数据存入磁盘中，CPU 能极快地输入数据给 I/O，但是 I/O 一次只能读取少量的数据，所以 CPU 只能慢下来等 I/O，如果没有合适的调度的话，CPU 资源将在等待 I/O 中浪费掉。&lt;/li&gt;
+&lt;li&gt;另一个例子 CPU 需要读取 I/O 设备的输入，但是 I/O 运行速度很慢，CPU 必须等待 I/O 设备的输入。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;io缓冲&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#io缓冲&#34;&gt;#&lt;/a&gt; I/O 缓冲&lt;/h2&gt;
+&lt;p&gt;I/O 缓冲可以让 CPU 快速将数据存储在缓冲区中，I/O 设备在缓冲区中读取数据。也就是将数据的读写变为 &lt;code&gt;异步执行&lt;/code&gt; 在此种情况下下 CPU 效率更高。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU 将 100MB 数据甩入缓冲区后直接走人，然后 I/O，比如磁盘自己慢慢地从缓冲区中读取。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据缓冲单元的数量可以分为单缓冲、双缓冲、循环缓冲。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单缓冲&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_14-54-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;双缓冲&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_14-54-45.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;循环缓冲&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_14-55-06.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;磁盘调度&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#磁盘调度&#34;&gt;#&lt;/a&gt; 磁盘调度&lt;/h2&gt;
+&lt;p&gt;磁盘的结构：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_15-00-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 读写磁盘的时间分析：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_15-00-44.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_15-01-33.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+ 定量分析磁盘的性能：&lt;br /&gt;
+&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-06-03_15-02-13.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
+Tr 和 Td 时间都是由物理机械所决定的，无法通过调度来实现优化，所以这里只能通过来优化寻道时间。&lt;br /&gt;
+具体如何优化寻道时间？&lt;br /&gt;
+通过使用合适的寻道顺序的调度可以优化。&lt;br /&gt;
+磁盘调度的性能指标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;平均寻道长度&lt;/li&gt;
+&lt;li&gt;最大寻道延迟&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;磁盘调度的几种策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#磁盘调度的几种策略&#34;&gt;#&lt;/a&gt; 磁盘调度的几种策略&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;先入先出（FIFO）：按照请求访问的顺序进行寻道。&lt;/li&gt;
+&lt;li&gt;后入先出（LIFO）：按照请求访问的顺序的逆序进行寻道。&lt;/li&gt;
+&lt;li&gt;最短服务时间优先（SSTF）：选择对于当前磁头位置最近的目标进行寻道（类似于贪心算法）。&lt;/li&gt;
+&lt;li&gt;磁道扫描（Scan）：选择当前磁臂移动的方向上距离当前磁道最近的请求。到达磁盘一端后调转方向扫描。&lt;/li&gt;
+&lt;li&gt;循环扫描：与扫描的区别为到达磁盘的一端后不会调转方向，会继续当前方向（转圈的方式）寻找距离当前磁道距离最近的请求。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;前两种调度没有优化平均寻道时间，第三种不能保证最优寻道时间，但是通常性能效果为：SSTF&amp;gt;FIFO&amp;gt;=LIFO&lt;br /&gt;
+ 其中 SSTF 存在公平性问题（偏安全），比如某个进程发出大量位置较近的请求，这个进程会较长时间抢占 I/O。&lt;/p&gt;
 </content>
         <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
         <updated>2026-06-01T12:45:55.747Z</updated>
@@ -6455,132 +6595,5 @@ The stop-and-wait protocol is highly inefficient when there is a large distance 
 </content>
         <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
         <updated>2026-05-27T06:04:17.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://dragonftop.github.io/2026/05/26/appcrypto/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/</id>
-        <title>数字签名</title>
-        <link rel="alternate" href="https://dragonftop.github.io/2026/05/26/appcrypto/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/"/>
-        <content type="html">&lt;h1 id=&#34;数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名&#34;&gt;#&lt;/a&gt; 数字签名&lt;/h1&gt;
-&lt;h2 id=&#34;数字签名概述&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名概述&#34;&gt;#&lt;/a&gt; 数字签名概述&lt;/h2&gt;
-&lt;h3 id=&#34;数字签名作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名作用&#34;&gt;#&lt;/a&gt; 数字签名作用&lt;/h3&gt;
-&lt;p&gt;数字签名作用方面：鉴别、数据完整性、抗抵赖性&lt;br /&gt;
-主要作用： &lt;code&gt;将消息和拥有消息的实体可信地联系起来。&lt;/code&gt; &lt;br /&gt;
-数字签名分类：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_14-50-02.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;何为数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#何为数字签名&#34;&gt;#&lt;/a&gt; 何为数字签名&lt;/h3&gt;
-&lt;h3 id=&#34;数字签名的特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的特性&#34;&gt;#&lt;/a&gt; 数字签名的特性&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;签名不可伪造：除了合法的签名者之外，任何其他人伪造其签名是困难的。&lt;/li&gt;
-&lt;li&gt;签名不可抵赖：签名者事后不能否认自己的签名。&lt;/li&gt;
-&lt;li&gt;签名是可信的：任何人都可以验证签名的有效性。&lt;/li&gt;
-&lt;li&gt;签名是不可复制的：对一个消息的签名不能通过复制变为另一个消息的签名。&lt;/li&gt;
-&lt;li&gt;签名的消息是不可更改的：经签名的消息不能被篡改。一旦签名的消息被篡改，则任何人都可以发现消息与签名之间的不一致性。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;数字签名的组成部分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的组成部分&#34;&gt;#&lt;/a&gt; 数字签名的组成部分&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;签名算法：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_14-55-32.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;验证算法：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_14-56-07.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;数字签名的设计要求&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的设计要求&#34;&gt;#&lt;/a&gt; 数字签名的设计要求&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;签名必须依赖于被签名消息的比特模式 (签名与消息应该是一个不可分割的整体)；&lt;/li&gt;
-&lt;li&gt;签名必须使用某些对发送者是唯一的信息，以防止伪造和抵赖；&lt;/li&gt;
-&lt;li&gt;数字签名的产生、识别和验证应该相对容易；&lt;/li&gt;
-&lt;li&gt;伪造一个数字签名在计算上是不可行的；(无论是通过对已有的数字签名来构造新消息，还是对给定的消息伪造一个数字签名)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;基于公钥密码的数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于公钥密码的数字签名&#34;&gt;#&lt;/a&gt; 基于公钥密码的数字签名&lt;/h3&gt;
-&lt;p&gt;公钥密码中的使用私钥加密消息可以做到数字签名的效果，例如 RSA 用私钥签名，用公钥验证。&lt;br /&gt;
-但是直接使用 RSA 加密消息进行数字签名存在选择明文攻击：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-06-16.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 这种问题的产生根源是：数字签名内容和消息内容为一体，验证数字签名时暴漏了明文。&lt;br /&gt;
-解决方案：将签名信息和报文分离，形成独立的签名块；&lt;/p&gt;
-&lt;h2 id=&#34;数字签名的执行方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名的执行方式&#34;&gt;#&lt;/a&gt; 数字签名的执行方式&lt;/h2&gt;
-&lt;p&gt;数字签名执行方式分为两类：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;直接数字签名：只有通信双方参与，并假定双方有共享的秘密密钥，或接收一方知道发送方的公开密钥。&lt;br /&gt;
-存在问题：
-&lt;ul&gt;
-&lt;li&gt;发送方抵赖&lt;/li&gt;
-&lt;li&gt;有效性依赖于发送方密钥的安全性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;具有仲裁的数字签名：在通信双方的基础上引入了第三方仲裁者参与。
-&lt;ul&gt;
-&lt;li&gt;应用对称加密，仲裁者可以看到消息内容&lt;/li&gt;
-&lt;li&gt;应用对称加密，仲裁者不能看到消息内容&lt;/li&gt;
-&lt;li&gt;应用公钥加密，仲裁者不能看到消息内容&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;rsa数字签名方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#rsa数字签名方案&#34;&gt;#&lt;/a&gt; RSA 数字签名方案&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-14-37.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-RSA 数字签名方案图解：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-14-49.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 注：这里只是对消息签名，只考虑鉴别性（消息没加密）&lt;/p&gt;
-&lt;h3 id=&#34;elgamal-数字签名方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#elgamal-数字签名方案&#34;&gt;#&lt;/a&gt; ElGamal 数字签名方案&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-18-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-24-59.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
- 这里对于验证等式正确性的证明如下：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-25-56.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-ElGamel 算法方案图解：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-26-12.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;总之，ElGamel 可以表达为以下三目运算语句&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_15-30-31.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;数字签名标准dss&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数字签名标准dss&#34;&gt;#&lt;/a&gt; 数字签名标准 (DSS)&lt;/h3&gt;
-&lt;p&gt;DSS 中采用 DSA 作为数字签名算法&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;DSA 的参数：p、q、g、x、y&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-01-04.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-&lt;strong&gt; 其中 p、q、g 为系统公开参数，x 和分别为私钥和公钥&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;DSA 签名过程：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-07-00.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;DSA 签名验证过程：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-07-26.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;基于椭圆曲线的数字签名算法ecdsa&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基于椭圆曲线的数字签名算法ecdsa&#34;&gt;#&lt;/a&gt; 基于椭圆曲线的数字签名算法 ECDSA&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;ECDSA 参数：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-10-40.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;ECDSA 签名过程：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-12-19.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;ESDSA 签名验证过程：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-12-46.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;br /&gt;
-ECDSA 算法的图解：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-15-24.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;特殊签名方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#特殊签名方案&#34;&gt;#&lt;/a&gt; 特殊签名方案&lt;/h2&gt;
-&lt;h3 id=&#34;不可否认签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#不可否认签名&#34;&gt;#&lt;/a&gt; 不可否认签名&lt;/h3&gt;
-&lt;p&gt;必须由签名者参加的情况下才能进行签名验证，所以签名验证成功后签名者不可以否认。&lt;br /&gt;
-不可否认签名方案包括三个部分：签名算法、验证算法、否认协议&lt;/p&gt;
-&lt;h3 id=&#34;盲数字签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#盲数字签名&#34;&gt;#&lt;/a&gt; 盲数字签名&lt;/h3&gt;
-&lt;p&gt;签名者不知道数据内容而签名。&lt;br /&gt;
-有两个很显著的特点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;消息内容对签名者不可见&lt;/li&gt;
-&lt;li&gt;在签名被接受者公开后，签名者不能追踪签名&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;也就是匿名、无记名投票，其基本结构：&lt;br /&gt;
-&lt;img data-src=&#34;https://imagebad.pages.dev/image/PixPin_2026-05-26_18-23-07.jpg&#34; alt=&#34;alt text&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;群签名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#群签名&#34;&gt;#&lt;/a&gt; 群签名&lt;/h3&gt;
-&lt;h2 id=&#34;国密sm2算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#国密sm2算法&#34;&gt;#&lt;/a&gt; 国密 SM2 算法&lt;/h2&gt;
-&lt;p&gt;SM2 是椭圆曲线公钥密码算法&lt;br /&gt;
-其中包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;数字签名算法&lt;/li&gt;
-&lt;li&gt;密钥交换协议&lt;/li&gt;
-&lt;li&gt;公钥加密算法&lt;br /&gt;
-有关此节：SM2-1：数字签名算法&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-        <category term="应用密码学" scheme="https://dragonftop.github.io/categories/appcrypto/" />
-        <updated>2026-05-26T06:39:00.000Z</updated>
     </entry>
 </feed>
