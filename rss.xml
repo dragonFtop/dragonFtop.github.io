@@ -10,14 +10,14 @@
         </author>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Wed, 24 Jun 2026 15:22:48 +0800</pubDate>
-        <lastBuildDate>Wed, 24 Jun 2026 15:22:48 +0800</lastBuildDate>
+        <pubDate>Wed, 24 Jun 2026 15:41:37 +0800</pubDate>
+        <lastBuildDate>Wed, 24 Jun 2026 15:41:37 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://dragonftop.github.io/2026/06/24/os/10-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</guid>
+            <guid isPermalink="true">https://dragonftop.github.io/2026/06/24/os/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</guid>
             <title>文件管理</title>
-            <link>https://dragonftop.github.io/2026/06/24/os/10-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</link>
+            <link>https://dragonftop.github.io/2026/06/24/os/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/</link>
             <category term="操作系统" scheme="https://dragonftop.github.io/categories/os/" />
-            <pubDate>Wed, 24 Jun 2026 15:22:48 +0800</pubDate>
+            <pubDate>Wed, 24 Jun 2026 15:41:37 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;文件管理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文件管理&#34;&gt;#&lt;/a&gt; 文件管理&lt;/h1&gt;
 &lt;h2 id=&#34;1-why-为何需要文件管理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-why-为何需要文件管理&#34;&gt;#&lt;/a&gt; 1. Why / 为何需要文件管理&lt;/h2&gt;
 &lt;h3 id=&#34;11-产生背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#11-产生背景&#34;&gt;#&lt;/a&gt; 1.1 产生背景&lt;/h3&gt;
